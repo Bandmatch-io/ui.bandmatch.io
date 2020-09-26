@@ -7,7 +7,13 @@
           <slot />
         </div>
       </div>
-      <input :type="type" :placeholder="placeholder" class="col-span-10 appearance-none border rounded-r py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      <input
+        ref="inputField"
+        @change="onChange"
+        :value="value"
+        :type="type"
+        :placeholder="placeholder"
+        class="col-span-10 appearance-none border rounded-r py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
     </div>
   </div>
 </template>
@@ -17,11 +23,12 @@ export default {
   props: {
     type: String,
     placeholder: String,
-    label: String
+    label: String,
+    value: String
   },
-  data () {
-    return {
-
+  methods: {
+    onChange () {
+      this.$emit('input', this.$refs.inputField.value)
     }
   }
 }

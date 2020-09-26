@@ -1,5 +1,5 @@
 <template>
-  <div @click="checked=!checked" style="cursor: pointer;" class="grid grid-cols-12 grid-flow-col">
+  <div @click="setChecked(!checked)" style="cursor: pointer;" class="grid grid-cols-12 grid-flow-col">
     <div class="col-span-2">
       <div class="rounded shadow checkbox" :data-checked="checked" />
     </div>
@@ -12,11 +12,21 @@
 <script>
 export default {
   props: {
-    label: String
+    label: String,
+    value: Boolean
+  },
+  mounted () {
+    this.checked = this.value
   },
   data () {
     return {
       checked: false
+    }
+  },
+  methods: {
+    setChecked (state) {
+      this.checked = state
+      this.$emit('input', state)
     }
   }
 }
