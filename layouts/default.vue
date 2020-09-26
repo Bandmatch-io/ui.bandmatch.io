@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Navbar />
-    <Nuxt />
+    <Navbar :user="currentUser"/>
+    <Nuxt  />
   </div>
 </template>
 
@@ -11,6 +11,26 @@ import Navbar from '~/components/Navbar'
 export default {
   components: {
     Navbar
+  },
+  data () {
+    return {
+      currentUser: undefined
+    }
+  },
+  mounted () {
+    console.log(JSON.stringify(this.userInformation))
+    fetch('http://localhost:8080/users/profile',
+      {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(res => res.json())
+      .then((data) => {
+        if (data.success) {
+          this.currentUser = data.user
+          console.log(JSON.stringify(this.currentUser))
+        }
+      })
   }
 }
 </script>
