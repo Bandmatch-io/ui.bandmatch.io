@@ -18,7 +18,6 @@ export default {
     }
   },
   mounted () {
-    console.log(JSON.stringify(this.userInformation))
     fetch('http://localhost:8080/users/profile',
       {
         method: 'GET',

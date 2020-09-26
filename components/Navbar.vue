@@ -19,7 +19,7 @@
       </div>
     </div>
     <div v-if="user">
-      <Dropdown :name="user.displayName" />
+      <Dropdown class="inline-block px-4 py-2 leading-none" :name="user.displayName" />
     </div>
     <div v-else>
       <nuxt-link to="/account" class="inline-block text-l px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
