@@ -1,7 +1,7 @@
 <template>
   <div class="bg-polka">
     <div class="flex flex-wrap">
-      <div class="w-full lg:w-1/2 bg-gray-100 rounded shadow">
+      <div class="w-full block mx-auto my-8 lg:w-1/3 bg-gray-100 rounded shadow">
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
           <div class="col-span-1">
             <p>E-Mail</p>
@@ -33,6 +33,17 @@
             </TextInput>
           </div>
         </div>
+
+        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+          <div class="col-span-1">
+            <p>Genres</p>
+            <p></p>
+          </div>
+          <div class="col-span-3">
+            <ArrayInput v-model="genres" />
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -45,6 +56,11 @@ export default {
   components: {
     AtSignIcon,
     KeyIcon
+  },
+  data () {
+    return {
+      genres: []
+    }
   },
   computed: {
     user () {
