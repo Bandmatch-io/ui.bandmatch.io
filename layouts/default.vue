@@ -6,15 +6,16 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import Navbar from '~/components/Navbar'
 
 export default {
   components: {
     Navbar
   },
-  data () {
-    return {
-      currentUser: undefined
+  computed: {
+    currentUser () {
+      return this.$store.state.user
     }
   },
   mounted () {
@@ -26,11 +27,14 @@ export default {
       .then(res => res.json())
       .then((data) => {
         if (data.success) {
-          this.currentUser = data.user
-          console.log(JSON.stringify(this.currentUser))
+          this.$store.commit('user/logIn', JSON.stringify(data.user))
         }
       })
-    console.log(this.$route)
+  },
+  methods: {
+    ...mapMutations({
+      logIn: 'user/logIn'
+    })
   }
 }
 </script>

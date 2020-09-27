@@ -27,6 +27,7 @@
 
 <script>
 import { MailIcon, KeyIcon, ArrowLeftCircleIcon } from 'vue-feather-icons'
+import { mapMutations } from 'vuex'
 
 export default {
   components: {
@@ -63,13 +64,17 @@ export default {
         .then(res => res.json())
         .then((data) => {
           if (data.success) {
+            this.$store.commit('user/logIn', JSON.stringify(data.user))
             window.location.href = '/'
           }
         })
     },
     goBack () {
       this.$emit('return')
-    }
+    },
+    ...mapMutations({
+      logIn: 'user/logIn'
+    })
   }
 }
 </script>

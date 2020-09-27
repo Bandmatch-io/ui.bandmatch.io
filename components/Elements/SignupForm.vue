@@ -9,14 +9,14 @@
 
     <div class="max-w-350 block mx-auto">
       <TextInput v-model="userInformation.email" type="email" placeholder="you@youremail.com" label="Email">
-      <mail-icon class="block mx-auto" />
+        <mail-icon class="block mx-auto" />
       </TextInput>
       <p class="mb-5"><small>We will never share your email with anyone</small></p>
     </div>
 
     <div class="max-w-350 block mx-auto">
       <TextInput v-model="userInformation.name" type="text" placeholder="Your name" label="Display Name">
-      <at-sign-icon class="block mx-auto" />
+        <at-sign-icon class="block mx-auto" />
       </TextInput>
       <p class="mb-0"><small>Name can be anything up to 16 letters.</small></p>
       <p class="mb-5"><small>This doesn't have to be your real name, it can be anything you want to be known as (i.e. your band's name).</small></p>

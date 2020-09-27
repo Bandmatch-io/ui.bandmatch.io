@@ -18,7 +18,7 @@
             <message-square-icon class="inline-block" /> Messages
           </nuxt-link>
         </div>
-        <AccountDropdown class="inline-block px-4 py-2 leading-none" :name="user.displayName" />
+        <AccountDropdown class="inline-block px-4 py-2 leading-none" />
       </div>
     </div>
     <div v-else-if="!isLoginPage">
@@ -37,13 +37,15 @@ export default {
     MessageSquareIcon,
     UserIcon
   },
-  props: {
-    user: undefined
-  },
   data () {
     return {
       isOpen: false,
       isLoginPage: this.$route.path === '/account'
+    }
+  },
+  computed: {
+    user () {
+      return this.$store.state.user.currentUser
     }
   }
 }
