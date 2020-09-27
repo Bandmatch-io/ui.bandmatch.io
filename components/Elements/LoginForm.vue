@@ -8,15 +8,15 @@
     </div>
 
     <div class="max-w-350 block mx-auto">
-      <Input v-model="loginDetails.email" type="email" placeholder="you@youremail.com" label="Email">
+      <TextInput v-model="loginDetails.email" type="email" placeholder="you@youremail.com" label="Email">
         <mail-icon class="block mx-auto" />
-      </Input>
+      </TextInput>
     </div>
 
     <div class="max-w-350 block mx-auto">
-      <Input v-model="loginDetails.password" type="password" placeholder="Your password" label="Password">
+      <TextInput v-model="loginDetails.password" type="password" placeholder="Your password" label="Password">
         <key-icon class="block mx-auto" />
-      </Input>
+      </TextInput>
     </div>
 
     <div @click="postLoginForm" class="clickable max-w-350 mx-auto bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-2 px-4 rounded mt-8 m-5">
@@ -61,7 +61,11 @@ export default {
           credentials: 'include'
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then((data) => {
+          if (data.success) {
+            window.location.href = '/'
+          }
+        })
     },
     goBack () {
       this.$emit('return')

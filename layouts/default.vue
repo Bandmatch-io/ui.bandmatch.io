@@ -30,6 +30,7 @@ export default {
           console.log(JSON.stringify(this.currentUser))
         }
       })
+    console.log(this.$route)
   }
 }
 </script>
