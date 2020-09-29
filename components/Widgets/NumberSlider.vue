@@ -1,8 +1,8 @@
 <template>
   <div class="inline-block relative w-full grid grid-cols-8 border shadow p-4">
-    <small class="col-span-2 text-md">{{ value }} {{ units }}</small>
+    <small class="col-span-2 text-md">{{ input }} {{ units }}</small>
     <input
-      @input="change"
+      @change="emitChange"
       v-model="input"
       type="range"
       class="col-span-6 w-full bg-white"
@@ -13,19 +13,24 @@
 
 <script>
 export default {
-  props: {
-    value: Number,
-    units: String,
-    min: Number,
-    max: Number
-  },
+  props: [
+    'value',
+    'units',
+    'min',
+    'max'
+  ],
   data () {
     return {
       input: 0
     }
   },
+  watch: {
+    value (newVal) {
+      this.input = newVal
+    }
+  },
   methods: {
-    change () {
+    emitChange () {
       this.$emit('input', this.input)
     }
   }

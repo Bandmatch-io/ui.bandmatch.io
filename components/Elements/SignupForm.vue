@@ -76,7 +76,7 @@ export default {
   methods: {
     postSignupForm () {
       console.log(JSON.stringify(this.userInformation))
-      fetch('http://localhost:8080/users/new',
+      fetch('http://localhost:8080/auth/new',
         {
           method: 'POST',
           headers: {

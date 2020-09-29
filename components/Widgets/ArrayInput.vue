@@ -21,7 +21,7 @@ export default {
     PlusIcon
   },
   props: {
-    value: [String]
+    value: Array
   },
   data () {
     return {

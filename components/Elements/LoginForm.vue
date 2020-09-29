@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     postLoginForm () {
-      fetch('http://localhost:8080/users',
+      fetch('http://localhost:8080/auth',
         {
           method: 'POST',
           headers: {

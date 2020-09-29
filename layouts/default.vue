@@ -19,6 +19,7 @@ export default {
     }
   },
   mounted () {
+    this.$store.commit('user/setStatus', 'loading')
     fetch('http://localhost:8080/users/profile',
       {
         method: 'GET',
@@ -28,12 +29,16 @@ export default {
       .then((data) => {
         if (data.success) {
           this.$store.commit('user/logIn', JSON.stringify(data.user))
+          this.$store.commit('user/setStatus', 'success')
+        } else {
+          this.$store.commit('user/setStatus', 'failure')
         }
       })
   },
   methods: {
     ...mapMutations({
-      logIn: 'user/logIn'
+      logIn: 'user/logIn',
+      setStatus: 'user/setStatus'
     })
   }
 }
