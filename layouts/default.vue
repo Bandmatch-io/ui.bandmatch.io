@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar :user="currentUser"/>
+    <Navbar />
     <Nuxt  />
   </div>
 </template>

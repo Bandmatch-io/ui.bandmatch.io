@@ -4,7 +4,7 @@
       <span class="text-white text-2xl tracking-tight">Bandmatch</span>
     </nuxt-link>
     <div v-if="user">
-      <div class="block lg:hidden">
+      <div class="block hidden">
         <button @click="isOpen = !isOpen" class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
           <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <title>Menu</title>
@@ -12,10 +12,10 @@
           </svg>
         </button>
       </div>
-      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      <div class="w-full block flex-grow flex lg:items-center lg:w-auto leading-none">
         <div class="mx-1 lg:flex-grow">
-          <nuxt-link to="/conversations" class="ml-4 block text-xl mt-4 lg:inline-block lg:mt-0 text-gray-100 hover:text-white mr-4">
-            <message-square-icon class="inline-block" /> Messages
+          <nuxt-link to="/conversations" class="ml-3 mt-3 mr-3 inline-block text-xl lg:mt-0 text-gray-100 hover:text-white">
+            <message-square-icon size="1.5x" class="inline-block" /> <span class="hidden md:inline-block">Messages</span>
           </nuxt-link>
         </div>
         <AccountDropdown class="inline-block px-4 py-2 leading-none" />
@@ -23,7 +23,7 @@
     </div>
     <div v-else-if="!isLoginPage">
       <nuxt-link to="/account" class="inline-block text-l px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
-        <user-icon class="inline-block" /> Log in
+        <user-icon class="inline-block" /> <span class="hidden md:inline-block">Log in</span>
       </nuxt-link>
     </div>
   </nav>

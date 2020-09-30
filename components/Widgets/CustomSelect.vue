@@ -1,5 +1,5 @@
 <template>
-  <div class="inline-block relative w-full">
+  <div class="inline-block relative w-full z-10">
     <select class="clickable block rounded shadow border w-full appearance-none px-3 py-2 focus:outline-none focus:shadow-outline">
       <slot></slot>
     </select>
