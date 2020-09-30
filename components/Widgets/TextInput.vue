@@ -38,7 +38,7 @@ export default {
 @import '~/assets/scss/colours.scss';
 
 .bg-primary-grad {
-  background: $color-primary-0;
+  background: $color-primary-300;
   background: $primary-gradient;
   color: white !important;
 }

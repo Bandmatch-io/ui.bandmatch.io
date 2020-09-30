@@ -1,7 +1,7 @@
 <template>
   <nav class="flex items-center justify-between flex-wrap bg-primary-grad p-4">
     <nuxt-link to="/">
-      <span class="text-2xl tracking-tight">Bandmatch</span>
+      <span class="text-white text-2xl tracking-tight">Bandmatch</span>
     </nuxt-link>
     <div v-if="user">
       <div class="block lg:hidden">
@@ -14,7 +14,7 @@
       </div>
       <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div class="mx-1 lg:flex-grow">
-          <nuxt-link to="/conversations" class="ml-4 block text-xl mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4">
+          <nuxt-link to="/conversations" class="ml-4 block text-xl mt-4 lg:inline-block lg:mt-0 text-gray-100 hover:text-white mr-4">
             <message-square-icon class="inline-block" /> Messages
           </nuxt-link>
         </div>
@@ -52,9 +52,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bg-primary-grad {
-  background: $color-primary-0;
-  background: $primary-gradient;
-  color: white !important;
-}
+@import '~/assets/scss/styles.scss';
 </style>

@@ -44,72 +44,34 @@
 }
 
 .bg-primary-grad {
-  background: $color-primary-0;
+  background: $color-primary-300;
   background: $primary-gradient;
   color: white !important;
 }
 
-.btn-primary, .btn-primary.disabled:hover {
-  background-color: #28546E !important;
-  border-color: #28546E !important;
-  color: white !important;
-}
-.btn-primary:hover {
-  background-color: #2B3C47 !important;
-  border-color: #2B3C47 !important;
-  color: white !important;
-}
-
-.btn-secondary, .btn-secondary.disabled:hover {
-  background-color: #442F76 !important;
-  border-color: #442F76 !important;
-  color: white !important;
-}
-.btn-secondary:hover {
-  background-color: #38304C !important;
-  border-color: #38304C !important;
-  color: white !important;
-}
-
-.btn-danger, .btn-danger.disabled:hover {
-  background-color: #FF8C00 !important;
-  border-color: #FF8C00 !important;
-  color: white !important;
-}
-
-.btn-danger:hover {
-  background-color: #6F5A40 !important;
-  border-color: #6F5A40 !important;
-  color: white !important;
-}
 
 .input-group-text {
-  background: #28546E;
-  background: linear-gradient(90deg, #28546E 0%, #442F76 100%);
+  background: $color-primary-300;
+  background: $primary-gradient
 }
 
 .input-group-text.bg-danger {
-  background: #FF8C00;
-  background: linear-gradient(90deg, #FF8C00 0%, #AC7839 100%);
+  background: $color-complement-300;
+  background: $secondary-gradient
 }
 
 a {
-  color: #0685D0;
   text-decoration: none;
   min-height: 32px;
 }
 
-a:hover {
-  color: #0a8bD4;
-}
-
 .list-group-item-action.active {
-  background: linear-gradient(90deg, #196795 0%, #3F23A1 100%);
+  background: $primary-gradient;
   color: white;
 }
 
 .dropdown-item:active {
-  background: linear-gradient(90deg, #196795 0%, #3F23A1 100%) !important;
+  background: $primary-gradient !important;
   background-color: none;
   color: white;
 }

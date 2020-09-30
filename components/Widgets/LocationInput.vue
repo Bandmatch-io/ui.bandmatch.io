@@ -42,7 +42,7 @@ export default {
       trackUserLocation: false
     }))
 
-    this.locationMarker = new MapboxGL.Marker()
+    this.locationMarker = new MapboxGL.Marker({ color: '#196795' })
       .setLngLat(this.location).addTo(this.map)
 
     this.map.on('moveend', () => {

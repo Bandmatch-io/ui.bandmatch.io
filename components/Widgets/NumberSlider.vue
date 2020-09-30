@@ -55,7 +55,7 @@ input[type=range]::-moz-range-track {
     height: .5rem;
     color: transparent;
     cursor: pointer;
-    background-color: $color-primary-0;
+    background-color: $color-secondary-300;
     border-color: transparent;
     border-radius: 1rem;
     appearance: none;

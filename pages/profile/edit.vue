@@ -4,7 +4,7 @@
       <div v-if="userStatus === 'success'" class="w-full min-w-350 block mx-auto my-8 xl:w-1/2 bg-gray-100 rounded shadow">
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
           <div class="col-span-1">
-            <p>E-Mail</p>
+            <p>Email</p>
           </div>
           <div class="col-span-3">
             <p>{{ user.email }}</p>
@@ -16,9 +16,7 @@
             Password
           </div>
           <div class="col-span-3">
-            <div class="clickable rounded border bg-blue-800 text-white text-center py-2 hover:bg-blue-700">
-              <p class="inline-block text-lg"><key-icon class="inline-block"/> Update Password</p>
-            </div>
+            <ButtonPrimary :action="() => {}"><key-icon class="inline-block"/> Update Password</ButtonPrimary>
           </div>
         </div>
 
@@ -112,11 +110,13 @@
 <script>
 import { AtSignIcon, KeyIcon } from 'vue-feather-icons'
 import { mapMutations } from 'vuex'
+import { ButtonPrimary } from '~/components/Core/ButtonPrimary'
 
 export default {
   components: {
     AtSignIcon,
-    KeyIcon
+    KeyIcon,
+    ButtonPrimary
   },
   data () {
     return {
