@@ -2,10 +2,10 @@
   <div>
     <label class="py-2 pl-0 w-full block p-4">{{ label }}</label>
     <div class="mb-4 shadow grid grid-cols-12 grid-flow-col gap-0">
-      <div class="col-span-2 block border rounded-l bg-primary-grad">
-        <div class="py-2 px-3 w-full text-center block text-sm font-bold p-4" for="username">
+      <div class="col-span-2 block border rounded-l bg-primary-grad py-2">
+        <label for="username">
           <slot />
-        </div>
+        </label>
       </div>
       <input
         ref="inputField"

@@ -7,7 +7,7 @@
       <button v-if="isOpen" @click="isOpen = false" tabindex="-1" class="z-40 fixed inset-0 h-full w-full bg-black opacity-75 cursor-default"></button>
       <div v-if="isOpen" class="z-50 absolute right-0 mt-2 py-2 w-screen lg:w-48 max-w-350 bg-white rounded shadow-xl">
         <p class="text-gray-500 font-bold block px-4 py-2 mb-5 border-b shadow">{{ user.displayName }}</p>
-        <nuxt-link @click="isOpen = false" to="/profile/edit" class="text-gray-500 block px-4 py-2 hover:bg-primary-300 hover:text-white">
+        <nuxt-link @click.native="isOpen = false" to="/profile/edit" class="text-gray-500 block px-4 py-2 hover:bg-primary-300 hover:text-white">
           View Profile
         </nuxt-link>
         <a href="#" class="text-gray-500 block px-4 py-2 hover:bg-primary-300 hover:text-white">Sign out</a>

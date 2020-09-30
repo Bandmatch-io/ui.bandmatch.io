@@ -1,10 +1,8 @@
 <template>
-  <div class="container min-w-350 shadow-md bg-gray-100 mx-auto p-4 mt-8 block">
-    <div class="grid grid-cols-12">
-      <div @click="goBack" class="clickable col-span-2 px-5 py-5">
-        <arrow-left-circle-icon size="4x" />
-      </div>
-      <h1 class="col-span-8 text-6xl text-center">Sign up</h1>
+  <div class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block">
+     <div class="w-full text-center">
+      <h1 class="w-full text-6xl text-center">Sign up</h1>
+      <p>Or <a @click="switchView" class="clickable text-primary-300 underline"><link-icon size="1x" class="inline-block"/> Log in</a> instead</p>
     </div>
 
     <div class="max-w-350 block mx-auto">
@@ -39,6 +37,10 @@
       <Checkbox v-model="userInformation.agreement">By clicking here you agree to the Terms of Use and the Privacy Policy</Checkbox>
     </div>
 
+    <div class="max-w-350 block mx-auto">
+      <Checkbox v-model="userInformation.agreement">Opt-in for email communications about BandMatch.io and it's products?</Checkbox>
+    </div>
+
     <ButtonPrimary :action="postSignupForm" class="max-w-350 block mx-auto">
         Sign up
     </ButtonPrimary>
@@ -46,7 +48,7 @@
 </template>
 
 <script>
-import { MailIcon, AtSignIcon, KeyIcon, ArrowLeftCircleIcon } from 'vue-feather-icons'
+import { MailIcon, AtSignIcon, KeyIcon, LinkIcon } from 'vue-feather-icons'
 import { ButtonPrimary } from '~/components/Core/ButtonPrimary'
 
 export default {
@@ -54,8 +56,11 @@ export default {
     MailIcon,
     AtSignIcon,
     KeyIcon,
-    ArrowLeftCircleIcon,
+    LinkIcon,
     ButtonPrimary
+  },
+  props: {
+    switchView: Function
   },
   data () {
     return {

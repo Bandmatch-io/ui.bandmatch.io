@@ -11,8 +11,8 @@
         </ButtonPrimary>
       </div>
 
-      <SignupForm @return="state=states.default" v-if="state === states.signup" />
-      <LoginForm @return="state=states.default" v-if="state === states.login" />
+      <SignupForm :switchView="() => {state=states.login}" v-if="state === states.signup" />
+      <LoginForm :switchView="() => {state=states.signup}" v-if="state === states.login" />
 
     </div>
 

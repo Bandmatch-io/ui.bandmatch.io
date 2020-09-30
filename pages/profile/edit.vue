@@ -145,6 +145,7 @@ export default {
           .then(res => res.json())
           .then((data) => {
             if (data.success) {
+              // console.log(JSON.stringify(data.user))
               this.$store.commit('user/setUser', JSON.stringify(data.user))
             }
           })
