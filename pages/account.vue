@@ -1,14 +1,14 @@
 <template>
   <div class="flex-container bg-polka">
-    <div class="w-full my-5 lg:w-3/4 max-w-2xl mx-auto">
-      <div v-if="state === states.default" class="container min-w-350 shadow-md bg-gray-100 mx-auto p-4 mt-8 block" style="height: 15rem;">
-        <div @click="state=states.signup" class="bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-2 px-4 rounded m-5">
+    <div class="my-5 w-3/4 max-w-2xl mx-auto">
+      <div v-if="state === states.default" class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block" style="height: 15rem;">
+        <ButtonPrimary :action="() => state=states.signup">
           Sign up
-        </div>
+        </ButtonPrimary>
         <p class="w-full text-center font-semibold"> OR </p>
-        <div @click="state=states.login" class="bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-2 px-4 rounded m-5">
+        <ButtonPrimary :action="() => state=states.login">
           Log in
-        </div>
+        </ButtonPrimary>
       </div>
 
       <SignupForm @return="state=states.default" v-if="state === states.signup" />
@@ -20,7 +20,12 @@
 </template>
 
 <script>
+import { ButtonPrimary } from '~/components/core/ButtonPrimary'
+
 export default {
+  components: {
+    ButtonPrimary
+  },
   data () {
     return {
       states: {

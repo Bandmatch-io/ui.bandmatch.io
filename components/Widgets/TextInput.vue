@@ -13,7 +13,7 @@
         :value="value"
         :type="type"
         :placeholder="placeholder"
-        class="col-span-10 appearance-none border rounded-r py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        class="col-span-10 appearance-none border rounded-r py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline">
     </div>
   </div>
 </template>

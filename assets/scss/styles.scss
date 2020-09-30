@@ -8,8 +8,8 @@
     bottom: 0;
     z-index: -1;
     opacity: 0.25;
-    background-image: radial-gradient(#28546E 20%, transparent 20%),
-        radial-gradient(#442F76 20%, transparent 20%);
+    background-image: radial-gradient(#196795 20%, transparent 20%),
+        radial-gradient(#3F23A1 20%, transparent 20%);
     // background-color: #eee;
     background-position: 0 0, 5px 5px;
     background-size: 10px 10px;
@@ -21,6 +21,10 @@
 
 .min-w-350 {
   min-width: 350px;
+}
+
+.min-w-250 {
+  min-width: 250px;
 }
 
 .min-w-125 {
@@ -100,12 +104,12 @@ a:hover {
 }
 
 .list-group-item-action.active {
-  background: linear-gradient(90deg, #28546E 0%, #442F76 100%);
+  background: linear-gradient(90deg, #196795 0%, #3F23A1 100%);
   color: white;
 }
 
 .dropdown-item:active {
-  background: linear-gradient(90deg, #28546E 0%, #442F76 100%) !important;
+  background: linear-gradient(90deg, #196795 0%, #3F23A1 100%) !important;
   background-color: none;
   color: white;
 }
