@@ -1,7 +1,7 @@
 <template>
   <div class="border rounded shadow">
-    <div class="border-b-2 shadow-inner bg-white pt-2" style="min-height: 5rem;">
-      <div v-for="val in value" @click="remove(val)" :key="val" class="capitalize inline-block hover:line-through font-bold rounded m-2 px-2 py-1 bg-secondary-300 hover:bg-secondary-400 clickable text-white">{{ val }}</div>
+    <div class="border-b-2 rounded-t shadow-inner bg-white pt-2" style="min-height: 5rem;">
+      <div v-for="val in value" @click="remove(val)" :key="val" class="capitalize inline-block shadow hover:line-through hover:shadow-outline font-bold rounded m-2 px-2 py-1 bg-secondary-300 hover:bg-secondary-400 clickable text-white">{{ val }}</div>
       <p v-if="value.length" class="mx-2 mb-1"><small>Click to remove.</small></p>
     </div>
     <div class="grid grid-cols-12">

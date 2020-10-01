@@ -1,7 +1,12 @@
 <template>
   <div class="bg-polka">
-    <div class="flex flex-wrap">
-      <div v-if="userStatus === 'success'" class="w-full min-w-350 block mx-auto my-8 xl:w-1/2 bg-gray-100 rounded shadow">
+    <div v-if="userStatus === 'success'" class="flex flex-wrap">
+      <div class="w-full lg:flex-1 min-w-350 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 border rounded shadow">
+        <div class="p-5 border-b-2 shadow-sm flex">
+          <ButtonPrimary :action="() => {$router.push(`profile/${user._id}`)}" groupPos="first" class="inline-block w-1/2 mx-0" >View public profile</ButtonPrimary>
+          <ButtonTertiary :action="postUserProfile" groupPos="last" class="inline-block w-1/2 mx-0"><check-icon v-if="isSaved" class="inline-block"/><loader-icon v-else class="inline-block"/> Saved</ButtonTertiary>
+        </div>
+
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
           <div class="col-span-1">
             <p>Email</p>
@@ -92,7 +97,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+        <div class="grid grid-cols-4 p-5 shadow-sm">
           <div class="col-span-1">
             <p>Your location</p>
             <p></p>
@@ -103,20 +108,32 @@
         </div>
 
       </div>
+
+      <div class="w-full lg:flex-1 min-w-350 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 border rounded shadow">
+        <h1 class="px-8 pt-4 text-5xl">Description</h1>
+        <MarkdownInput v-model="user.description" :maxlength="512"/>
+      </div>
+
     </div>
   </div>
 </template>
 
 <script>
-import { AtSignIcon, KeyIcon } from 'vue-feather-icons'
+import { AtSignIcon, KeyIcon, LoaderIcon, CheckIcon } from 'vue-feather-icons'
 import { mapMutations } from 'vuex'
 import { ButtonPrimary } from '~/components/Core/ButtonPrimary'
+import { ButtonTertiary } from '~/components/Core/ButtonTertiary'
+import { MarkdownInput } from '~/components/Widgets/MarkdownInput'
 
 export default {
   components: {
     AtSignIcon,
     KeyIcon,
-    ButtonPrimary
+    CheckIcon,
+    LoaderIcon,
+    ButtonPrimary,
+    ButtonTertiary,
+    MarkdownInput
   },
   data () {
     return {
@@ -128,27 +145,16 @@ export default {
         searchLocation: { coordinates: [0, 0] },
         searchRadius: 1,
         searchType: '',
-        active: false
-      }
+        active: false,
+        description: ''
+      },
+      isSaved: true
     }
   },
   watch: {
     user: {
       handler (val) {
-        fetch('http://localhost:8080/users/profile',
-          {
-            method: 'PATCH',
-            credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(this.user)
-          })
-          .then(res => res.json())
-          .then((data) => {
-            if (data.success) {
-              // console.log(JSON.stringify(data.user))
-              this.$store.commit('user/setUser', JSON.stringify(data.user))
-            }
-          })
+        this.postUserProfile()
       },
       deep: true // Needs to watch for changes to child objects as well.
     }
@@ -170,6 +176,23 @@ export default {
     }),
     typeSelected (val) {
       return this.user.searchType === val
+    },
+    postUserProfile () {
+      this.isSaved = false
+      fetch('http://localhost:8080/users/profile',
+        {
+          method: 'PATCH',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(this.user)
+        })
+        .then(res => res.json())
+        .then((data) => {
+          if (data.success) {
+            this.$store.commit('user/setUser', JSON.stringify(data.user))
+            this.isSaved = true
+          }
+        })
     }
   }
 }
