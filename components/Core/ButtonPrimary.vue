@@ -1,5 +1,5 @@
 <template>
-  <div @click="action" class="clickable bg-primary-300 hover:bg-primary-400 focus:bg-primary-200 outline-none hover:shadow-outline text-white text-center py-2 px-4 m-5" :class="roundedClass">
+  <div @click="onClick" class="bg-primary-300 outline-none text-white text-center py-2 px-4 m-5" :class="totalClass">
     <slot> </slot>
   </div>
 </template>
@@ -8,7 +8,8 @@
 export default {
   props: {
     action: Function,
-    groupPos: String
+    groupPos: String,
+    disabled: Boolean
   },
   computed: {
     roundedClass () {
@@ -20,6 +21,23 @@ export default {
         return 'rounded-r'
       }
       return 'rounded'
+    },
+    disabledClass () {
+      if (this.disabled) {
+        return 'opacity-50'
+      } else {
+        return 'clickable hover:bg-primary-400 hover:shadow-outline'
+      }
+    },
+    totalClass () {
+      return this.roundedClass + ' ' + this.disabledClass
+    }
+  },
+  methods: {
+    onClick () {
+      if (!this.disabled) {
+        this.action()
+      }
     }
   }
 }

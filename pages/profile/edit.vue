@@ -1,10 +1,10 @@
 <template>
   <div class="bg-polka">
     <div v-if="userStatus === 'success'" class="flex flex-wrap">
-      <div class="w-full lg:flex-1 min-w-350 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 border rounded shadow">
-        <div class="p-5 border-b-2 shadow-sm flex">
-          <ButtonPrimary :action="() => {$router.push(`profile/${user._id}`)}" groupPos="first" class="inline-block w-1/2 mx-0" >View public profile</ButtonPrimary>
-          <ButtonTertiary :action="postUserProfile" groupPos="last" class="inline-block w-1/2 mx-0"><check-icon v-if="isSaved" class="inline-block"/><loader-icon v-else class="inline-block"/> Saved</ButtonTertiary>
+      <div class="w-full lg:flex-1 min-w-350 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
+        <div class="p-5 border-b-2 shadow-sm grid grid-cols-4">
+          <ButtonPrimary :action="() => {$router.push(`profile/${user._id}`)}" groupPos="first" class="col-span-3 inline-block w-full mx-0" >View public profile</ButtonPrimary>
+          <ButtonTertiary :action="postUserProfile" groupPos="last" class="col-span-1 inline-block w-full mx-0"><check-icon v-if="isSaved" class="inline-block"/><loader-icon v-else class="inline-block"/> Saved</ButtonTertiary>
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
@@ -97,7 +97,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 shadow-sm">
+        <div class="grid grid-cols-4 p-5 shadow-sm border-b-2">
           <div class="col-span-1">
             <p>Your location</p>
             <p></p>
@@ -107,9 +107,17 @@
           </div>
         </div>
 
+        <div class="p-5 shadow-sm">
+          <h2 class="prose">Account Actions</h2>
+          <ButtonPrimary :action="fetchAccountData" class="inline-block w-full mx-0" ><download-icon class="inline-block"/> Download my data</ButtonPrimary>
+          <ConfirmationInput :confirm="() => {}" :checkString="user.displayName" class="inline-block w-full mx-0">
+            <trash-2-icon class="inline-block"/> Delete my account
+          </ConfirmationInput>
+        </div>
+
       </div>
 
-      <div class="w-full lg:flex-1 min-w-350 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 border rounded shadow">
+      <div class="w-full lg:flex-1 flex-shrink min-w-350 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
         <h1 class="px-8 pt-4 text-5xl">Description</h1>
         <MarkdownInput v-model="user.description" :maxlength="512"/>
       </div>
@@ -119,11 +127,12 @@
 </template>
 
 <script>
-import { AtSignIcon, KeyIcon, LoaderIcon, CheckIcon } from 'vue-feather-icons'
+import { AtSignIcon, KeyIcon, LoaderIcon, CheckIcon, DownloadIcon, Trash2Icon } from 'vue-feather-icons'
 import { mapMutations } from 'vuex'
 import { ButtonPrimary } from '~/components/Core/ButtonPrimary'
 import { ButtonTertiary } from '~/components/Core/ButtonTertiary'
 import { MarkdownInput } from '~/components/Widgets/MarkdownInput'
+import { ConfirmationInput } from '~/components/Widgets/ConfirmationInput'
 
 export default {
   components: {
@@ -131,9 +140,12 @@ export default {
     KeyIcon,
     CheckIcon,
     LoaderIcon,
+    DownloadIcon,
+    Trash2Icon,
     ButtonPrimary,
     ButtonTertiary,
-    MarkdownInput
+    MarkdownInput,
+    ConfirmationInput
   },
   data () {
     return {
@@ -193,6 +205,21 @@ export default {
             this.isSaved = true
           }
         })
+    },
+    fetchAccountData () {
+      window.location = 'http://localhost:8080/users/download'
+    }
+  },
+  head () {
+    return {
+      title: 'Edit Profile | Bandmatch',
+      meta: [
+        { hid: 'og-title', property: 'og:title', content: 'Edit Profile | Bandmatch' }
+        // other meta
+      ],
+      link: [
+        { rel: 'stylesheet', href: 'https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css' }
+      ]
     }
   }
 }

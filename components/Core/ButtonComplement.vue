@@ -1,5 +1,5 @@
 <template>
-  <div @click="onClick" class="bg-secondary-300 outline-none text-white text-center py-2 px-4 m-5" :class="totalClass">
+  <div @click="onClick" class="bg-complementary-300 outline-none text-secondary-500 text-center py-2 px-4 m-5" :class="totalClass">
     <slot> </slot>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
       if (this.disabled) {
         return 'opacity-50'
       } else {
-        return 'clickable hover:bg-secondary-400 hover:shadow-outline'
+        return 'clickable hover:bg-complementary-400 hover:shadow-outline'
       }
     },
     totalClass () {

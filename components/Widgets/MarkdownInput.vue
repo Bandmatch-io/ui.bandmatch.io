@@ -80,18 +80,24 @@ export default {
       this.$emit('input', this.markdownInput)
     },
     addHeading () {
+      if (this.showHTML) { return }
+
       if (this.markdownInput.length > 0) {
         this.markdownInput += '\n'
       }
       this.markdownInput += '# '
     },
     addList () {
+      if (this.showHTML) { return }
+
       if (this.markdownInput.length > 0) {
         this.markdownInput += '\n'
       }
       this.markdownInput += '- '
     },
     setBold () {
+      if (this.showHTML) { return }
+
       const textarea = this.$refs.ta
       const start = textarea.selectionStart
       const end = textarea.selectionEnd
@@ -103,6 +109,8 @@ export default {
       this.markdownInput = stringStart + ' **' + heading + '** ' + stringEnd
     },
     setItalic () {
+      if (this.showHTML) { return }
+
       const textarea = this.$refs.ta
       const start = textarea.selectionStart
       const end = textarea.selectionEnd
