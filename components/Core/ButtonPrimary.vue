@@ -19,6 +19,8 @@ export default {
         return 'rounded-l'
       } else if (this.groupPos === 'last') {
         return 'rounded-r'
+      } else if (this.groupPos === 'mid') {
+        return 'rounded-0'
       }
       return 'rounded'
     },

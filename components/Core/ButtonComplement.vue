@@ -13,12 +13,15 @@ export default {
   },
   computed: {
     roundedClass () {
+      // let options = "<V|^>"
       if (this.groupPos === undefined) {
         return 'rounded'
       } else if (this.groupPos === 'first') {
         return 'rounded-l'
       } else if (this.groupPos === 'last') {
         return 'rounded-r'
+      } else if (this.groupPos === 'mid') {
+        return 'rounded-0'
       }
       return 'rounded'
     },

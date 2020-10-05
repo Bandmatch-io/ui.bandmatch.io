@@ -3,7 +3,7 @@
     <small class="block">Use markdown for flavour!</small>
     <div class="shadow rounded">
       <div class="rounded-t shadow-b bg-gray-100 border w-full block flex">
-        <div v-if="!showHTML" @click="() => {processMD(); showHTML=true;}" class="w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 hover:shadow-outline"><eye-icon class="inline-block mx-1 md:mx-2" />Preview</div>
+        <div v-if="!showHTML" @click="() => {showHTML=true}" class="w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 hover:shadow-outline"><eye-icon class="inline-block mx-1 md:mx-2" />Preview</div>
         <div v-else @click="() => {showHTML=false}" class="w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 hover:shadow-outline"><edit-icon class="inline-block mx-1 md:mx-2" />Edit</div>
         <div @click="addHeading" class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center"><type-icon class="inline-block mx-1 md:mx-2" /></div>
         <div @click="addList" class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center"><list-icon class="inline-block mx-1 md:mx-2" /></div>
@@ -11,7 +11,8 @@
         <div @click="setItalic" class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center"><italic-icon class="inline-block mx-1 md:mx-2" /></div>
       </div>
       <ProgressBar class="border-l border-r" :percent="textFull"/>
-      <div v-if="showHTML" v-html="htmlOutput" class="prose max-w-none rounded-b bg-white border relative mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0"/>
+      <!-- <div v-if="showHTML" v-html="htmlOutput" class="prose max-w-none rounded-b bg-white border relative mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0"/> -->
+      <MarkdownView class="rounded-b border" v-if="showHTML" :markdown="markdownInput" />
       <textarea
         v-else
         ref="ta"
@@ -28,8 +29,7 @@
 
 <script>
 import { EyeIcon, ListIcon, TypeIcon, ItalicIcon, BoldIcon, EditIcon } from 'vue-feather-icons'
-import DOMPurify from 'dompurify'
-import marked from 'marked'
+import MarkdownView from '~/components/Widgets/MarkdownView'
 
 export default {
   components: {
@@ -38,7 +38,8 @@ export default {
     TypeIcon,
     ItalicIcon,
     BoldIcon,
-    EditIcon
+    EditIcon,
+    MarkdownView
   },
   props: {
     value: String,
@@ -47,7 +48,6 @@ export default {
   data () {
     return {
       markdownInput: '',
-      htmlOutput: '',
       showHTML: ''
     }
   },
@@ -62,19 +62,6 @@ export default {
     }
   },
   methods: {
-    processMD () {
-      const render = new marked.Renderer()
-      render.link = function (href, title, text) {
-        return text
-      }
-      render.image = function (href, title, text) {
-        return text
-      }
-
-      const dirty = marked(this.markdownInput, { renderer: render })
-      console.log(dirty)
-      this.htmlOutput = DOMPurify.sanitize(dirty)
-    },
     onChange () {
       console.log(this.markdownInput)
       this.$emit('input', this.markdownInput)

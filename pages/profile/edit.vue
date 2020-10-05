@@ -166,7 +166,7 @@ export default {
   watch: {
     user: {
       handler (val) {
-        this.postUserProfile()
+        this.postUserProfile(val)
       },
       deep: true // Needs to watch for changes to child objects as well.
     }
@@ -189,17 +189,18 @@ export default {
     typeSelected (val) {
       return this.user.searchType === val
     },
-    postUserProfile () {
+    postUserProfile (newUser) {
       this.isSaved = false
       fetch('http://localhost:8080/users/profile',
         {
           method: 'PATCH',
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(this.user)
+          body: JSON.stringify(newUser)
         })
         .then(res => res.json())
         .then((data) => {
+          console.log(data.user, newUser)
           if (data.success) {
             this.$store.commit('user/setUser', JSON.stringify(data.user))
             this.isSaved = true
