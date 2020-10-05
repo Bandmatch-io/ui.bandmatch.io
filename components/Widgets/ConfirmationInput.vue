@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { ButtonComplement } from '~/components/Core/ButtonComplement'
+import ButtonComplement from '~/components/Core/ButtonComplement'
 
 export default {
   components: {

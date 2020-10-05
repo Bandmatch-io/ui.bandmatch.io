@@ -129,10 +129,10 @@
 <script>
 import { AtSignIcon, KeyIcon, LoaderIcon, CheckIcon, DownloadIcon, Trash2Icon } from 'vue-feather-icons'
 import { mapMutations } from 'vuex'
-import { ButtonPrimary } from '~/components/Core/ButtonPrimary'
-import { ButtonTertiary } from '~/components/Core/ButtonTertiary'
-import { MarkdownInput } from '~/components/Widgets/MarkdownInput'
-import { ConfirmationInput } from '~/components/Widgets/ConfirmationInput'
+import ButtonPrimary from '~/components/Core/ButtonPrimary'
+import ButtonTertiary from '~/components/Core/ButtonTertiary'
+import MarkdownInput from '~/components/Widgets/MarkdownInput'
+import ConfirmationInput from '~/components/Widgets/ConfirmationInput'
 
 export default {
   components: {

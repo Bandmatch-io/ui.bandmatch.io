@@ -26,7 +26,7 @@
 <script>
 import { MailIcon, KeyIcon, LinkIcon } from 'vue-feather-icons'
 import { mapMutations } from 'vuex'
-import { ButtonPrimary } from '~/components/Core/ButtonPrimary'
+import ButtonPrimary from '~/components/Core/ButtonPrimary'
 
 export default {
   components: {

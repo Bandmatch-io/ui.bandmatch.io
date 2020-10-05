@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { ButtonPrimary } from '~/components/core/ButtonPrimary'
+import ButtonPrimary from '~/components/Core/ButtonPrimary'
 
 export default {
   components: {

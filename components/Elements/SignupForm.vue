@@ -49,7 +49,7 @@
 
 <script>
 import { MailIcon, AtSignIcon, KeyIcon, LinkIcon } from 'vue-feather-icons'
-import { ButtonPrimary } from '~/components/Core/ButtonPrimary'
+import ButtonPrimary from '~/components/Core/ButtonPrimary'
 
 export default {
   components: {

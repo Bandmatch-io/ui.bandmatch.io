@@ -50,7 +50,8 @@ input[type=range]::-webkit-slider-thumb, input[type=range]::-webkit-slider-runna
 }
 // }
 
-input[type=range]::-moz-range-track {
+input[type=range]::-moz-range-track,
+input[type=range]::-webkit-range-track {
     width: 100%;
     height: .5rem;
     color: transparent;

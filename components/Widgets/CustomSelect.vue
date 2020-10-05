@@ -1,6 +1,6 @@
 <template>
   <div class="inline-block relative w-full z-10">
-    <select class="clickable block rounded shadow border w-full appearance-none px-3 py-2 focus:outline-none focus:shadow-outline">
+    <select class="clickable block bg-white rounded shadow border w-full appearance-none px-3 py-2 focus:outline-none focus:shadow-outline">
       <slot></slot>
     </select>
     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">

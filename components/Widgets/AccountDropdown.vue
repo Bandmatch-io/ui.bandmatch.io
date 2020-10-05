@@ -5,7 +5,7 @@
     </button>
     <div>
       <button v-if="isOpen" @click="isOpen = false" tabindex="-1" class="z-40 fixed inset-0 h-full w-full bg-black opacity-75 cursor-default"></button>
-      <div v-if="isOpen" class="z-50 fixed inset-x-0 mt-2 py-2 mx-auto w-screen md:absolute md:w-48 bg-white rounded shadow-xl">
+      <div v-if="isOpen" class="z-50 fixed inset-x-0 mt-2 py-2 mx-auto w-screen md:absolute md:w-48 md:right-0 md:inset-x-auto bg-white rounded shadow-xl">
         <p class="text-gray-500 font-bold block px-4 py-2 mb-5 border-b shadow">{{ user.displayName }}</p>
         <nuxt-link @click.native="isOpen = false" to="/profile/edit" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white">
           View Profile
