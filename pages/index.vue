@@ -6,7 +6,9 @@
     <div v-cloak v-if="matches.length === 0" class="w-full block mx-auto my-8 prose text-center">
       <h1>There is no-one around you</h1>
       <p>Maybe try editing your profile?</p>
-      <nuxt-link to="/profile/edit">Edit your profile</nuxt-link>
+      <nuxt-link to="/profile/edit">
+        Edit your profile
+      </nuxt-link>
     </div>
   </div>
 </template>

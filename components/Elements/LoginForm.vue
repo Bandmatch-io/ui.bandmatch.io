@@ -1,8 +1,10 @@
 <template>
   <div class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block">
     <div class="w-full text-center">
-      <h1 class="w-full text-6xl text-center">Log in</h1>
-      <p>Or <a @click="switchView" class="clickable text-primary-300 underline"><link-icon size="1x" class="inline-block"/> Sign in</a> instead</p>
+      <h1 class="w-full text-6xl text-center">
+        Log in
+      </h1>
+      <p>Or <a class="clickable text-primary-300 underline" @click="switchView"><link-icon size="1x" class="inline-block" /> Sign in</a> instead</p>
     </div>
 
     <div class="max-w-350 block mx-auto">
@@ -18,7 +20,7 @@
     </div>
 
     <ButtonPrimary :action="postLoginForm" class="clickable max-w-350 mx-auto bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-2 px-4 rounded mt-8 m-5">
-        Log in
+      Log in
     </ButtonPrimary>
   </div>
 </template>

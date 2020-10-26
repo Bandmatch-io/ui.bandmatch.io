@@ -2,12 +2,13 @@
   <div class="inline-block relative w-full grid grid-cols-8 border shadow p-4">
     <small class="col-span-2 text-md">{{ input }} {{ units }}</small>
     <input
-      @change="emitChange"
       v-model="input"
       type="range"
       class="col-span-6 w-full bg-white"
       :min="min"
-      :max="max" />
+      :max="max"
+      @change="emitChange"
+    >
   </div>
 </template>
 

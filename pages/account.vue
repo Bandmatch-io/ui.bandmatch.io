@@ -5,17 +5,17 @@
         <ButtonPrimary :action="() => state=states.signup">
           Sign up
         </ButtonPrimary>
-        <p class="w-full text-center font-semibold"> OR </p>
+        <p class="w-full text-center font-semibold">
+          OR
+        </p>
         <ButtonPrimary :action="() => state=states.login">
           Log in
         </ButtonPrimary>
       </div>
 
-      <SignupForm :switchView="() => {state=states.login}" v-if="state === states.signup" />
-      <LoginForm :switchView="() => {state=states.signup}" v-if="state === states.login" />
-
+      <SignupForm v-if="state === states.signup" :switch-view="() => {state=states.login}" />
+      <LoginForm v-if="state === states.login" :switch-view="() => {state=states.signup}" />
     </div>
-
   </div>
 </template>
 

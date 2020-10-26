@@ -1,48 +1,62 @@
 <template>
   <div class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block">
-     <div class="w-full text-center">
-      <h1 class="w-full text-6xl text-center">Sign up</h1>
-      <p>Or <a @click="switchView" class="clickable text-primary-300 underline"><link-icon size="1x" class="inline-block"/> Log in</a> instead</p>
+    <div class="w-full text-center">
+      <h1 class="w-full text-6xl text-center">
+        Sign up
+      </h1>
+      <p>Or <a class="clickable text-primary-300 underline" @click="switchView"><link-icon size="1x" class="inline-block" /> Log in</a> instead</p>
     </div>
 
     <div class="max-w-350 block mx-auto">
       <TextInput v-model="userInformation.email" type="email" placeholder="you@youremail.com" label="Email">
         <mail-icon class="block mx-auto" />
       </TextInput>
-      <p class="mb-5"><small>We will never share your email with anyone</small></p>
+      <p class="mb-5">
+        <small>We will never share your email with anyone</small>
+      </p>
     </div>
 
     <div class="max-w-350 block mx-auto">
       <TextInput v-model="userInformation.name" type="text" placeholder="Your name" label="Display Name">
         <at-sign-icon class="block mx-auto" />
       </TextInput>
-      <p class="mb-0"><small>Name can be anything up to 16 letters.</small></p>
-      <p class="mb-5"><small>This doesn't have to be your real name, it can be anything you want to be known as (i.e. your band's name).</small></p>
+      <p class="mb-0">
+        <small>Name can be anything up to 16 letters.</small>
+      </p>
+      <p class="mb-5">
+        <small>This doesn't have to be your real name, it can be anything you want to be known as (i.e. your band's name).</small>
+      </p>
     </div>
 
     <div class="max-w-350 block mx-auto">
       <TextInput v-model="userInformation.password" type="password" placeholder="Your password" label="Password">
-      <key-icon class="block mx-auto" />
+        <key-icon class="block mx-auto" />
       </TextInput>
-      <p class="mb-5"><small>Password must be atleast 8 characters long.</small></p>
+      <p class="mb-5">
+        <small>Password must be atleast 8 characters long.</small>
+      </p>
     </div>
 
     <div class="max-w-350 block mx-auto">
       <TextInput v-model="userInformation.confirmPassword" type="password" placeholder="Confirm password" label="Confirm password">
-      <key-icon class="block mx-auto" />
+        <key-icon class="block mx-auto" />
       </TextInput>
     </div>
 
     <div class="max-w-350 block mx-auto">
-      <Checkbox v-model="userInformation.agreement">By clicking here you agree to the Terms of Use and the Privacy Policy</Checkbox>
+      <Checkbox v-model="userInformation.agreement">
+        By clicking here you agree to the Terms of Use and the Privacy Policy
+      </Checkbox>
     </div>
 
     <div class="max-w-350 block mx-auto">
-      <Checkbox v-model="userInformation.agreement">Opt-in for email communications about BandMatch.io and it's products?</Checkbox>
+      <Checkbox v-model="userInformation.agreement">
+        Opt-in for email communications about BandMatch.io and it's products?
+      </Checkbox>
     </div>
 
     <ButtonPrimary :action="postSignupForm" class="max-w-350 block mx-auto">
-        Sign up
+      Sign up
     </ButtonPrimary>
   </div>
 </template>

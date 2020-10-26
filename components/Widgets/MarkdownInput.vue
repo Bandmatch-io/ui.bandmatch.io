@@ -3,27 +3,39 @@
     <small class="block">Use markdown for flavour!</small>
     <div class="shadow rounded">
       <div class="rounded-t shadow-b bg-gray-100 border w-full block flex">
-        <div v-if="!showHTML" @click="() => {showHTML=true}" class="w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 hover:shadow-outline"><eye-icon class="inline-block mx-1 md:mx-2" />Preview</div>
-        <div v-else @click="() => {showHTML=false}" class="w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 hover:shadow-outline"><edit-icon class="inline-block mx-1 md:mx-2" />Edit</div>
-        <div @click="addHeading" class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center"><type-icon class="inline-block mx-1 md:mx-2" /></div>
-        <div @click="addList" class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center"><list-icon class="inline-block mx-1 md:mx-2" /></div>
-        <div @click="setBold" class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center"><bold-icon class="inline-block mx-1 md:mx-2" /></div>
-        <div @click="setItalic" class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center"><italic-icon class="inline-block mx-1 md:mx-2" /></div>
+        <div v-if="!showHTML" class="w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 hover:shadow-outline" @click="() => {showHTML=true}">
+          <eye-icon class="inline-block mx-1 md:mx-2" />Preview
+        </div>
+        <div v-else class="w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 hover:shadow-outline" @click="() => {showHTML=false}">
+          <edit-icon class="inline-block mx-1 md:mx-2" />Edit
+        </div>
+        <div class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center" @click="addHeading">
+          <type-icon class="inline-block mx-1 md:mx-2" />
+        </div>
+        <div class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center" @click="addList">
+          <list-icon class="inline-block mx-1 md:mx-2" />
+        </div>
+        <div class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center" @click="setBold">
+          <bold-icon class="inline-block mx-1 md:mx-2" />
+        </div>
+        <div class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center" @click="setItalic">
+          <italic-icon class="inline-block mx-1 md:mx-2" />
+        </div>
       </div>
-      <ProgressBar class="border-l border-r" :percent="textFull"/>
+      <ProgressBar class="border-l border-r" :percent="textFull" />
       <!-- <div v-if="showHTML" v-html="htmlOutput" class="prose max-w-none rounded-b bg-white border relative mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0"/> -->
-      <MarkdownView class="rounded-b border" v-if="showHTML" :markdown="markdownInput" />
+      <MarkdownView v-if="showHTML" class="rounded-b border" :markdown="markdownInput" />
       <textarea
         v-else
         ref="ta"
-        @change="onChange"
         v-model="markdownInput"
         class=" border relative rounded-b mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0"
         rows="12"
-        :maxlength="maxlength">
-      </textarea>
+        :maxlength="maxlength"
+        @change="onChange"
+      />
     </div>
-    <small class="mt-0" v-if="maxlength">{{ markdownInput.length }} / {{ maxlength }}</small>
+    <small v-if="maxlength" class="mt-0">{{ markdownInput.length }} / {{ maxlength }}</small>
   </div>
 </template>
 
@@ -51,14 +63,14 @@ export default {
       showHTML: ''
     }
   },
-  watch: {
-    value () {
-      this.markdownInput = this.value
-    }
-  },
   computed: {
     textFull () {
       return (this.markdownInput.length / this.maxlength) * 100
+    }
+  },
+  watch: {
+    value () {
+      this.markdownInput = this.value
     }
   },
   methods: {

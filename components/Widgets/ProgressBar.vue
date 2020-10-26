@@ -1,6 +1,6 @@
 <template>
   <div class="progress-bar w-full block bg-gray-500">
-    <div class="progress-slider bg-secondary-300" :style="`width: ${percent}%;`"/>
+    <div class="progress-slider bg-secondary-300" :style="`width: ${percent}%;`" />
   </div>
 </template>
 

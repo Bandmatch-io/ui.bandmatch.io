@@ -1,5 +1,5 @@
 <template>
-  <div v-html="cleanMD" class="prose max-w-none bg-white relative mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0"/>
+  <div class="prose max-w-none bg-white relative mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0" v-html="cleanMD" />
 </template>
 
 <script>
@@ -15,6 +15,12 @@ export default {
       render: undefined
     }
   },
+  computed: {
+    cleanMD () {
+      const dirty = marked(this.markdown, { renderer: this.render })
+      return DOMPurify.sanitize(dirty)
+    }
+  },
   created () {
     this.render = new marked.Renderer()
     this.render.link = function (href, title, text) {
@@ -22,12 +28,6 @@ export default {
     }
     this.render.image = function (href, title, text) {
       return text
-    }
-  },
-  computed: {
-    cleanMD () {
-      const dirty = marked(this.markdown, { renderer: this.render })
-      return DOMPurify.sanitize(dirty)
     }
   }
 }

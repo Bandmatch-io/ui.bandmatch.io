@@ -1,10 +1,12 @@
 <template>
-  <div @click="setChecked(!checked)" style="cursor: pointer;" class="grid grid-cols-12 grid-flow-col">
+  <div style="cursor: pointer;" class="grid grid-cols-12 grid-flow-col" @click="setChecked(!checked)">
     <div class="col-span-2">
       <div class="rounded shadow checkbox" :data-checked="checked" />
     </div>
     <div class="col-span-10">
-      <p class="text-sm"><slot></slot></p>
+      <p class="text-sm">
+        <slot />
+      </p>
     </div>
   </div>
 </template>
@@ -15,13 +17,13 @@ export default {
     label: String,
     value: Boolean
   },
-  mounted () {
-    this.checked = this.value
-  },
   data () {
     return {
       checked: false
     }
+  },
+  mounted () {
+    this.checked = this.value
   },
   methods: {
     setChecked (state) {

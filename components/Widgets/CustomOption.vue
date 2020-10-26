@@ -1,5 +1,7 @@
 <template>
-    <option @click="OnSelect"><slot /></option>
+  <option @click="OnSelect">
+    <slot />
+  </option>
 </template>
 
 <script>

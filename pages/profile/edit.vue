@@ -3,8 +3,12 @@
     <div v-if="userStatus === 'success'" class="flex flex-wrap">
       <div class="w-full lg:flex-1 min-w-350 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
         <div class="p-5 border-b-2 shadow-sm grid grid-cols-4">
-          <ButtonPrimary :action="() => {$router.push(`${user._id}`)}" groupPos="first" class="col-span-3 inline-block w-full mx-0" >View public profile</ButtonPrimary>
-          <ButtonTertiary :action="postUserProfile" groupPos="last" class="col-span-1 inline-block w-full mx-0"><check-icon v-if="isSaved" class="inline-block"/><loader-icon v-else class="inline-block"/> Saved</ButtonTertiary>
+          <ButtonPrimary :action="() => {$router.push(`${user._id}`)}" group-pos="first" class="col-span-3 inline-block w-full mx-0">
+            View public profile
+          </ButtonPrimary>
+          <ButtonTertiary :action="postUserProfile" group-pos="last" class="col-span-1 inline-block w-full mx-0">
+            <check-icon v-if="isSaved" class="inline-block" /><loader-icon v-else class="inline-block" /> Saved
+          </ButtonTertiary>
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
@@ -21,13 +25,17 @@
             Password
           </div>
           <div class="col-span-3">
-            <ButtonPrimary :action="() => {}"><key-icon class="inline-block"/> Update Password</ButtonPrimary>
+            <ButtonPrimary :action="() => {}">
+              <key-icon class="inline-block" /> Update Password
+            </ButtonPrimary>
           </div>
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
           <div class="col-span-1">
-            <p class="mb-4">Display Name</p>
+            <p class="mb-4">
+              Display Name
+            </p>
             <p><small>Max 16 characters </small></p>
           </div>
           <div class="col-span-3">
@@ -39,37 +47,59 @@
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
           <div class="col-span-1">
-            <p class="mb-4">Do you want to be shown in searches?</p>
+            <p class="mb-4">
+              Do you want to be shown in searches?
+            </p>
             <p><small>You will still be able to send and receive messages.</small></p>
           </div>
           <div class="col-span-3">
             <CustomSelect>
-              <option :selected="user.active" @click="user.active=true" value="true">Show me in searches</option>
-              <option :selected="!user.active" @click="user.active=false" value="false">Don't show me in searches</option>
+              <option :selected="user.active" value="true" @click="user.active=true">
+                Show me in searches
+              </option>
+              <option :selected="!user.active" value="false" @click="user.active=false">
+                Don't show me in searches
+              </option>
             </CustomSelect>
           </div>
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
           <div class="col-span-1">
-            <p class="mb-4">What do you want to do?</p>
-            <p></p>
+            <p class="mb-4">
+              What do you want to do?
+            </p>
+            <p />
           </div>
           <div class="col-span-3">
             <CustomSelect>
-              <option :selected="typeSelected('Join')" @click="user.searchType='Join'" value="Join">Join an existing band</option>
-              <option :selected="typeSelected('Form')" @click="user.searchType='Form'" value="Form">Form a new band</option>
-              <option :selected="typeSelected('Either')" @click="user.searchType='Either'" value="Either">Either join or form a band</option>
-              <option :selected="typeSelected('Recruit')" @click="user.searchType='Recruit'" value="Recruit">Recruit a band memer</option>
+              <option :selected="typeSelected('Join')" value="Join" @click="user.searchType='Join'">
+                Join an existing band
+              </option>
+              <option :selected="typeSelected('Form')" value="Form" @click="user.searchType='Form'">
+                Form a new band
+              </option>
+              <option :selected="typeSelected('Either')" value="Either" @click="user.searchType='Either'">
+                Either join or form a band
+              </option>
+              <option :selected="typeSelected('Recruit')" value="Recruit" @click="user.searchType='Recruit'">
+                Recruit a band memer
+              </option>
             </CustomSelect>
           </div>
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
           <div class="col-span-1">
-            <p class="mb-4">Genres</p>
-            <p v-if="user.searchType === 'Recruit'"><small>What genres do you play?</small></p>
-            <p v-else><small>What genres do you want to play?</small></p>
+            <p class="mb-4">
+              Genres
+            </p>
+            <p v-if="user.searchType === 'Recruit'">
+              <small>What genres do you play?</small>
+            </p>
+            <p v-else>
+              <small>What genres do you want to play?</small>
+            </p>
           </div>
           <div class="col-span-3">
             <ArrayInput v-model="user.genres" />
@@ -78,9 +108,15 @@
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
           <div class="col-span-1">
-            <p class="mb-4">Instruments</p>
-            <p v-if="user.searchType === 'Recruit'"><small>What instruments do you need?</small></p>
-            <p v-else><small>What instruments can you play?</small></p>
+            <p class="mb-4">
+              Instruments
+            </p>
+            <p v-if="user.searchType === 'Recruit'">
+              <small>What instruments do you need?</small>
+            </p>
+            <p v-else>
+              <small>What instruments can you play?</small>
+            </p>
           </div>
           <div class="col-span-3">
             <ArrayInput v-model="user.instruments" />
@@ -90,38 +126,42 @@
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
           <div class="col-span-1">
             <p>Search radius</p>
-            <p></p>
+            <p />
           </div>
           <div class="col-span-3 bg-white">
-            <NumberSlider v-model="user.searchRadius" units="km" min="1" max="100"/>
+            <NumberSlider v-model="user.searchRadius" units="km" min="1" max="100" />
           </div>
         </div>
 
         <div class="grid grid-cols-4 p-5 shadow-sm border-b-2">
           <div class="col-span-1">
             <p>Your location</p>
-            <p></p>
+            <p />
           </div>
           <div class="col-span-3 bg-white">
-            <LocationInput v-model="user.searchLocation.coordinates" height="25"/>
+            <LocationInput v-model="user.searchLocation.coordinates" height="25" />
           </div>
         </div>
 
         <div class="p-5 shadow-sm">
-          <h2 class="prose">Account Actions</h2>
-          <ButtonPrimary :action="fetchAccountData" class="inline-block w-full mx-0" ><download-icon class="inline-block"/> Download my data</ButtonPrimary>
-          <ConfirmationInput :confirm="() => {}" :checkString="user.displayName" class="inline-block w-full mx-0">
-            <trash-2-icon class="inline-block"/> Delete my account
+          <h2 class="prose">
+            Account Actions
+          </h2>
+          <ButtonPrimary :action="fetchAccountData" class="inline-block w-full mx-0">
+            <download-icon class="inline-block" /> Download my data
+          </ButtonPrimary>
+          <ConfirmationInput :confirm="() => {}" :check-string="user.displayName" class="inline-block w-full mx-0">
+            <trash-2-icon class="inline-block" /> Delete my account
           </ConfirmationInput>
         </div>
-
       </div>
 
       <div class="w-full lg:flex-1 flex-shrink min-w-350 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
-        <h1 class="px-8 pt-4 text-5xl">Description</h1>
-        <MarkdownInput v-model="user.description" :maxlength="512"/>
+        <h1 class="px-8 pt-4 text-5xl">
+          Description
+        </h1>
+        <MarkdownInput v-model="user.description" :maxlength="512" />
       </div>
-
     </div>
   </div>
 </template>
@@ -163,20 +203,20 @@ export default {
       isSaved: true
     }
   },
-  watch: {
-    user: {
-      handler (val) {
-        this.postUserProfile(val)
-      },
-      deep: true // Needs to watch for changes to child objects as well.
-    }
-  },
   computed: {
     currentUser () {
       return this.$store.state.user.currentUser
     },
     userStatus () {
       return this.$store.state.user.status
+    }
+  },
+  watch: {
+    user: {
+      handler (val) {
+        this.postUserProfile(val)
+      },
+      deep: true // Needs to watch for changes to child objects as well.
     }
   },
   mounted () {
