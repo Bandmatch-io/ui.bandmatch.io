@@ -15,7 +15,7 @@ export default {
     return {
       map: undefined,
       locationMarker: undefined,
-      location: [0, 0],
+      location: [0.1278, 51.5074],
       ignoreUpdate: false
     }
   },
@@ -31,7 +31,7 @@ export default {
     this.map = new MapboxGL.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-      center: this.value, // starting position [lng, lat]
+      center: this.location, // starting position [lng, lat]
       zoom: 9 // starting zoom
     })
     this.map.addControl(new MapboxGL.NavigationControl({ showZoom: true }))

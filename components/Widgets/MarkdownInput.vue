@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full block px-8 py-8">
+  <div class="w-full block">
     <small class="block">Use markdown for flavour!</small>
     <div class="shadow rounded">
       <div class="rounded-t shadow-b bg-gray-100 border w-full block flex">
@@ -101,6 +101,10 @@ export default {
       const start = textarea.selectionStart
       const end = textarea.selectionEnd
 
+      if (start === end) {
+        return
+      }
+
       const stringStart = this.markdownInput.substring(0, start)
       const heading = this.markdownInput.slice(start, end)
       const stringEnd = this.markdownInput.substring(end, this.markdownInput.length)
@@ -113,6 +117,10 @@ export default {
       const textarea = this.$refs.ta
       const start = textarea.selectionStart
       const end = textarea.selectionEnd
+
+      if (start === end) {
+        return
+      }
 
       const stringStart = this.markdownInput.substring(0, start)
       const heading = this.markdownInput.slice(start, end)

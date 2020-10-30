@@ -160,7 +160,7 @@
         <h1 class="px-8 pt-4 text-5xl">
           Description
         </h1>
-        <MarkdownInput v-model="user.description" :maxlength="512" />
+        <MarkdownInput v-model="user.description" class="px-8 py-8" :maxlength="512" />
       </div>
     </div>
   </div>

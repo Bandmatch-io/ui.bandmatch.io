@@ -110,7 +110,7 @@ export default {
         .then(res => res.json())
         .then((data) => {
           if (data.success) {
-            window.location.href = '/users/profile/setup'
+            window.location.href = '/profile/setup'
           }
         })
     },

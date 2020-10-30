@@ -27,7 +27,6 @@
 
 <script>
 import { MailIcon, KeyIcon, LinkIcon } from 'vue-feather-icons'
-import { mapMutations } from 'vuex'
 import ButtonPrimary from '~/components/Core/ButtonPrimary'
 
 export default {
@@ -57,23 +56,6 @@ export default {
   },
   methods: {
     async postLoginForm () {
-      // fetch('http://localhost:8080/auth',
-      //   {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json'
-      //     },
-      //     body: JSON.stringify(this.loginDetails),
-      //     credentials: 'include'
-      //   })
-      //   .then(res => res.json())
-      //   .then((data) => {
-      //     if (data.success) {
-      //       this.$store.commit('user/logIn', JSON.stringify(data.user))
-      //       window.location.href = '/'
-      //     }
-      //   })
-
       try {
         const res = await this.$auth.loginWith('local', { data: this.loginDetails })
         console.log('login res', res)
@@ -83,10 +65,7 @@ export default {
     },
     goBack () {
       this.$emit('return')
-    },
-    ...mapMutations({
-      logIn: 'user/logIn'
-    })
+    }
   }
 }
 </script>
