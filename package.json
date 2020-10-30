@@ -11,8 +11,11 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.0.2",
     "@tailwindcss/typography": "^0.2.0",
+    "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "dompurify": "^2.1.1",
     "feather-icons": "^4.28.0",

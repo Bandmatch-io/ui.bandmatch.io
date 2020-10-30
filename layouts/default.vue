@@ -6,40 +6,11 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 import Navbar from '~/components/Navbar'
 
 export default {
   components: {
     Navbar
-  },
-  computed: {
-    currentUser () {
-      return this.$store.state.user
-    }
-  },
-  mounted () {
-    this.$store.commit('user/setStatus', 'loading')
-    fetch('http://localhost:8080/users/profile',
-      {
-        method: 'GET',
-        credentials: 'include'
-      })
-      .then(res => res.json())
-      .then((data) => {
-        if (data.success) {
-          this.$store.commit('user/logIn', JSON.stringify(data.user))
-          this.$store.commit('user/setStatus', 'success')
-        } else {
-          this.$store.commit('user/setStatus', 'failure')
-        }
-      })
-  },
-  methods: {
-    ...mapMutations({
-      logIn: 'user/logIn',
-      setStatus: 'user/setStatus'
-    })
   }
 }
 </script>

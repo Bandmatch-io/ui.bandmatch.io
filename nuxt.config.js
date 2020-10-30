@@ -34,7 +34,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/style-resources',
+    '@nuxtjs/style-resources'
   ],
 
   // Globally available resources
@@ -48,8 +48,30 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    'nuxt-purgecss'
+    'nuxt-purgecss',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
+
+  axios: {
+    baseURL: 'http://localhost:8080'
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/auth', method: 'post', propertyName: 'token.token' },
+          logout: { url: '/auth/logout', method: 'post' },
+          user: { url: '/users/profile', method: 'get', propertyName: 'user' }
+        }
+        // tokenRequired: true,
+        // tokenType: 'bearer',
+        // globalToken: true,
+        // autoFetchUser: false
+      }
+    }
+  },
 
   purgeCSS: {
     mode: 'postcss',

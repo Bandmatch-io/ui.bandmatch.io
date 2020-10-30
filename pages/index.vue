@@ -29,17 +29,10 @@ export default {
   },
   methods: {
     loadMatches () {
-      fetch('http://localhost:8080/search',
-        {
-          method: 'GET',
-          credentials: 'include'
-        })
-        .then(res => res.json())
+      this.$axios.get('/search')
         .then((data) => {
           if (data.success) {
             this.matches = data.matches
-          } else {
-            console.log(data)
           }
         })
     }

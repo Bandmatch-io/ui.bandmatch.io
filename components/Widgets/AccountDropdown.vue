@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     user () {
-      return this.$store.state.user.currentUser
+      return this.$auth.user
     }
   },
   mounted () {

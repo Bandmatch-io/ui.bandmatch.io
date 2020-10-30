@@ -168,7 +168,7 @@
 
 <script>
 import { AtSignIcon, KeyIcon, LoaderIcon, CheckIcon, DownloadIcon, Trash2Icon } from 'vue-feather-icons'
-import { mapMutations } from 'vuex'
+// import { mapMutations } from 'vuex'
 import ButtonPrimary from '~/components/Core/ButtonPrimary'
 import ButtonTertiary from '~/components/Core/ButtonTertiary'
 import MarkdownInput from '~/components/Widgets/MarkdownInput'
@@ -205,10 +205,10 @@ export default {
   },
   computed: {
     currentUser () {
-      return this.$store.state.user.currentUser
+      return this.$auth.user
     },
     userStatus () {
-      return this.$store.state.user.status
+      return 'success' // this.$auth.user.status
     }
   },
   watch: {
@@ -220,29 +220,21 @@ export default {
     }
   },
   mounted () {
-    this.user = JSON.parse(JSON.stringify(this.currentUser))
+    this.user = this.$auth.user
   },
   methods: {
-    ...mapMutations({
-      setUser: 'user/setUser'
-    }),
     typeSelected (val) {
       return this.user.searchType === val
     },
     postUserProfile (newUser) {
       this.isSaved = false
-      fetch('http://localhost:8080/users/profile',
-        {
-          method: 'PATCH',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newUser)
-        })
-        .then(res => res.json())
+
+      this.$axios.$patch('/users/profile', newUser)
         .then((data) => {
-          console.log(data.user, newUser)
+          console.log(data, newUser)
           if (data.success) {
-            this.$store.commit('user/setUser', JSON.stringify(data.user))
+            // this.$store.commit('user/setUser', JSON.stringify(data.user))
+            this.$auth.setUser(data.user)
             this.isSaved = true
           }
         })
