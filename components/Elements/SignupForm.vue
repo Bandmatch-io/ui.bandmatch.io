@@ -74,9 +74,12 @@
         </Checkbox>
       </div>
 
-      <ButtonPrimary :action="() => {}" class="max-w-350 mx-auto w-full">
+      <ButtonPrimary v-if="state===states.default" :action="() => {}" class="max-w-350 mx-auto w-full">
         Sign up
       </ButtonPrimary>
+      <div v-else class="block w-1/2 h-24 mx-auto">
+        <LoaderAnim />
+      </div>
     </form>
   </div>
 </template>
@@ -102,9 +105,7 @@ export default {
     return {
       states: {
         default: 0,
-        login: 1,
-        signup: 2,
-        password: 3
+        loading: 1
       },
       state: 0,
       userInformation: {
@@ -136,9 +137,9 @@ export default {
     postSignupForm (e) {
       e.preventDefault()
       this.resetErrors()
+      this.state = this.states.loading
       this.$axios.post('/auth/new', this.userInformation)
         .then((res) => {
-          console.log(res.data.token)
           if (res.data.success) {
             this.$auth.setUserToken(res.data.token.token)
             window.location.href = '/profile/setup'
@@ -146,9 +147,9 @@ export default {
         })
         .catch((e) => {
           const data = e.response.data
+          this.state = this.states.default
           if (data.error) {
             this.errors = data.error
-            console.log(JSON.stringify(this.errors))
           }
         })
     },

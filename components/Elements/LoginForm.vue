@@ -32,9 +32,12 @@
         </TextError>
       </div>
 
-      <ButtonPrimary :action="()=>{}" class="max-w-350 mx-auto w-full">
+      <ButtonPrimary v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full">
         Log in
       </ButtonPrimary>
+      <div v-else class="block w-1/2 h-24 mx-auto">
+        <LoaderAnim />
+      </div>
     </form>
   </div>
 </template>
@@ -43,6 +46,7 @@
 import { MailIcon, KeyIcon, LinkIcon } from 'vue-feather-icons'
 import ButtonPrimary from '~/components/Core/ButtonPrimary'
 import TextError from '~/components/Core/TextError'
+import LoaderAnim from '~/components/Core/LoaderAnim'
 
 export default {
   components: {
@@ -50,7 +54,8 @@ export default {
     KeyIcon,
     LinkIcon,
     ButtonPrimary,
-    TextError
+    TextError,
+    LoaderAnim
   },
   props: {
     switchView: Function
@@ -59,9 +64,7 @@ export default {
     return {
       states: {
         default: 0,
-        login: 1,
-        signup: 2,
-        password: 3
+        loading: 1
       },
       state: 0,
       loginDetails: {
@@ -78,11 +81,14 @@ export default {
     postLoginForm (e) {
       e.preventDefault()
       this.resetErrors()
+      this.state = this.states.loading
+
       this.$auth.loginWith('local', { data: this.loginDetails })
         .then((res) => {
           window.location.href = '/'
         })
         .catch((e) => {
+          this.state = this.states.default
           const data = e.response.data
           if (data.error) {
             this.errors = data.error
@@ -103,6 +109,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped >
 @import '~/assets/scss/styles.scss';
 </style>
