@@ -2,13 +2,13 @@
   <div class="flex-container bg-polka">
     <div class="my-5 w-3/4 max-w-2xl mx-auto">
       <div v-if="state === states.default" class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block" style="height: 15rem;">
-        <ButtonPrimary :action="() => state=states.signup">
+        <ButtonPrimary :action="() => state=states.signup" class="m-w-350 mx-auto w-3/4">
           Sign up
         </ButtonPrimary>
         <p class="w-full text-center font-semibold">
           OR
         </p>
-        <ButtonPrimary :action="() => state=states.login">
+        <ButtonPrimary :action="() => state=states.login" class="m-w-350 mx-auto w-3/4">
           Log in
         </ButtonPrimary>
       </div>
@@ -23,6 +23,7 @@
 import ButtonPrimary from '~/components/Core/ButtonPrimary'
 
 export default {
+  auth: false,
   components: {
     ButtonPrimary
   },

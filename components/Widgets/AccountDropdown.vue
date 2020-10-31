@@ -14,7 +14,7 @@
         <nuxt-link to="/profile/edit" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white" @click.native="isOpen = false">
           View Profile
         </nuxt-link>
-        <a href="#" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white">Sign out</a>
+        <a href="#" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white" @click="removeLogin">Sign out</a>
       </div>
     </div>
   </div>
@@ -48,6 +48,14 @@ export default {
     this.$once('hook:beforeDestroy', () => {
       document.removeEventListener('keydown', handleEscape)
     })
+  },
+  methods: {
+    removeLogin () {
+      this.$auth.logout({ makeRequest: false })
+        .then(() => {
+          window.location.href = '/'
+        })
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
-  <div @click="onClick" class="bg-complementary-300 outline-none text-secondary-500 text-center py-2 px-4 m-5" :class="totalClass">
-    <slot> </slot>
-  </div>
+  <button class="block bg-complementary-300 outline-none text-secondary-500 text-center py-2 px-4 m-5" :class="totalClass" @click="onClick">
+    <slot />
+  </button>
 </template>
 
 <script>

@@ -3,7 +3,7 @@
     <nuxt-link to="/">
       <span class="text-white text-2xl tracking-tight">Bandmatch</span>
     </nuxt-link>
-    <div v-if="user !== undefined">
+    <div v-if="loggedIn">
       <div class="block hidden">
         <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white" @click="isOpen = !isOpen">
           <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -49,6 +49,9 @@ export default {
         return undefined
       }
       return this.$auth.user
+    },
+    loggedIn () {
+      return this.$auth.loggedIn
     }
   }
 }

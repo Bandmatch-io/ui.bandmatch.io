@@ -6,7 +6,7 @@
           <ButtonPrimary :action="() => {$router.push(`${user._id}`)}" group-pos="first" class="col-span-3 inline-block w-full mx-0">
             View public profile
           </ButtonPrimary>
-          <ButtonTertiary :action="postUserProfile" group-pos="last" class="col-span-1 inline-block w-full mx-0">
+          <ButtonTertiary :action="() => { postUserProfile(user) }" group-pos="last" class="col-span-1 inline-block w-full mx-0">
             <check-icon v-if="isSaved" class="inline-block" /><loader-icon v-else class="inline-block" /> Saved
           </ButtonTertiary>
         </div>

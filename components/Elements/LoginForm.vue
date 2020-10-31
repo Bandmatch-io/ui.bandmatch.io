@@ -7,34 +7,50 @@
       <p>Or <a class="clickable text-primary-300 underline" @click="switchView"><link-icon size="1x" class="inline-block" /> Sign in</a> instead</p>
     </div>
 
-    <div class="max-w-350 block mx-auto">
-      <TextInput v-model="loginDetails.email" type="email" placeholder="you@youremail.com" label="Email">
-        <mail-icon class="block mx-auto" />
-      </TextInput>
-    </div>
+    <form @submit="postLoginForm">
+      <div class="max-w-350 block mx-auto">
+        <TextInput v-model="loginDetails.email" type="email" placeholder="you@youremail.com" label="Email">
+          <mail-icon class="block mx-auto" />
+        </TextInput>
+        <TextError v-if="errors.email && errors.email.invalid">
+          Email is incorrect.
+        </TextError>
+        <TextError v-if="errors.email && errors.email.missing">
+          Email is invalid.
+        </TextError>
+      </div>
 
-    <div class="max-w-350 block mx-auto">
-      <TextInput v-model="loginDetails.password" type="password" placeholder="Your password" label="Password">
-        <key-icon class="block mx-auto" />
-      </TextInput>
-    </div>
+      <div class="max-w-350 block mx-auto">
+        <TextInput v-model="loginDetails.password" type="password" placeholder="Your password" label="Password">
+          <key-icon class="block mx-auto" />
+        </TextInput>
+        <TextError v-if="errors.password && errors.password.incorrect">
+          Password is incorrect.
+        </TextError>
+        <TextError v-if="errors.password && errors.password.missing">
+          Password is invalid.
+        </TextError>
+      </div>
 
-    <ButtonPrimary :action="postLoginForm" class="clickable max-w-350 mx-auto bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-2 px-4 rounded mt-8 m-5">
-      Log in
-    </ButtonPrimary>
+      <ButtonPrimary :action="()=>{}" class="max-w-350 mx-auto w-full">
+        Log in
+      </ButtonPrimary>
+    </form>
   </div>
 </template>
 
 <script>
 import { MailIcon, KeyIcon, LinkIcon } from 'vue-feather-icons'
 import ButtonPrimary from '~/components/Core/ButtonPrimary'
+import TextError from '~/components/Core/TextError'
 
 export default {
   components: {
     MailIcon,
     KeyIcon,
     LinkIcon,
-    ButtonPrimary
+    ButtonPrimary,
+    TextError
   },
   props: {
     switchView: Function
@@ -51,20 +67,37 @@ export default {
       loginDetails: {
         email: '',
         password: ''
+      },
+      errors: {
+        email: { missing: false, invalid: false },
+        password: { missing: false, incorrect: false }
       }
     }
   },
   methods: {
-    async postLoginForm () {
-      try {
-        const res = await this.$auth.loginWith('local', { data: this.loginDetails })
-        console.log('login res', res)
-      } catch (err) {
-        console.log('login err', err)
-      }
+    postLoginForm (e) {
+      e.preventDefault()
+      this.resetErrors()
+      this.$auth.loginWith('local', { data: this.loginDetails })
+        .then((res) => {
+          window.location.href = '/'
+        })
+        .catch((e) => {
+          const data = e.response.data
+          if (data.error) {
+            this.errors = data.error
+            console.log(JSON.stringify(this.errors))
+          }
+        })
     },
     goBack () {
       this.$emit('return')
+    },
+    resetErrors () {
+      this.errors = {
+        email: { missing: false, invalid: false },
+        password: { missing: false, incorrect: false }
+      }
     }
   }
 }

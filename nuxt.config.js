@@ -57,6 +57,10 @@ export default {
     baseURL: 'http://localhost:8080'
   },
 
+  router: {
+    middleware: ['auth']
+  },
+
   auth: {
     strategies: {
       local: {
@@ -70,7 +74,13 @@ export default {
         // globalToken: true,
         // autoFetchUser: false
       }
-    }
+    },
+    redirect: {
+      login: '/account',
+      logout: '/',
+      home: '/'
+    },
+    watchLoggedin: false
   },
 
   purgeCSS: {
