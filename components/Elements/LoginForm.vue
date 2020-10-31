@@ -35,7 +35,7 @@
       <ButtonPrimary v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full">
         Log in
       </ButtonPrimary>
-      <div v-else class="block w-1/2 h-24 mx-auto">
+      <div v-else class="block w-1/2 h-12 md:h-24 mx-auto">
         <LoaderAnim />
       </div>
     </form>

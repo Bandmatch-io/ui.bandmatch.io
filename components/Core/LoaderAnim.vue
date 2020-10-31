@@ -5,6 +5,11 @@
     <span />
     <span />
     <span />
+    <span />
+    <span />
+    <span />
+    <span />
+    <span />
   </div>
 </template>
 
@@ -24,32 +29,57 @@ export default {}
     position: absolute;
     bottom: 48%;
     top: 48%;
-    width: 17%;
+    width: 7%;
     background: $color-secondary-300;
     border-radius: 1.25rem;
 
-    animation: anim 1.5s infinite ease-in-out
+    animation: anim 2s infinite ease-in-out
   }
 
   span:nth-child(2) {
-    left: 20%;
+    left: 10%;
 
     animation-delay: .2s;
   }
   span:nth-child(3) {
-    left: 40%;
+    left: 20%;
 
     animation-delay: .4s;
   }
   span:nth-child(4) {
-    left: 60%;
+    left: 30%;
 
     animation-delay: .6s;
   }
   span:nth-child(5) {
-    left: 80%;
+    left: 40%;
 
     animation-delay: .8s;
+  }
+  span:nth-child(6) {
+    left: 50%;
+
+    animation-delay: 1s;
+  }
+  span:nth-child(7) {
+    left: 60%;
+
+    animation-delay: 1.2s;
+  }
+  span:nth-child(8) {
+    left: 70%;
+
+    animation-delay: 1.4s;
+  }
+  span:nth-child(9) {
+    left: 80%;
+
+    animation-delay: 1.6s;
+  }
+  span:nth-child(10) {
+    left: 90%;
+
+    animation-delay: 1.8s;
   }
 }
 
