@@ -21,6 +21,11 @@ export default {
   },
   data () {
     return {
+      states: {
+        default: 0,
+        loading: 1
+      },
+      state: 0,
       matches: []
     }
   },
@@ -29,10 +34,12 @@ export default {
   },
   methods: {
     loadMatches () {
+      this.state = this.states.loading
       this.$axios.get('/search')
-        .then((data) => {
-          if (data.success) {
-            this.matches = data.matches
+        .then((res) => {
+          this.state = this.states.default
+          if (res.data.success) {
+            this.matches = res.data.matches
           }
         })
     }

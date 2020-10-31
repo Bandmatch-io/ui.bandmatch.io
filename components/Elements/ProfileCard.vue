@@ -1,5 +1,5 @@
 <template>
-  <div class="w-300 rounded shadow mx-auto sm:mx-4 my-5 bg-gray-100">
+  <div class="block md:inline-block w-300 rounded shadow mx-auto md:mx-5 my-5 bg-gray-100">
     <div class="p-3 border-b-2 shadow-sm rounded-t">
       <h3 class="mb-0">
         {{ user.displayName }}

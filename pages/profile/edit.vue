@@ -53,11 +53,11 @@
             <p><small>You will still be able to send and receive messages.</small></p>
           </div>
           <div class="col-span-3">
-            <CustomSelect>
-              <option :selected="user.active" value="true" @click="user.active=true">
+            <CustomSelect @change="user.active=$event.target.value">
+              <option :selected="user.active" value="true">
                 Show me in searches
               </option>
-              <option :selected="!user.active" value="false" @click="user.active=false">
+              <option :selected="!user.active" value="false">
                 Don't show me in searches
               </option>
             </CustomSelect>
@@ -72,17 +72,17 @@
             <p />
           </div>
           <div class="col-span-3">
-            <CustomSelect>
-              <option :selected="typeSelected('Join')" value="Join" @click="user.searchType='Join'">
+            <CustomSelect @change="user.searchType=$event.target.value">
+              <option :selected="typeSelected('Join')" value="Join">
                 Join an existing band
               </option>
-              <option :selected="typeSelected('Form')" value="Form" @click="user.searchType='Form'">
+              <option :selected="typeSelected('Form')" value="Form">
                 Form a new band
               </option>
-              <option :selected="typeSelected('Either')" value="Either" @click="user.searchType='Either'">
+              <option :selected="typeSelected('Either')" value="Either">
                 Either join or form a band
               </option>
-              <option :selected="typeSelected('Recruit')" value="Recruit" @click="user.searchType='Recruit'">
+              <option :selected="typeSelected('Recruit')" value="Recruit">
                 Recruit a band memer
               </option>
             </CustomSelect>
@@ -214,6 +214,7 @@ export default {
   watch: {
     user: {
       handler (val) {
+        console.log(JSON.stringify(val))
         this.postUserProfile(val)
       },
       deep: true // Needs to watch for changes to child objects as well.

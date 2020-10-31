@@ -1,7 +1,7 @@
 <template>
   <div class="border rounded shadow">
     <div class="border-b-2 rounded-t shadow-inner bg-white pt-2" style="min-height: 5rem;">
-      <Badge v-for="val in value" :key="val" :val="val" @click="remove(val)" />
+      <Badge v-for="val in value" :key="val" :val="val" :edit="true" @click="remove(val)" />
       <p v-if="value.length" class="mx-2 mb-1">
         <small>Click to remove.</small>
       </p>
