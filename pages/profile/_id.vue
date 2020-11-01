@@ -6,37 +6,37 @@
       </div>
     </div>
     <div v-else class="flex flex-wrap">
-      <div class="w-full lg:flex-1 min-w-350 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
+      <div class="w-full lg:flex-1 min-w-300 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
         <div class="p-5 border-b-2 shadow-sm">
           <div class="w-full grid grid-cols-4">
             <ButtonPrimary :action="() => {}" group-pos="first" class="col-span-3 inline-block mx-0">
               <message-square-icon class="inline-block" /> Chat
             </ButtonPrimary>
             <ButtonComplement :action="()=>{}" group-pos="last" class="col-span-1 inline-block mx-0">
-              <alert-octagon-icon class="inline-block" /> Report
+              <alert-octagon-icon class="inline-block" /> <span class="hidden md:inline">Report</span>
             </ButtonComplement>
           </div>
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
-          <div class="col-span-1">
+          <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Display Name
             </p>
           </div>
-          <div class="col-span-3">
+          <div class="col-span-4 md:col-span-3">
             <p>@{{ user.displayName }}</p>
           </div>
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
-          <div class="col-span-1">
+          <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               They want to:
             </p>
             <p />
           </div>
-          <div class="col-span-3 px-4">
+          <div class="col-span-4 md:col-span-3 px-4">
             <p v-if="user.searchType === 'Join'">
               Join an existing band
             </p>
@@ -53,7 +53,7 @@
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
-          <div class="col-span-1">
+          <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Genres
             </p>
@@ -64,13 +64,13 @@
               <small>They want to play</small>
             </p>
           </div>
-          <div class="col-span-3">
+          <div class="col-span-4 md:col-span-3">
             <Badge v-for="val in user.genres" :key="val" :val="val" />
           </div>
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
-          <div class="col-span-1">
+          <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Instruments
             </p>
@@ -81,23 +81,23 @@
               <small>They can play</small>
             </p>
           </div>
-          <div class="col-span-3">
+          <div class="col-span-4 md:col-span-3">
             <Badge v-for="val in user.instruments" :key="val" class="mx-2" :val="val" />
           </div>
         </div>
 
         <div class="grid grid-cols-4 p-5 shadow-sm border-b-2">
-          <div class="col-span-1">
-            <p>Your location</p>
+          <div class="col-span-4 md:col-span-1">
+            <p>Their location</p>
             <p />
           </div>
-          <div class="col-span-3 bg-white">
+          <div class="col-span-4 md:col-span-3 bg-white">
             <img class="img-fluid" :alt="'location of ' + user.displayName" :src="'https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/' + user.searchLocation.coordinates[0] + ',' + user.searchLocation.coordinates[1] + ',9.67,0.00,0.00/640x480@2x?access_token=' + mapboxToken">
           </div>
         </div>
       </div>
 
-      <div class="w-full lg:flex-1 flex-shrink min-w-350 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
+      <div class="w-full lg:flex-1 flex-shrink min-w-300 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
         <h1 class="px-8 pt-4 text-5xl">
           Description
         </h1>

@@ -1,30 +1,30 @@
 <template>
   <div class="bg-polka">
     <div v-if="userStatus === 'success'" class="flex flex-wrap">
-      <div class="w-full lg:flex-1 min-w-350 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
+      <div class="w-full lg:flex-1 min-w-300 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
         <div class="p-5 border-b-2 shadow-sm grid grid-cols-4">
           <ButtonPrimary :action="() => {$router.push(`${user._id}`)}" group-pos="first" class="col-span-3 inline-block w-full mx-0">
             View public profile
           </ButtonPrimary>
           <ButtonTertiary :action="() => { postUserProfile(user) }" group-pos="last" class="col-span-1 inline-block w-full mx-0">
-            <check-icon v-if="isSaved" class="inline-block" /><loader-icon v-else class="inline-block" /> Saved
+            <check-icon v-if="isSaved" class="inline-block" /><loader-icon v-else class="inline-block" /> <span class="hidden md:inline">Saved</span>
           </ButtonTertiary>
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
-          <div class="col-span-1">
+          <div class="col-span-4 md:col-span-1">
             <p>Email</p>
           </div>
-          <div class="col-span-3">
+          <div class="col-span-4 md:col-span-3">
             <p>{{ user.email }}</p>
           </div>
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
-          <div class="col-span-1">
+          <div class="col-span-4 md:col-span-1">
             Password
           </div>
-          <div class="col-span-3">
+          <div class="col-span-4 md:col-span-3">
             <ButtonPrimary :action="() => {}" class="w-full mx-auto">
               <key-icon class="inline-block" /> Update Password
             </ButtonPrimary>
@@ -32,13 +32,13 @@
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
-          <div class="col-span-1">
+          <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Display Name
             </p>
             <p><small>Max 16 characters </small></p>
           </div>
-          <div class="col-span-3">
+          <div class="col-span-4 md:col-span-3">
             <TextInput v-model="user.displayName" type="text">
               <at-sign-icon class="block mx-auto" />
             </TextInput>
@@ -46,13 +46,13 @@
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
-          <div class="col-span-1">
+          <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Do you want to be shown in searches?
             </p>
             <p><small>You will still be able to send and receive messages.</small></p>
           </div>
-          <div class="col-span-3">
+          <div class="col-span-4 md:col-span-3">
             <CustomSelect @change="user.active=$event.target.value">
               <option :selected="user.active" value="true">
                 Show me in searches
@@ -65,13 +65,13 @@
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
-          <div class="col-span-1">
+          <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               What do you want to do?
             </p>
             <p />
           </div>
-          <div class="col-span-3">
+          <div class="col-span-4 md:col-span-3">
             <CustomSelect @change="user.searchType=$event.target.value">
               <option :selected="typeSelected('Join')" value="Join">
                 Join an existing band
@@ -90,7 +90,7 @@
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
-          <div class="col-span-1">
+          <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Genres
             </p>
@@ -101,13 +101,13 @@
               <small>What genres do you want to play?</small>
             </p>
           </div>
-          <div class="col-span-3">
+          <div class="col-span-4 md:col-span-3">
             <ArrayInput v-model="user.genres" />
           </div>
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
-          <div class="col-span-1">
+          <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Instruments
             </p>
@@ -118,27 +118,27 @@
               <small>What instruments can you play?</small>
             </p>
           </div>
-          <div class="col-span-3">
+          <div class="col-span-4 md:col-span-3">
             <ArrayInput v-model="user.instruments" />
           </div>
         </div>
 
         <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
-          <div class="col-span-1">
+          <div class="col-span-4 md:col-span-1">
             <p>Search radius</p>
             <p />
           </div>
-          <div class="col-span-3 bg-white">
+          <div class="col-span-4 md:col-span-3 bg-white">
             <NumberSlider v-model="user.searchRadius" units="km" min="1" max="100" />
           </div>
         </div>
 
         <div class="grid grid-cols-4 p-5 shadow-sm border-b-2">
-          <div class="col-span-1">
+          <div class="col-span-4 md:col-span-1">
             <p>Your location</p>
             <p />
           </div>
-          <div class="col-span-3 bg-white">
+          <div class="col-span-4 md:col-span-3 bg-white">
             <LocationInput v-model="user.searchLocation.coordinates" height="25" />
           </div>
         </div>
@@ -156,11 +156,11 @@
         </div>
       </div>
 
-      <div class="w-full lg:flex-1 flex-shrink min-w-350 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
+      <div class="w-full lg:flex-1 flex-shrink min-w-300 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
         <h1 class="px-8 pt-4 text-5xl">
           Description
         </h1>
-        <MarkdownInput v-model="user.description" class="px-8 py-8" :maxlength="512" />
+        <MarkdownInput v-model="user.description" class="px-4 py-8" :maxlength="512" />
       </div>
     </div>
   </div>
