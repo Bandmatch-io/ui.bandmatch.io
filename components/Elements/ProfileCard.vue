@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="w-full mb-0 grid grid-cols-5">
-      <ButtonPrimary :action="()=>{}" group-pos="first" class="col-span-2 inline-block mx-0 mb-0 mt-0">
+      <ButtonPrimary :action="navigateToProfile" group-pos="first" class="col-span-2 inline-block mx-0 mb-0 mt-0">
         <user-icon class="inline-block" /> Profile
       </ButtonPrimary>
       <ButtonPrimary :action="()=>{}" group-pos="mid" class="col-span-2 inline-block mx-0 mb-0 mt-0">
@@ -63,6 +63,11 @@ export default {
   },
   props: {
     user: Object
+  },
+  methods: {
+    navigateToProfile () {
+      window.location.href = '/profile/' + this.user._id
+    }
   }
 }
 </script>

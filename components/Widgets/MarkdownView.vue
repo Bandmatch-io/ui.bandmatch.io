@@ -17,6 +17,7 @@ export default {
   },
   computed: {
     cleanMD () {
+      if (this.markdown === '') { return '' }
       const dirty = marked(this.markdown, { renderer: this.render })
       return DOMPurify.sanitize(dirty)
     }

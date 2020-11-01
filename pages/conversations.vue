@@ -1,10 +1,11 @@
 <template>
   <div class="bg-polka">
-    <div class="">
-      <div class="block mx-auto w-1/2 max-w-350 h-48">
+    <div v-if="state===states.loading">
+      <div class="block mx-auto w-1/2 md:w-1/4 h-24 md:h-48" style="transform: translateY(25vh);">
         <LoaderAnim />
       </div>
     </div>
+    <div v-else />
   </div>
 </template>
 
@@ -13,6 +14,15 @@ import LoaderAnim from '~/components/Core/LoaderAnim'
 export default {
   components: {
     LoaderAnim
+  },
+  data () {
+    return {
+      states: {
+        default: 0,
+        loading: 1
+      },
+      state: 1
+    }
   }
 }
 </script>

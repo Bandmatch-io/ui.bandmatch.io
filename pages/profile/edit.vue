@@ -25,7 +25,7 @@
             Password
           </div>
           <div class="col-span-3">
-            <ButtonPrimary :action="() => {}">
+            <ButtonPrimary :action="() => {}" class="w-full mx-auto">
               <key-icon class="inline-block" /> Update Password
             </ButtonPrimary>
           </div>
