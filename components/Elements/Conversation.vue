@@ -3,11 +3,24 @@
     <div v-if="state===states.default">
       <div v-for="msg in messages" :key="msg._id" class="w-full clearfix">
         <div class="border rounded shadow m-3 w-3/4 max-w-350 bg-white clearfix" :class="{ 'float-right': amSender(msg.sender), 'float-left': !amSender(msg.sender) }">
-          <p class="float-left text-black">
-            <MarkdownView :markdown="msg.content" />
-          </p>
-          <p class="float-right pr-3">
-            <small>{{ msg.sender.displayName }}</small>
+          <div v-if="amSender(msg.sender)">
+            <p class="float-left text-black">
+              <MarkdownView :markdown="msg.content" />
+            </p>
+            <p class="float-right pr-3">
+              <small>{{ msg.sender.displayName }}</small>
+            </p>
+          </div>
+          <div v-else>
+            <p class="float-right pr-3 text-black">
+              <MarkdownView :markdown="msg.content" />
+            </p>
+            <p class="float-left pl-3">
+              <small>{{ msg.sender.displayName }}</small>
+            </p>
+          </div>
+          <p class="clear-both mx-3">
+            <small><timeago :class="{ 'float-right': amSender(msg.sender) }" :datetime="msg.timestamp" :auto-update="60" /></small>
           </p>
         </div>
       </div>
