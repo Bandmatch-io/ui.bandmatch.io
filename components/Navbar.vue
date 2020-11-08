@@ -43,8 +43,7 @@ export default {
   data () {
     return {
       isOpen: false,
-      isLoginPage: this.$route.path === '/account',
-      unreadCount: 0
+      isLoginPage: this.$route.path === '/account'
     }
   },
   computed: {
@@ -56,6 +55,9 @@ export default {
     },
     loggedIn () {
       return this.$auth.loggedIn
+    },
+    unreadCount () {
+      return this.$store.state.unread.count
     }
   },
   mounted () {
@@ -63,7 +65,8 @@ export default {
       .then((res) => {
         console.log(res)
         if (res.data.success) {
-          this.unreadCount = res.data.count
+          // this.unreadCount = res.data.count
+          this.$store.commit('unread/setUnread', res.data.count)
         }
       })
       .catch(e => console.log(e))

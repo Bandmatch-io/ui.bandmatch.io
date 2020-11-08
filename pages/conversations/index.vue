@@ -20,7 +20,7 @@
             {{ convo.otherUser.displayName }}
           </p>
           <div class="float-right">
-            <small><timeago :datetime="convo.lastMessage.timestamp" class="mr-1" /><eye-icon class="inline-block" /></small>
+            <small><timeago :datetime="convo.lastMessage.timestamp" :auto-update="60" class="mr-1" /><eye-icon v-if="convo.lastMessage.read" alt="Conversation has been read" class="inline-block" /><eye-off-icon v-else alt="Conversation has not been read" class="inline-block" /></small>
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { EyeIcon, PlusSquareIcon } from 'vue-feather-icons'
+import { EyeIcon, EyeOffIcon, PlusSquareIcon } from 'vue-feather-icons'
 import LoaderAnim from '~/components/Core/LoaderAnim'
 import MarkdownMiniInput from '~/components/Widgets/MarkdownMiniInput'
 import Conversation from '~/components/Elements/Conversation'
@@ -49,6 +49,7 @@ export default {
   components: {
     LoaderAnim,
     EyeIcon,
+    EyeOffIcon,
     PlusSquareIcon,
     MarkdownMiniInput,
     Conversation
@@ -76,6 +77,7 @@ export default {
       if (this.activeChat.lastMessage) {
         const msgID = this.activeChat.lastMessage._id
         this.$axios.patch(`/conversations/read/${msgID}`)
+        this.$store.commit('unread/removeUnread')
       }
     },
     getNewChat () {
@@ -114,6 +116,7 @@ export default {
             this.conversations.forEach((convo) => {
               convo.otherUser = this.otherUser(convo.participants)
             })
+            this.conversations.sort(this.convoSortFn)
             this.openChat(this.conversations[0])
             done()
           }
@@ -131,11 +134,17 @@ export default {
       this.$axios.post('/conversations/message', body)
         .then((res) => {
           if (res.data.success) {
+            res.data.conversation.otherUser = this.otherUser(res.data.conversation.participants)
             // If this was a new conversation, add it to the list
             if (this.newChat !== undefined) {
-              res.data.conversation.otherUser = this.otherUser(res.data.conversation.participants)
               this.conversations.push(res.data.conversation)
               this.newChat = undefined
+            } else {
+              // Not a new conversation, update the array and resort it.
+              const i = this.conversations.findIndex(v => v._id === res.data.conversation._id)
+              this.conversations[i] = res.data.conversation
+              this.conversations.sort(this.convoSortFn)
+              this.$forceUpdate()
             }
             // Add the message to the conversation instance
             this.$refs.convoInstance.addMessage(res.data.message)
@@ -151,6 +160,16 @@ export default {
         }
       })
       return user
+    },
+    convoSortFn (first, second) {
+      const fDate = Date.parse(first.lastMessage.timestamp)
+      const sDate = Date.parse(second.lastMessage.timestamp)
+
+      if (fDate < sDate) {
+        return 1
+      } else {
+        return -1
+      }
     }
   }
 }
