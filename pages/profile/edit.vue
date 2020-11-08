@@ -214,7 +214,6 @@ export default {
   watch: {
     user: {
       handler (val) {
-        console.log(JSON.stringify(val))
         this.postUserProfile(val)
       },
       deep: true // Needs to watch for changes to child objects as well.
@@ -232,7 +231,6 @@ export default {
 
       this.$axios.$patch('/users/profile', newUser)
         .then((data) => {
-          console.log(data, newUser)
           if (data.success) {
             // this.$store.commit('user/setUser', JSON.stringify(data.user))
             this.$auth.setUser(data.user)

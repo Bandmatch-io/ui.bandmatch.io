@@ -15,7 +15,7 @@
       </p>
     </div>
     <div class="p-2 border-b-2  shadow-sm">
-      <MarkdownView :markdown="user.description" class="rounded border-0 shadow-inner" />
+      <MarkdownView :markdown="user.description" class="rounded bg-white border-0 shadow-inner" />
     </div>
     <div class="p-2">
       <div class="mb-0">
@@ -34,7 +34,7 @@
       <ButtonPrimary :action="navigateToProfile" group-pos="first" class="col-span-2 inline-block mx-0 mb-0 mt-0">
         <user-icon class="inline-block" /> Profile
       </ButtonPrimary>
-      <ButtonPrimary :action="()=>{}" group-pos="mid" class="col-span-2 inline-block mx-0 mb-0 mt-0">
+      <ButtonPrimary :action="startChat" group-pos="mid" class="col-span-2 inline-block mx-0 mb-0 mt-0">
         <message-square-icon class="inline-block" /> Chat
       </ButtonPrimary>
       <ButtonComplement :action="()=>{}" group-pos="last" class="col-span-1 inline-block mx-0 mb-0 mt-0">
@@ -67,6 +67,10 @@ export default {
   methods: {
     navigateToProfile () {
       window.location.href = '/profile/' + this.user._id
+    },
+    startChat () {
+      this.$store.commit('convo/setNewMessage', this.user._id, '')
+      this.$router.push('conversations')
     }
   }
 }

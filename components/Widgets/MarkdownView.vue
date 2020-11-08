@@ -1,5 +1,5 @@
 <template>
-  <div class="prose max-w-none bg-white relative mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0" v-html="cleanMD" />
+  <div class="prose max-w-none relative mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0" v-html="cleanMD" />
 </template>
 
 <script>

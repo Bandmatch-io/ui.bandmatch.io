@@ -1,10 +1,11 @@
 <template>
   <div class="w-full block">
-    <small class="block">Use markdown for flavour!</small>
+    <small class="block float-left ml-3">Use markdown for flavour!</small>
+    <small v-if="maxlength" class="block mr-3 float-right">{{ markdownInput.length }} / {{ maxlength }}</small>
     <div class="shadow rounded">
       <div class="rounded-t shadow-b bg-gray-100 border w-full block flex">
-        <div v-if="!showHTML" class="w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 hover:shadow-outline" @click="() => {showHTML=true}">
-          <eye-icon class="inline-block mx-1 md:mx-2" />Preview
+        <div v-if="!showHTML" class="clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 hover:shadow-outline" @click="() => {showHTML=true}">
+          <eye-icon class="inline-block mx-1 md:mx-2" /><span class="hidden md:inline">Preview</span>
         </div>
         <div v-else class="w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 hover:shadow-outline" @click="() => {showHTML=false}">
           <edit-icon class="inline-block mx-1 md:mx-2" />Edit
@@ -21,26 +22,28 @@
         <div class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center" @click="setItalic">
           <italic-icon class="inline-block mx-1 md:mx-2" />
         </div>
+        <div v-if="useSend" class="clickable flex-grow text-white hover:bg-tertiary-500 px-0 py-2 md:px-2 h-full inline-block text-center bg-tertiary-400" @click="onSend">
+          <span class="hidden md:inline">Send</span><send-icon class="inline-block mx-1 md:mx-2" />
+        </div>
       </div>
       <ProgressBar class="border-l border-r" :percent="textFull" />
       <!-- <div v-if="showHTML" v-html="htmlOutput" class="prose max-w-none rounded-b bg-white border relative mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0"/> -->
-      <MarkdownView v-if="showHTML" class="rounded-b border shadow-inner bg-white" :markdown="markdownInput" />
+      <MarkdownView v-if="showHTML" class="rounded-b border shadow-inner" :markdown="markdownInput" />
       <textarea
         v-else
         ref="ta"
         v-model="markdownInput"
-        class=" border relative rounded-b mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0"
+        class=" border rounded-b mx-auto mt-0 mb-0 block p-4 m-4 relative"
         :rows="rows"
         :maxlength="maxlength"
         @change="onChange"
       />
     </div>
-    <small v-if="maxlength" class="mt-0">{{ markdownInput.length }} / {{ maxlength }}</small>
   </div>
 </template>
 
 <script>
-import { EyeIcon, ListIcon, TypeIcon, ItalicIcon, BoldIcon, EditIcon } from 'vue-feather-icons'
+import { EyeIcon, ListIcon, TypeIcon, ItalicIcon, BoldIcon, EditIcon, SendIcon } from 'vue-feather-icons'
 import MarkdownView from '~/components/Widgets/MarkdownView'
 
 export default {
@@ -51,11 +54,14 @@ export default {
     ItalicIcon,
     BoldIcon,
     EditIcon,
+    SendIcon,
     MarkdownView
   },
   props: {
     value: String,
     maxlength: Number,
+    useSend: Boolean,
+    sendAction: Function,
     rows: {
       type: Number,
       default: 12
@@ -78,6 +84,10 @@ export default {
     }
   },
   methods: {
+    onSend () {
+      this.$emit('send')
+      this.$emit('input', '')
+    },
     onChange () {
       console.log(this.markdownInput)
       this.$emit('input', this.markdownInput)
