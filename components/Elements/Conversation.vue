@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div v-else class="w-1/2 md:w-1/4 mx-auto h-48" style="transform: translateY(50%);">
+    <div v-else class="w-1/2 md:w-1/4 mx-auto h-24 my-8">
       <LoaderAnim />
     </div>
   </div>
