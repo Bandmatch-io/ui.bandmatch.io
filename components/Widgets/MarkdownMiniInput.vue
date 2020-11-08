@@ -28,7 +28,7 @@
       </div>
       <ProgressBar class="border-l border-r" :percent="textFull" />
       <!-- <div v-if="showHTML" v-html="htmlOutput" class="prose max-w-none rounded-b bg-white border relative mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0"/> -->
-      <MarkdownView v-if="showHTML" class="rounded-b border shadow-inner" :markdown="markdownInput" />
+      <MarkdownView v-if="showHTML" class="bg-white rounded-b border shadow-inner" :markdown="markdownInput" />
       <textarea
         v-else
         ref="ta"
