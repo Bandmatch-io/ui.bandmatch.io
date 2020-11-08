@@ -9,10 +9,13 @@
       <button v-if="isOpen" tabindex="-1" class="z-40 fixed inset-0 h-full w-full bg-black opacity-75 cursor-default" @click="isOpen = false" />
       <div v-if="isOpen" class="z-50 fixed inset-x-0 mt-2 py-2 mx-auto w-screen md:absolute md:w-48 md:right-0 md:inset-x-auto bg-white rounded shadow-xl">
         <p class="text-gray-500 font-bold block px-4 py-2 mb-5 border-b shadow">
-          {{ user.displayName }}
+          <award-icon v-if="adminOptions === true" class="inline-block" /> {{ user.displayName }}
         </p>
         <nuxt-link to="/profile/edit" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white" @click.native="isOpen = false">
           View Profile
+        </nuxt-link>
+        <nuxt-link v-if="adminOptions === true" to="/admin/dashboard" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white" @click.native="isOpen = false">
+          Admin
         </nuxt-link>
         <a href="#" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white" @click="removeLogin">Sign out</a>
       </div>
@@ -21,12 +24,16 @@
 </template>
 
 <script>
-import { UserIcon, ChevronDownIcon } from 'vue-feather-icons'
+import { UserIcon, ChevronDownIcon, AwardIcon } from 'vue-feather-icons'
 
 export default {
   components: {
     UserIcon,
-    ChevronDownIcon
+    ChevronDownIcon,
+    AwardIcon
+  },
+  props: {
+    adminOptions: Boolean
   },
   data () {
     return {

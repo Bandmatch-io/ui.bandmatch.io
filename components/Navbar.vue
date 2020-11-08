@@ -21,7 +21,7 @@
             <message-square-icon size="1.5x" class="inline-block" /> <span class="hidden md:inline-block">Messages</span>
           </nuxt-link>
         </div>
-        <AccountDropdown class="inline-block px-4 py-2 leading-none" />
+        <AccountDropdown :admin-options="isAdmin" class="inline-block px-4 py-2 leading-none" />
       </div>
     </div>
     <div v-else-if="!isLoginPage">
@@ -56,6 +56,9 @@ export default {
     loggedIn () {
       return this.$auth.loggedIn
     },
+    isAdmin () {
+      return this.$auth.user.admin
+    },
     unreadCount () {
       return this.$store.state.unread.count
     }
@@ -63,7 +66,6 @@ export default {
   mounted () {
     this.$axios.get('/conversations/unread')
       .then((res) => {
-        console.log(res)
         if (res.data.success) {
           // this.unreadCount = res.data.count
           this.$store.commit('unread/setUnread', res.data.count)

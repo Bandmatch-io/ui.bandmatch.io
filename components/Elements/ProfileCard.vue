@@ -2,7 +2,7 @@
   <div class="block md:inline-block w-300 rounded shadow mx-auto md:mx-5 my-5 bg-gray-100">
     <div class="p-3 border-b-2 shadow-sm rounded-t">
       <h3 class="mb-0">
-        {{ user.displayName }}
+        <award-icon v-if="user.admin" class="inline-block" />{{ user.displayName }}
       </h3>
       <p class="mt-0 text-black">
         <small>
@@ -15,7 +15,7 @@
       </p>
     </div>
     <div class="p-2 border-b-2  shadow-sm">
-      <MarkdownView :markdown="user.description" class="rounded bg-white border-0 shadow-inner" />
+      <MarkdownView :markdown="shortDescription" class="rounded bg-white border-0 shadow-inner" />
     </div>
     <div class="p-2">
       <div class="mb-0">
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { MessageSquareIcon, UserIcon, AlertOctagonIcon } from 'vue-feather-icons'
+import { MessageSquareIcon, UserIcon, AlertOctagonIcon, AwardIcon } from 'vue-feather-icons'
 import ButtonPrimary from '~/components/Core/ButtonPrimary'
 import ButtonComplement from '~/components/Core/ButtonComplement'
 import Badge from '~/components/Widgets/Badge'
@@ -53,6 +53,7 @@ import MarkdownView from '~/components/Widgets/MarkdownView'
 
 export default {
   components: {
+    AwardIcon,
     ButtonPrimary,
     ButtonComplement,
     Badge,
@@ -63,6 +64,14 @@ export default {
   },
   props: {
     user: Object
+  },
+  computed: {
+    shortDescription () {
+      if (this.user.description.length > 50) {
+        return this.user.description.slice(0, 50) + '\n ###### ...'
+      }
+      return this.user.description
+    }
   },
   methods: {
     navigateToProfile () {
