@@ -7,7 +7,7 @@
     </div>
     <div v-else class="fixed grid grid-cols-4" style="top: 5rem; left: 0; right: 0; bottom: 0;">
       <div class="col-span-4 md:col-span-1 border-r overflow-y-auto">
-        <div v-if="newChat" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === undefined }" class="clickable hover:bg-gray-100 border-b w-full block mx-auto shadow p-4 clearfix" @click="activeChat = newChat">
+        <div v-if="newChat" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === undefined, 'bg-white': activeChat._id !== undefined }" class="clickable hover:bg-gray-100 border-b w-full block mx-auto shadow p-4 clearfix" @click="activeChat = newChat">
           <p class="float-left">
             <span v-if="newChat.otherUser">{{ newChat.otherUser.displayName }}</span>
           </p>
@@ -15,12 +15,12 @@
             <small class="text-complementary-300 mx-1">Unsent draft</small><plus-square-icon class="inline-block" />
           </div>
         </div>
-        <div v-for="convo in conversations" :key="convo._id" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === convo._id }" class="clickable border-b hover:bg-gray-100 w-full block mx-auto shadow p-4 clearfix" @click="activeChat=convo">
+        <div v-for="convo in conversations" :key="convo._id" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === convo._id, 'bg-white': activeChat._id !== convo._id }" class="clickable border-b hover:bg-gray-100 w-full block mx-auto shadow p-4 clearfix" @click="activeChat=convo">
           <p class="float-left">
             {{ convo.otherUser.displayName }}
           </p>
           <div class="float-right">
-            <small>4 minutes ago <eye-icon class="inline-block" /></small>
+            <small><timeago :datetime="convo.lastMessage.timestamp" class="mr-1" /><eye-icon class="inline-block" /></small>
           </div>
         </div>
       </div>
@@ -124,7 +124,7 @@ export default {
         .then((res) => {
           if (res.data.success) {
             // If this was a new conversation, add it to the list
-            if (this.newChat._id === undefined) {
+            if (this.newChat !== undefined) {
               res.data.conversation.otherUser = this.otherUser(res.data.conversation.participants)
               this.conversations.push(res.data.conversation)
               this.newChat = undefined
