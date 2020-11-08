@@ -12,25 +12,29 @@
           <award-icon v-if="adminOptions === true" class="inline-block" /> {{ user.displayName }}
         </p>
         <nuxt-link to="/profile/edit" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white" @click.native="isOpen = false">
-          View Profile
+          <user-icon class="inline-block mr-1" />View Profile
         </nuxt-link>
         <nuxt-link v-if="adminOptions === true" to="/admin/dashboard" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white" @click.native="isOpen = false">
-          Admin
+          <grid-icon class="inline-block mr-1" />Admin dashboard
         </nuxt-link>
-        <a href="#" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white" @click="removeLogin">Sign out</a>
+        <a href="#" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white" @click="removeLogin">
+          <log-out-icon class="inline-block mr-1" />Sign out
+        </a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { UserIcon, ChevronDownIcon, AwardIcon } from 'vue-feather-icons'
+import { UserIcon, ChevronDownIcon, AwardIcon, GridIcon, LogOutIcon } from 'vue-feather-icons'
 
 export default {
   components: {
     UserIcon,
+    GridIcon,
     ChevronDownIcon,
-    AwardIcon
+    AwardIcon,
+    LogOutIcon
   },
   props: {
     adminOptions: Boolean
