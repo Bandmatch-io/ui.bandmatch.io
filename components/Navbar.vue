@@ -14,7 +14,10 @@
       </div>
       <div class="w-full block flex-grow flex lg:items-center lg:w-auto leading-none">
         <div class="mx-1 lg:flex-grow">
-          <nuxt-link to="/conversations" class="ml-3 mt-3 mr-3 inline-block text-xl lg:mt-0 text-gray-100 hover:text-white">
+          <nuxt-link to="/conversations" class="ml-1 mt-3 mr-1 md:ml-3 md:mr-3 inline-block text-xl lg:mt-0 text-gray-100 hover:text-white">
+            <div v-if="unreadCount > 0" class="rounded bg-complementary-300 text-secondary-300 w-5 h-5 p-0 inline-block text-center">
+              <small>{{ unreadCount }}</small>
+            </div>
             <message-square-icon size="1.5x" class="inline-block" /> <span class="hidden md:inline-block">Messages</span>
           </nuxt-link>
         </div>
@@ -40,7 +43,8 @@ export default {
   data () {
     return {
       isOpen: false,
-      isLoginPage: this.$route.path === '/account'
+      isLoginPage: this.$route.path === '/account',
+      unreadCount: 0
     }
   },
   computed: {
@@ -53,6 +57,16 @@ export default {
     loggedIn () {
       return this.$auth.loggedIn
     }
+  },
+  mounted () {
+    this.$axios.get('/conversations/unread')
+      .then((res) => {
+        console.log(res)
+        if (res.data.success) {
+          this.unreadCount = res.data.count
+        }
+      })
+      .catch(e => console.log(e))
   }
 }
 </script>

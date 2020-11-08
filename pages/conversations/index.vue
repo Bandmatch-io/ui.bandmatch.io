@@ -7,7 +7,7 @@
     </div>
     <div v-else class="fixed grid grid-cols-4" style="top: 5rem; left: 0; right: 0; bottom: 0;">
       <div class="col-span-4 md:col-span-1 border-r overflow-y-auto">
-        <div v-if="newChat" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === undefined, 'bg-white': activeChat._id !== undefined }" class="clickable hover:bg-gray-100 border-b w-full block mx-auto shadow p-4 clearfix" @click="activeChat = newChat">
+        <div v-if="newChat" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === undefined, 'bg-white': activeChat._id !== undefined }" class="clickable hover:bg-gray-100 border-b w-full block mx-auto shadow p-4 clearfix" @click="openChat(newChat)">
           <p class="float-left">
             <span v-if="newChat.otherUser">{{ newChat.otherUser.displayName }}</span>
           </p>
@@ -15,7 +15,7 @@
             <small class="text-complementary-300 mx-1">Unsent draft</small><plus-square-icon class="inline-block" />
           </div>
         </div>
-        <div v-for="convo in conversations" :key="convo._id" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === convo._id, 'bg-white': activeChat._id !== convo._id }" class="clickable border-b hover:bg-gray-100 w-full block mx-auto shadow p-4 clearfix" @click="activeChat=convo">
+        <div v-for="convo in conversations" :key="convo._id" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === convo._id, 'bg-white': activeChat._id !== convo._id }" class="clickable border-b hover:bg-gray-100 w-full block mx-auto shadow p-4 clearfix" @click="openChat(convo)">
           <p class="float-left">
             {{ convo.otherUser.displayName }}
           </p>
@@ -70,6 +70,14 @@ export default {
     this.getAllChats(this.getNewChat)
   },
   methods: {
+    openChat (convo) {
+      this.activeChat = convo
+
+      if (this.activeChat.lastMessage) {
+        const msgID = this.activeChat.lastMessage._id
+        this.$axios.patch(`/conversations/read/${msgID}`)
+      }
+    },
     getNewChat () {
       this.newChat = this.$store.state.convo.newChat
       if (this.newChat.recipientID) {
@@ -92,7 +100,7 @@ export default {
           .catch((e) => {
             this.newChat = undefined
           })
-        this.activeChat = this.newChat
+        this.openChat(this.newChat)
       } else {
         this.newChat = undefined
       }
@@ -106,7 +114,7 @@ export default {
             this.conversations.forEach((convo) => {
               convo.otherUser = this.otherUser(convo.participants)
             })
-            this.activeChat = this.conversations[0]
+            this.openChat(this.conversations[0])
             done()
           }
           this.state = this.states.default
