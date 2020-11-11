@@ -3,7 +3,7 @@
     <div v-if="userStatus === 'success'" class="flex flex-wrap">
       <div class="w-full lg:flex-1 min-w-300 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
         <div class="p-5 border-b-2 shadow-sm grid grid-cols-4">
-          <ButtonPrimary :action="() => {$router.push(`${user._id}`)}" group-pos="first" class="col-span-3 inline-block w-full mx-0">
+          <ButtonPrimary :action="() => { $router.push(`${user._id}`) }" group-pos="first" class="col-span-3 inline-block w-full mx-0">
             View public profile
           </ButtonPrimary>
           <ButtonTertiary :action="() => { postUserProfile(user) }" group-pos="last" class="col-span-1 inline-block w-full mx-0">

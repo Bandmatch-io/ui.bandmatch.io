@@ -75,11 +75,11 @@ export default {
   },
   methods: {
     navigateToProfile () {
-      window.location.href = '/profile/' + this.user._id
+      this.$router.push(`/profile/${this.user._id}`)
     },
     startChat () {
       this.$store.commit('convo/setNewMessage', this.user._id, '')
-      this.$router.push('conversations')
+      this.$router.push('/conversations')
     }
   }
 }
