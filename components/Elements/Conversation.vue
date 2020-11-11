@@ -64,6 +64,11 @@ export default {
   },
   methods: {
     fetchConversation (id) {
+      if (id === undefined) {
+        this.messages = []
+        this.state = this.states.default
+        return
+      }
       this.state = this.states.loading
       this.$axios.get(`/conversations/${id}`)
         .then((res) => {
