@@ -25,7 +25,7 @@
             Password
           </div>
           <div class="col-span-4 md:col-span-3">
-            <ButtonPrimary :action="() => {}" class="w-full mx-auto">
+            <ButtonPrimary :action="() => { this.$router.push('/account/changepassword') }" class="w-full mx-auto">
               <key-icon class="inline-block" /> Update Password
             </ButtonPrimary>
           </div>
@@ -239,7 +239,15 @@ export default {
         })
     },
     fetchAccountData () {
-      window.location = 'http://localhost:8080/users/download'
+      this.$axios.get('http://localhost:8080/users/download', { responseType: 'blob' })
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]))
+          const link = document.createElement('a')
+          link.href = url
+          link.setAttribute('download', `${this.$auth.user.displayName}-account-data.json`) // or any other extension
+          document.body.appendChild(link)
+          link.click()
+        })
     }
   },
   head () {
