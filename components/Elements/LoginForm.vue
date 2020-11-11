@@ -31,6 +31,11 @@
           Password is invalid.
         </TextError>
       </div>
+      <div class="max-w-350 block mx-auto w-full">
+        <p class="text-center w-full">
+          <a class="clickable text-primary-300 underline" @click="switchToReset"><link-icon size="1x" class="inline-block" /> Forgotten your password?</a>
+        </p>
+      </div>
 
       <ButtonPrimary v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full">
         Log in
@@ -58,7 +63,8 @@ export default {
     LoaderAnim
   },
   props: {
-    switchView: Function
+    switchView: Function,
+    switchToReset: Function
   },
   data () {
     return {
@@ -95,6 +101,9 @@ export default {
             console.log(JSON.stringify(this.errors))
           }
         })
+    },
+    switchToPassReset () {
+      this.$emit('request')
     },
     goBack () {
       this.$emit('return')

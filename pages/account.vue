@@ -14,7 +14,8 @@
       </div>
 
       <SignupForm v-if="state === states.signup" :switch-view="() => {state=states.login}" />
-      <LoginForm v-if="state === states.login" :switch-view="() => {state=states.signup}" />
+      <LoginForm v-if="state === states.login" :switch-view="() => {state=states.signup}" :switch-to-reset="() => {state=states.password}" />
+      <RequestPassReset v-if="state === states.password" :switch-view="() => {state=states.login}" />
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-container flex flex-wrap bg-polka">
+  <div class="flex-container justify-center flex flex-wrap bg-polka">
     <DashboardCard title="Activity" link="/admin/stats">
       <trending-up-icon size="8x" class="block mx-auto" />
     </DashboardCard>
