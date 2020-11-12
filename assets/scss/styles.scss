@@ -46,6 +46,10 @@
   max-width: 350px;
 }
 
+.max-w-250 {
+  max-width: 250px;
+}
+
 .max-w-125 {
   max-width: 125px;
 }
@@ -57,6 +61,18 @@
 .bg-primary-grad {
   background: $color-primary-300;
   background: $primary-gradient;
+  color: white !important;
+}
+
+.bg-secondary-grad {
+  background: $color-secondary-300;
+  background: $secondary-gradient;
+  color: white !important;
+}
+
+.bg-complementary-grad {
+  background: $color-complement-300;
+  background: $complementary-gradient;
   color: white !important;
 }
 

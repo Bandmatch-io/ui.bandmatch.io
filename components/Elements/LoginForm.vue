@@ -91,7 +91,8 @@ export default {
 
       this.$auth.loginWith('local', { data: this.loginDetails })
         .then((res) => {
-          window.location.href = '/'
+          this.$store.commit('toasts/create', { title: 'User', message: 'You have successfully logged in' })
+          this.$router.push('/')
         })
         .catch((e) => {
           this.state = this.states.default

@@ -2,6 +2,7 @@
   <div>
     <Navbar />
     <Nuxt />
+    <Toast />
   </div>
 </template>
 

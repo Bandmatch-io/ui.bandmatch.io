@@ -15,7 +15,7 @@
       </p>
     </div>
     <div class="p-2 border-b-2  shadow-sm">
-      <MarkdownView :markdown="shortDescription" class="rounded bg-white border-0 shadow-inner" />
+      <MarkdownView :markdown="shortDescription" style="height: 5rem;" class="overflow-y-auto rounded bg-white border-0 shadow-inner" />
     </div>
     <div class="p-2">
       <div class="mb-0">
