@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed inset-0 overflow-hidden z-50 pt-20 pointer-events-none">
+  <div class="fixed inset-0 overflow-hidden z-40 pt-20 pointer-events-none">
     <div v-for="toast in toasts" :key="toast._id" class="pointer-events-auto mx-auto md:ml-5 md:mr-auto mt-5 block w-25 max-w-250 bg-white h-24 border rounded shadow-xl">
       <div class="text-white h-12 p-3 bg-secondary-grad rounded-t">
         <p class="float-left">

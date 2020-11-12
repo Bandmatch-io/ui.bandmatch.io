@@ -58,6 +58,10 @@
   color: #FF8C00 !important;
 }
 
+.bg-dark-translucent {
+  background: rgba($color: $color-gray-500, $alpha: 0.75)
+}
+
 .bg-primary-grad {
   background: $color-primary-300;
   background: $primary-gradient;

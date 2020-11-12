@@ -34,7 +34,7 @@
             <ButtonPrimary v-else :action="startChat" group-pos="first" class="col-span-3 inline-block mx-0">
               <message-square-icon class="inline-block" /> Chat
             </ButtonPrimary>
-            <ButtonComplement :action="()=>{}" group-pos="last" class="col-span-1 inline-block mx-0">
+            <ButtonComplement :action="reportUser" group-pos="last" class="col-span-1 inline-block mx-0">
               <alert-octagon-icon class="inline-block" /> <span class="hidden md:inline">Report</span>
             </ButtonComplement>
           </div>
@@ -189,6 +189,9 @@ export default {
     startChat () {
       this.$store.commit('convo/setNewMessage', this.user._id, '')
       this.$router.push('/conversations')
+    },
+    reportUser () {
+      this.$store.commit('reports/startReport', { id: this.user._id, type: 'User' })
     }
   },
   head () {

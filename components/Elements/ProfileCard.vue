@@ -37,7 +37,7 @@
       <ButtonPrimary :action="startChat" group-pos="mid" class="col-span-2 inline-block mx-0 mb-0 mt-0">
         <message-square-icon class="inline-block" /> Chat
       </ButtonPrimary>
-      <ButtonComplement :action="()=>{}" group-pos="last" class="col-span-1 inline-block mx-0 mb-0 mt-0">
+      <ButtonComplement :action="reportUser" group-pos="last" class="col-span-1 inline-block mx-0 mb-0 mt-0">
         <alert-octagon-icon class="inline-block" />
       </ButtonComplement>
     </div>
@@ -80,6 +80,9 @@ export default {
     startChat () {
       this.$store.commit('convo/setNewMessage', this.user._id, '')
       this.$router.push('/conversations')
+    },
+    reportUser () {
+      this.$store.commit('reports/startReport', { id: this.user._id, type: 'User' })
     }
   }
 }

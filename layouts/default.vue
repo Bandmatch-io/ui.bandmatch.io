@@ -3,6 +3,7 @@
     <Navbar />
     <Nuxt />
     <Toast />
+    <ReportModal />
   </div>
 </template>
 
