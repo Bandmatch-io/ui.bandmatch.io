@@ -138,6 +138,7 @@ export default {
             // If this was a new conversation, add it to the list
             if (this.newChat !== undefined) {
               this.conversations.push(res.data.conversation)
+              this.conversations.sort(this.convoSortFn)
               this.newChat = undefined
             } else {
               // Not a new conversation, update the array and resort it.
