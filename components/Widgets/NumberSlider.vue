@@ -7,32 +7,40 @@
       class="col-span-6 w-full bg-white"
       :min="min"
       :max="max"
-      @change="emitChange"
     >
   </div>
 </template>
 
 <script>
 export default {
-  props: [
-    'value',
-    'units',
-    'min',
-    'max'
-  ],
+  props: {
+    value: { type: Number, default () { return 0 } },
+    units: { type: String, default () { return 'km' } },
+    min: { type: Number, default () { return 0 } },
+    max: { type: Number, default () { return 100 } }
+  },
   data () {
     return {
       input: 0
     }
   },
   watch: {
-    value (newVal) {
-      this.input = newVal
+    value: {
+      immediate: true,
+      handler (val) {
+        this.input = Number(val)
+      }
+    },
+    input: {
+      immediate: true,
+      handler (val) {
+        this.$emit('input', Number(val))
+      }
     }
   },
   methods: {
     emitChange () {
-      this.$emit('input', this.input)
+      this.$emit('input', Number(this.input))
     }
   }
 }

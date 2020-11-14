@@ -88,10 +88,19 @@ export default {
     addHeading () {
       if (this.showHTML) { return }
 
-      if (this.markdownInput.length > 0) {
-        this.markdownInput += '\n'
-      }
-      this.markdownInput += '# '
+      const textarea = this.$refs.ta
+      const start = textarea.selectionStart
+      const end = textarea.selectionEnd
+
+      const stringStart = this.markdownInput.substring(0, start)
+      // const startOfLine = stringStart.indexOf('\n')
+      // const preTitle = this.stringStart.substring(0, startOfLine)
+      // const postTitle = this.stringStart.substring(startOfLine, start)
+
+      const heading = this.markdownInput.slice(start, end)
+      const stringEnd = this.markdownInput.substring(end, this.markdownInput.length)
+
+      this.markdownInput = stringStart + '\n# ' + heading + stringEnd
     },
     addList () {
       if (this.showHTML) { return }

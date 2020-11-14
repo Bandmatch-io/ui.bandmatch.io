@@ -18,7 +18,10 @@ export default {
   computed: {
     cleanMD () {
       if (this.markdown === '') { return '' }
-      const dirty = marked(this.markdown, { renderer: this.render })
+
+      const md = this.markdown.replace(/[\n]{1}/gi, '\n\n')
+
+      const dirty = marked(md, { renderer: this.render })
       return DOMPurify.sanitize(dirty)
     }
   },
