@@ -129,7 +129,7 @@
             <p />
           </div>
           <div class="col-span-4 md:col-span-3 bg-white">
-            <NumberSlider v-model="user.searchRadius" units="km" min="1" max="100" />
+            <NumberSlider v-model="user.searchRadius" units="km" :min="1" :max="100" />
           </div>
         </div>
 
@@ -239,7 +239,7 @@ export default {
         })
     },
     fetchAccountData () {
-      this.$axios.get('http://localhost:8080/users/download', { responseType: 'blob' })
+      this.$axios.get('/users/download', { responseType: 'blob' })
         .then((response) => {
           const url = window.URL.createObjectURL(new Blob([response.data]))
           const link = document.createElement('a')
