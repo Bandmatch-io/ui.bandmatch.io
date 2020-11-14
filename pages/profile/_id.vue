@@ -17,10 +17,10 @@
             </ButtonComplement>
           </div>
           <div class="w-full grid grid-cols-1 my-0">
-            <ConfirmationInput :check-string="user.displayName" class="my-0 col-span-1 inline-block mx-0 -mb-5" @confirm="()=>{}">
+            <ConfirmationInput :check-string="user.displayName" class="my-0 col-span-1 inline-block mx-0" @confirm="()=>{}">
               <trash-2-icon class="inline-block" /> Delete user
             </ConfirmationInput>
-            <ConfirmationInput :check-string="user.displayName" class="my-0 col-span-1 inline-block mx-0 -mb-5" @confirm="()=>{}">
+            <ConfirmationInput :check-string="user.displayName" class="my-0 col-span-1 inline-block mx-0" @confirm="()=>{}">
               <x-square-icon class="inline-block" /> Demote from admin
             </confirmationinput>
           </div>
