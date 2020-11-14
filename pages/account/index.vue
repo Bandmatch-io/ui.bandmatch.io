@@ -38,6 +38,15 @@ export default {
       },
       state: 0
     }
+  },
+  head () {
+    return {
+      title: 'Sign up | Bandmatch',
+      meta: [
+        { hid: 'og-title', property: 'og:title', content: 'Sign up | Bandmatch' }
+        // other meta
+      ]
+    }
   }
 }
 </script>

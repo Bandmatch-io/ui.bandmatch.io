@@ -172,6 +172,15 @@ export default {
         return -1
       }
     }
+  },
+  head () {
+    return {
+      title: 'Conversations | Bandmatch',
+      meta: [
+        { hid: 'og-title', property: 'og:title', content: 'Conversations | Bandmatch' }
+        // other meta
+      ]
+    }
   }
 }
 </script>

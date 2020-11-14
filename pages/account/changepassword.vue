@@ -128,6 +128,15 @@ export default {
         password: { incorrect: false, invalid: false, mismatch: false }
       }
     }
+  },
+  head () {
+    return {
+      title: 'Update password | Bandmatch',
+      meta: [
+        { hid: 'og-title', property: 'og:title', content: 'Update password | Bandmatch' }
+        // other meta
+      ]
+    }
   }
 }
 </script>

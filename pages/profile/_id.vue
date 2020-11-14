@@ -196,9 +196,9 @@ export default {
   },
   head () {
     return {
-      title: 'User Profile | Bandmatch',
+      title: `${this.user.displayName} | Bandmatch`,
       meta: [
-        { hid: 'og-title', property: 'og:title', content: 'User Profile | Bandmatch' }
+        { hid: 'og-title', property: 'og:title', content: `${this.user.displayName} | Bandmatch` }
         // other meta
       ]
     }

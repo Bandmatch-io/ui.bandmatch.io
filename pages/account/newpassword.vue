@@ -94,6 +94,15 @@ export default {
         password: { invalid: false, mismatch: false }
       }
     }
+  },
+  head () {
+    return {
+      title: 'Reset password | Bandmatch',
+      meta: [
+        { hid: 'og-title', property: 'og:title', content: 'Reset password | Bandmatch' }
+        // other meta
+      ]
+    }
   }
 }
 </script>
