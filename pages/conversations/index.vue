@@ -1,12 +1,12 @@
 <template>
-  <div class="flex-container bg-polka">
+  <div ref="container" class="flex-container bg-polka">
     <div v-if="state===states.loading">
       <div class="block mx-auto w-1/2 md:w-1/4 h-24 md:h-48" style="transform: translateY(25vh);">
         <LoaderAnim />
       </div>
     </div>
     <div v-else class="fixed grid grid-cols-4" style="top: 5rem; left: 0; right: 0; bottom: 0;">
-      <div class="col-span-4 md:col-span-1 border-r overflow-y-auto">
+      <div v-if="showConvoList" class="col-span-4 md:col-span-1 border-r overflow-y-auto">
         <div v-if="newChat" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === undefined, 'bg-white': activeChat._id !== undefined }" class="clickable hover:bg-gray-100 border-b w-full block mx-auto shadow p-4 clearfix" @click="openChat(newChat)">
           <p class="float-left">
             <span v-if="newChat.otherUser">{{ newChat.otherUser.displayName }}</span>
@@ -24,8 +24,8 @@
           </div>
         </div>
       </div>
-      <div v-if="activeChat" class="col-span-4 md:col-span-3 grid grid-rows-4 overflow-y-auto">
-        <Conversation v-if="activeChat" ref="convoInstance" class="z-0 row-start-1 row-end-4 row-span-3" :convo-id="activeChat._id" />
+      <div v-if="activeChat && showChat" class="col-span-4 md:col-span-3 grid grid-rows-4 overflow-y-auto">
+        <Conversation ref="convoInstance" class="z-0 row-start-1 row-end-4 row-span-3" :class="{ 'pt-16': mobileScreen }" :convo-id="activeChat._id" />
         <MarkdownMiniInput
           v-model="messageContent"
           class="row-end-5 place-self-end rounded-b-0 z-10"
@@ -35,12 +35,18 @@
           @send="() => { sendMessage(activeChat, messageContent) }"
         />
       </div>
+      <div v-if="mobileScreen && activeChat && showChat" class="fixed left-0 right-0 top-5 rounded-b shadow bg-white py-1 grid grid-cols-4">
+        <chevron-left-icon size="3x" class="border rounded bg-white hover:bg-gray-100 hover:shadow-outline ml-1 float-left inline-block col-span-1" @click="chatOpen = false" />
+        <p class="text-center col-span-2">
+          {{ activeChat.otherUser.displayName }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { EyeIcon, EyeOffIcon, PlusSquareIcon } from 'vue-feather-icons'
+import { EyeIcon, EyeOffIcon, PlusSquareIcon, ChevronLeftIcon } from 'vue-feather-icons'
 import LoaderAnim from '~/components/Core/LoaderAnim'
 import MarkdownMiniInput from '~/components/Widgets/MarkdownMiniInput'
 import Conversation from '~/components/Elements/Conversation'
@@ -52,7 +58,8 @@ export default {
     EyeOffIcon,
     PlusSquareIcon,
     MarkdownMiniInput,
-    Conversation
+    Conversation,
+    ChevronLeftIcon
   },
   data () {
     return {
@@ -64,13 +71,33 @@ export default {
       conversations: [],
       messageContent: '',
       newChat: undefined, // Used when you start a new chat with someone
-      activeChat: undefined // The currently open chat
+      activeChat: undefined, // The currently open chat,
+      chatOpen: false,
+      width: 0
+    }
+  },
+  computed: {
+    mobileScreen () {
+      return this.width < 767
+    },
+    showConvoList () {
+      return !this.mobileScreen || (this.mobileScreen && !this.chatOpen)
+    },
+    showChat () {
+      return !this.mobileScreen || (this.mobileScreen && this.chatOpen)
     }
   },
   mounted () {
     this.getAllChats(this.getNewChat)
+
+    // watch for resize
+    window.addEventListener('resize', this.onResize)
+    this.onResize()
   },
   methods: {
+    onResize () {
+      this.width = window.innerWidth
+    },
     openChat (convo) {
       this.activeChat = convo
 
@@ -79,6 +106,8 @@ export default {
         this.$axios.patch(`/conversations/read/${msgID}`)
         this.$store.commit('unread/removeUnread')
       }
+
+      this.chatOpen = true
     },
     getNewChat () {
       this.newChat = this.$store.state.convo.newChat
