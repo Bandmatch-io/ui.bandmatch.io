@@ -64,7 +64,8 @@ export default {
     removeLogin () {
       this.$auth.logout({ makeRequest: false })
         .then(() => {
-          window.location.href = '/'
+          this.$router.push('/')
+          this.$store.commit('toasts/create', { title: 'User', message: 'Logged out' })
         })
     }
   }

@@ -67,7 +67,6 @@ export default {
     this.$axios.get('/conversations/unread')
       .then((res) => {
         if (res.data.success) {
-          // this.unreadCount = res.data.count
           this.$store.commit('unread/setUnread', res.data.count)
         }
       })
