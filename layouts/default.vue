@@ -13,6 +13,21 @@ import Navbar from '~/components/Navbar'
 export default {
   components: {
     Navbar
+  },
+  computed: {
+    bodyClass () {
+      if (this.$store.state.reports.active) {
+        return 'overflow-y-hidden h-screen'
+      }
+      return ''
+    }
+  },
+  head () {
+    return {
+      bodyAttrs: {
+        class: this.bodyClass
+      }
+    }
   }
 }
 </script>
