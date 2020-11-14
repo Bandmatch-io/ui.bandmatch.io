@@ -113,6 +113,7 @@ export default {
           this.state = this.states.default
           if (res.data.success) {
             this.$router.push('/profile/edit')
+            this.$store.commit('toasts/create', { title: 'User', message: 'Password updated' })
           }
         })
         .catch((e) => {

@@ -78,6 +78,7 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.$router.push('/account')
+            this.$store.commit('toasts/create', { title: 'User', message: 'Password reset' })
           } else {
             this.errors = res.data.error
           }

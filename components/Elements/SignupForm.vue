@@ -142,7 +142,8 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.$auth.setUserToken(res.data.token.token)
-            window.location.href = '/profile/setup'
+            this.$store.commit('toasts/create', { title: 'User', message: 'Account created' })
+            this.$router.push('/profile/setup')
           }
         })
         .catch((e) => {
