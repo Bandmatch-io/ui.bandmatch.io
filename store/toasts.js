@@ -4,11 +4,12 @@ export const state = () => ({
 })
 
 export const mutations = {
-  create (state, { title, message, timealive = 5 }) {
+  create (state, { title, message, type = 'info', timealive = 5 }) {
     const t = {
       _id: state.sequence,
       title,
       message,
+      type,
       timealive
     }
     state.list.push(t)

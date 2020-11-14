@@ -2,7 +2,7 @@
   <div class="fixed inset-0 overflow-hidden z-40 pt-20 pointer-events-none">
     <transition-group name="fade">
       <div v-for="toast in toasts" :key="toast._id" class="pointer-events-auto mx-auto md:ml-5 md:mr-auto mt-5 block w-25 max-w-250 bg-white h-24 border rounded shadow-xl">
-        <div class="text-white h-12 p-3 bg-secondary-grad rounded-t">
+        <div class="text-white h-12 p-3 rounded-t" :class="{ 'bg-secondary-grad': toast.type == 'info', 'bg-complementary-grad': toast.type == 'error' }">
           <p class="float-left">
             <bell-icon class="inline-block mr-2" />{{ toast.title }}
           </p>

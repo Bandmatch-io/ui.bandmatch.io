@@ -103,7 +103,7 @@ export default {
         })
         .catch((e) => {
           this.state = this.states.default
-          this.$store.commit('toasts/create', { title: 'Report', message: 'Failed to submit report.' })
+          this.$store.commit('toasts/create', { title: 'Report', message: 'Failed to submit report.', type: 'error' })
         })
 
       this.$store.commit('reports/closeReport')
