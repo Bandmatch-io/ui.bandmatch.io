@@ -23,16 +23,14 @@
         </div>
       </div>
       <ProgressBar class="border-l border-r" :percent="textFull" />
-      <!-- <div v-if="showHTML" v-html="htmlOutput" class="prose max-w-none rounded-b bg-white border relative mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0"/> -->
       <MarkdownView v-if="showHTML" class="rounded-b border shadow-inner bg-white" :markdown="markdownInput" />
       <textarea
         v-else
         ref="ta"
         v-model="markdownInput"
-        class=" border relative rounded-b mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0"
+        class="border relative rounded-b mx-auto mt-0 mb-0 block p-4 m-4 relative inset-0"
         :rows="rows"
         :maxlength="maxlength"
-        @change="onChange"
       />
     </div>
     <small v-if="maxlength" class="mt-0">{{ markdownInput.length }} / {{ maxlength }}</small>
@@ -73,15 +71,20 @@ export default {
     }
   },
   watch: {
-    value () {
-      this.markdownInput = this.value
+    value: {
+      immediate: true,
+      handler (val, oldVal) {
+        this.markdownInput = val
+      }
+    },
+    markdownInput: {
+      immediate: true,
+      handler (val, oldVal) {
+        this.$emit('input', val)
+      }
     }
   },
   methods: {
-    onChange () {
-      console.log(this.markdownInput)
-      this.$emit('input', this.markdownInput)
-    },
     addHeading () {
       if (this.showHTML) { return }
 
