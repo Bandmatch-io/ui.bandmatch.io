@@ -23,6 +23,7 @@ export default {
     value () { // set ignore update to true, to ensure input event is only emitted once
       this.ignoreUpdate = true
       this.map.setCenter(this.value)
+      console.log('setting center', this.value)
     }
   },
   mounted () {

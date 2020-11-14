@@ -276,3 +276,15 @@ input:checked + .slider:before {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+.fadein-enter-active {
+  transition: opacity .25s;
+}
+
+.fadein-leave-active {
+  transition: opacity 0s;
+}
+
+.fadein-enter, .fadein-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
