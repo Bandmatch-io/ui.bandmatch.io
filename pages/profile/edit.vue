@@ -260,7 +260,7 @@ export default {
           }
         })
         .catch((e) => {
-
+          this.$store.commit('toasts/create', { title: 'User', message: 'Failed to delete account', type: 'error' })
         })
     }
   },
