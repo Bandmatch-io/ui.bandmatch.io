@@ -8,7 +8,7 @@
     </div>
     <form @submit="postSignupForm">
       <div class="max-w-350 block mx-auto">
-        <TextInput v-model="userInformation.email" type="email" placeholder="you@youremail.com" label="Email">
+        <TextInput v-model="userInformation.email" type="email" placeholder="you@youremail.com" label="Email" autofill="email">
           <mail-icon class="block mx-auto" />
         </TextInput>
         <TextError v-if="errors.email && errors.email.inUse">
@@ -20,11 +20,10 @@
         <p class="mb-5">
           <small>We will never share your email with anyone</small>
         </p>
-        </texterror>
       </div>
 
       <div class="max-w-350 block mx-auto">
-        <TextInput v-model="userInformation.name" type="text" placeholder="Your name" label="Display Name">
+        <TextInput v-model="userInformation.name" type="text" placeholder="Your name" label="Display Name" autofill="username">
           <at-sign-icon class="block mx-auto" />
         </TextInput>
         <TextError v-if="errors.name && errors.name.invalid">
@@ -39,7 +38,7 @@
       </div>
 
       <div class="max-w-350 block mx-auto">
-        <TextInput v-model="userInformation.password" type="password" placeholder="Your password" label="Password">
+        <TextInput v-model="userInformation.password" type="password" placeholder="Your password" label="Password" autofill="new-password">
           <key-icon class="block mx-auto" />
         </TextInput>
         <TextError v-if="errors.password && errors.password.invalid">
@@ -51,7 +50,7 @@
       </div>
 
       <div class="max-w-350 block mx-auto">
-        <TextInput v-model="userInformation.confirmPassword" type="password" placeholder="Confirm password" label="Confirm password">
+        <TextInput v-model="userInformation.confirmPassword" type="password" placeholder="Confirm password" label="Confirm password" autofill="new-password">
           <key-icon class="block mx-auto" />
         </TextInput>
         <TextError v-if="errors.password && errors.password.mismatch">
@@ -59,7 +58,7 @@
         </TextError>
       </div>
 
-      <div class="max-w-350 block mx-auto">
+      <div class="max-w-350 block mx-auto mb-2">
         <Checkbox v-model="userInformation.agreement">
           By clicking here you agree to the Terms of Use and the Privacy Policy
         </Checkbox>

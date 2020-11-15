@@ -10,7 +10,7 @@
 
         <form @submit="postPasswordDetails">
           <div class="max-w-350 block mx-auto">
-            <TextInput v-model="passwordDetails.password" type="password" placeholder="Your password" label="Password">
+            <TextInput v-model="passwordDetails.password" type="password" placeholder="Your password" label="Password" autofill="new-password">
               <key-icon class="block mx-auto" />
             </TextInput>
             <TextError v-if="errors.password && errors.password.invalid">
@@ -19,7 +19,7 @@
           </div>
 
           <div class="max-w-350 block mx-auto">
-            <TextInput v-model="passwordDetails.confirmPassword" type="password" placeholder="Your password" label="Confirm Password">
+            <TextInput v-model="passwordDetails.confirmPassword" type="password" placeholder="Your password" label="Confirm Password" autofill="new-password">
               <key-icon class="block mx-auto" />
             </TextInput>
             <TextError v-if="errors.password && errors.password.mismatch">

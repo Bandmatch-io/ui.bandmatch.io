@@ -9,7 +9,7 @@
 
     <form @submit="postLoginForm">
       <div class="max-w-350 block mx-auto">
-        <TextInput v-model="loginDetails.email" type="email" placeholder="you@youremail.com" label="Email">
+        <TextInput v-model="loginDetails.email" type="email" placeholder="you@youremail.com" label="Email" autofill="email">
           <mail-icon class="block mx-auto" />
         </TextInput>
         <TextError v-if="errors.email && errors.email.invalid">
@@ -21,7 +21,7 @@
       </div>
 
       <div class="max-w-350 block mx-auto">
-        <TextInput v-model="loginDetails.password" type="password" placeholder="Your password" label="Password">
+        <TextInput v-model="loginDetails.password" type="password" placeholder="Your password" label="Password" autofill="current-password">
           <key-icon class="block mx-auto" />
         </TextInput>
         <TextError v-if="errors.password && errors.password.incorrect">

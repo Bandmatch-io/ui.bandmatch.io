@@ -34,7 +34,7 @@
 
         <form @submit="postPasswordDetails">
           <div class="max-w-350 block mx-auto">
-            <TextInput v-model="passwordDetails.oldPassword" type="password" placeholder="Your password" label="Current Password">
+            <TextInput v-model="passwordDetails.oldPassword" type="password" placeholder="Your password" label="Current Password" autofill="current-password">
               <key-icon class="block mx-auto" />
             </TextInput>
             <TextError v-if="errors.password && errors.password.incorrect">
@@ -42,7 +42,7 @@
             </TextError>
           </div>
           <div class="max-w-350 block mx-auto">
-            <TextInput v-model="passwordDetails.newPassword" type="password" placeholder="Your password" label="New Password">
+            <TextInput v-model="passwordDetails.newPassword" type="password" placeholder="Your password" label="New Password" autofill="new-password">
               <key-icon class="block mx-auto" />
             </TextInput>
             <TextError v-if="errors.password && errors.password.invalid">
@@ -51,7 +51,7 @@
           </div>
 
           <div class="max-w-350 block mx-auto">
-            <TextInput v-model="passwordDetails.confirmPassword" type="password" placeholder="Your password" label="Confirm Password">
+            <TextInput v-model="passwordDetails.confirmPassword" type="password" placeholder="Your password" label="Confirm Password" autofill="new-password">
               <key-icon class="block mx-auto" />
             </TextInput>
             <TextError v-if="errors.password && errors.password.mismatch">

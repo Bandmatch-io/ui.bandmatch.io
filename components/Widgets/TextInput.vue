@@ -12,6 +12,7 @@
         :value="value"
         :type="type"
         :placeholder="placeholder"
+        :autocomplete="autofill"
         class="col-span-10 appearance-none border rounded-r py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
         @change="onChange"
       >
@@ -22,10 +23,11 @@
 <script>
 export default {
   props: {
-    type: String,
-    placeholder: String,
-    label: String,
-    value: String
+    type: { type: String, default () { return '' } },
+    placeholder: { type: String, default () { return '' } },
+    label: { type: String, default () { return '' } },
+    value: { type: String, default () { return '' } },
+    autofill: { type: String, default () { return '' } }
   },
   methods: {
     onChange () {
@@ -36,11 +38,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/scss/colours.scss';
-
-.bg-primary-grad {
-  background: $color-primary-300;
-  background: $primary-gradient;
-  color: white !important;
-}
+@import '~/assets/scss/styles.scss';
 </style>

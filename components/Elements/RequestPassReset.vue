@@ -9,7 +9,7 @@
 
     <form @submit="postRequest">
       <div class="max-w-350 block mx-auto">
-        <TextInput v-model="resetDetails.email" type="email" placeholder="you@youremail.com" label="Email">
+        <TextInput v-model="resetDetails.email" type="email" placeholder="you@youremail.com" label="Email" autofill="email">
           <mail-icon class="block mx-auto" />
         </TextInput>
         <TextError v-if="errors.email && errors.email.invalid">
