@@ -27,16 +27,18 @@
         </div>
 
         <div class="p-5 border-b-2 shadow-sm">
-          <div class="w-full grid grid-cols-4">
-            <ButtonPrimary v-if="user._id === me._id" :action="() => { this.$router.push('/profile/edit') }" group-pos="first" class="col-span-3 inline-block mx-0">
-              Edit profile
-            </ButtonPrimary>
-            <ButtonPrimary v-else :action="startChat" group-pos="first" class="col-span-3 inline-block mx-0">
+          <div v-if="user._id !== me._id" class="w-full grid grid-cols-4">
+            <ButtonPrimary :action="startChat" group-pos="first" class="col-span-3 inline-block mx-0">
               <message-square-icon class="inline-block" /> Chat
             </ButtonPrimary>
             <ButtonComplement :action="reportUser" group-pos="last" class="col-span-1 inline-block mx-0">
               <alert-octagon-icon class="inline-block" /> <span class="hidden md:inline">Report</span>
             </ButtonComplement>
+          </div>
+          <div v-else class="w-full grid grid-cols-1">
+            <ButtonPrimary :action="() => { this.$router.push('/profile/edit') }" class="col-span-1 inline-block mx-0">
+              Edit profile
+            </ButtonPrimary>
           </div>
         </div>
 

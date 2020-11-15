@@ -1,11 +1,16 @@
 <template>
   <div class="flex-container bg-polka">
     <div class="my-5 w-3/4 max-w-2xl mx-auto">
-      <div class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block">
+      <div class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block mb-2">
         <div class="w-full text-center">
           <h1 class="w-full text-3xl md:text-6xl text-center">
             Update password
           </h1>
+          <p>
+            <a class="clickable text-primary-300 underline" @click="goBack">
+              <link-icon size="1x" class="inline-block mr-1" />Cancel
+            </a>
+          </p>
         </div>
 
         <div class="max-w-350 mx-auto border rounded shadow bg-white">
@@ -67,7 +72,7 @@
 </template>
 
 <script>
-import { KeyIcon, MailIcon, UserIcon } from 'vue-feather-icons'
+import { KeyIcon, MailIcon, UserIcon, LinkIcon } from 'vue-feather-icons'
 import ButtonPrimary from '~/components/Core/ButtonPrimary'
 
 export default {
@@ -76,6 +81,7 @@ export default {
     KeyIcon,
     MailIcon,
     UserIcon,
+    LinkIcon,
     ButtonPrimary
   },
   data () {
@@ -123,6 +129,9 @@ export default {
             this.errors = data.error
           }
         })
+    },
+    goBack () {
+      this.$router.push('/profile/edit')
     },
     resetErrors () {
       this.errors = {
