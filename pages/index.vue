@@ -1,7 +1,7 @@
 <template>
   <div class="bg-polka">
     <div v-if="state===states.loading">
-      <div class="block mx-auto w-1/2 md:w-1/4 h-48" style="transform: translateY(25vh);">
+      <div class="block mx-auto w-1/2 md:w-1/4 h-24 md:h-48" style="transform: translateY(25vh);">
         <LoaderAnim />
       </div>
     </div>

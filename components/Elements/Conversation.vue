@@ -96,7 +96,9 @@ export default {
     },
     scrollToBottom () {
       this.$nextTick(() => {
-        this.$refs.container.scrollTop = this.$refs.container.scrollHeight
+        if (this.$refs.container) {
+          this.$refs.container.scrollTop = this.$refs.container.scrollHeight
+        }
       })
     }
   }
