@@ -150,7 +150,7 @@
           <ButtonPrimary :action="fetchAccountData" class="inline-block w-full mx-0">
             <download-icon class="inline-block" /> Download my data
           </ButtonPrimary>
-          <ConfirmationInput :confirm="() => {}" :check-string="user.displayName" class="inline-block w-full mx-0">
+          <ConfirmationInput :check-string="user.displayName" class="inline-block w-full mx-0" @confirm="deleteAccount">
             <trash-2-icon class="inline-block" /> Delete my account
           </ConfirmationInput>
         </div>
@@ -232,7 +232,6 @@ export default {
       this.$axios.$patch('/users/profile', newUser)
         .then((data) => {
           if (data.success) {
-            // this.$store.commit('user/setUser', JSON.stringify(data.user))
             this.$auth.setUser(data.user)
             this.isSaved = true
           }
@@ -247,6 +246,21 @@ export default {
           link.setAttribute('download', `${this.$auth.user.displayName}-account-data.json`) // or any other extension
           document.body.appendChild(link)
           link.click()
+        })
+    },
+    deleteAccount () {
+      this.$axios.delete('/users')
+        .then((res) => {
+          if (res.data.success) {
+            this.$auth.logout({ makeRequest: false })
+              .then(() => {
+                this.$router.push('/')
+                this.$store.commit('toasts/create', { title: 'User', message: 'Account deleted' })
+              })
+          }
+        })
+        .catch((e) => {
+
         })
     }
   },

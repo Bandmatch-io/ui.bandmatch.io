@@ -23,7 +23,7 @@ export default {
     ButtonComplement
   },
   props: {
-    checkString: String
+    checkString: { type: String, default () { return '' } }
   },
   data () {
     return {

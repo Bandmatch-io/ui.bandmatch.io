@@ -4,7 +4,7 @@
       <h1 class="w-full text-6xl text-center">
         Log in
       </h1>
-      <p>Or <a class="clickable text-primary-300 underline" @click="switchView"><link-icon size="1x" class="inline-block" /> Sign in</a> instead</p>
+      <p>Or <a class="clickable text-primary-300 underline" @click="switchView"><link-icon size="1x" class="inline-block" /> Sign up</a> instead</p>
     </div>
 
     <form @submit="postLoginForm">
