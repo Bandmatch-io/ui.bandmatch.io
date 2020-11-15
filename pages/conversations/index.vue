@@ -146,12 +146,15 @@ export default {
               convo.otherUser = this.otherUser(convo.participants)
             })
             this.conversations.sort(this.convoSortFn)
-            this.openChat(this.conversations[0])
+            if (this.conversations.length > 0) {
+              this.openChat(this.conversations[0])
+            }
             done()
           }
           this.state = this.states.default
         })
         .catch((e) => {
+          console.log(e)
           this.state = this.states.default
         })
     },
