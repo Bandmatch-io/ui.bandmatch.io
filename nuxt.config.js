@@ -81,7 +81,8 @@ export default {
       logout: '/',
       home: '/'
     },
-    watchLoggedin: false
+    watchLoggedin: false,
+    scopeKey: ''
   },
 
   purgeCSS: {

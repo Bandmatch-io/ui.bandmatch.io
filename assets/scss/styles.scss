@@ -292,3 +292,11 @@ input:checked + .slider:before {
 .fadein-enter, .fadein-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+.h-nav {
+  height: 5rem;
+}
+
+.t-nav {
+  top: 5rem;
+}

@@ -22,6 +22,7 @@
 import { TrendingUpIcon, AlertOctagonIcon, UserIcon, MapIcon, NavigationIcon } from 'vue-feather-icons'
 import DashboardCard from '~/components/Widgets/Admin/DashboardCard'
 export default {
+  middleware: 'isadmin',
   components: {
     DashboardCard,
     TrendingUpIcon,

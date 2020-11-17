@@ -3,7 +3,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+  middleware: 'isadmin'
+}
 </script>
 
 <style lang="scss" scoped>
