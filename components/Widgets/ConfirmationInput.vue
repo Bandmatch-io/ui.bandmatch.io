@@ -6,7 +6,7 @@
     <div v-else class="w-full">
       <p>Type <span class="font-bold">{{ checkString }}</span> to confirm.</p>
       <div class="grid grid-cols-4">
-        <input v-model="enteredText" type="text" class="inline-block col-span-3 mx-0 rounded-l border border-r-0 p-2 focus:shadow-outline">
+        <input v-model="enteredText" type="text" class="inline-block col-span-3 mx-0 rounded-l border border-r-0 p-2 ring-primary-200 ring-0 focus:ring ring-opacity-50">
         <ButtonComplement :disabled="enteredText !== checkString" :action="confirm" group-pos="last" class="my-0 inline-block col-span-1 mx-0">
           <check-icon class="inline-block mx-auto md:mr-1 md:ml-1" /> <span class="hidden md:inline-block">Confirm</span>
         </ButtonComplement>

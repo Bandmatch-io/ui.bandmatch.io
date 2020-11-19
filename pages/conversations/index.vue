@@ -7,7 +7,7 @@
     </div>
     <div v-else class="fixed grid grid-cols-4" style="top: 5rem; left: 0; right: 0; bottom: 0;">
       <div v-if="showConvoList" class="col-span-4 md:col-span-1 border-r overflow-y-auto">
-        <div v-if="newChat" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === undefined, 'bg-white': activeChat._id !== undefined }" class="clickable hover:bg-gray-100 border-b w-full block mx-auto shadow p-4 clearfix" @click="openChat(newChat)">
+        <div v-if="newChat" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === undefined, 'bg-white': activeChat._id !== undefined }" class="clickable hover:bg-gray-100 border-b w-full block mx-auto shadow p-4 flow-root" @click="openChat(newChat)">
           <p class="float-left">
             <span v-if="newChat.otherUser">{{ newChat.otherUser.displayName }}</span>
           </p>
@@ -15,7 +15,7 @@
             <small class="text-complementary-300 mx-1">Unsent draft</small><plus-square-icon class="inline-block" />
           </div>
         </div>
-        <div v-for="convo in conversations" :key="convo._id" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === convo._id, 'bg-white': activeChat._id !== convo._id }" class="clickable border-b hover:bg-gray-100 w-full block mx-auto shadow p-4 clearfix" @click="openChat(convo)">
+        <div v-for="convo in conversations" :key="convo._id" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === convo._id, 'bg-white': activeChat._id !== convo._id }" class="clickable border-b hover:bg-gray-100 w-full block mx-auto shadow p-4 flow-root" @click="openChat(convo)">
           <p class="float-left">
             {{ convo.otherUser.displayName }}
           </p>
@@ -36,7 +36,7 @@
         />
       </div>
       <div v-if="mobileScreen && activeChat && showChat" class="fixed left-0 right-0 top-5 rounded-b shadow bg-white py-1 grid grid-cols-4">
-        <chevron-left-icon size="3x" class="border rounded bg-white hover:bg-gray-100 hover:shadow-outline ml-1 float-left inline-block col-span-1" @click="chatOpen = false" />
+        <chevron-left-icon size="3x" class="border rounded bg-white hover:bg-gray-100 ring-primary-200 ring-0 hover:ring ring-opacity-50 ml-1 float-left inline-block col-span-1" @click="chatOpen = false" />
         <p class="text-center col-span-2">
           {{ activeChat.otherUser.displayName }}
         </p>

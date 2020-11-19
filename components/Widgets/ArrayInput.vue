@@ -7,8 +7,8 @@
       </p>
     </div>
     <div class="grid grid-cols-12">
-      <input v-model="input" placeholder="Enter each one seperately." class="col-span-10 focus:outline-none focus:shadow-outline rounded-l py-3 px-2 ml-2 my-2 border" type="text" @keyup.enter="add">
-      <div class="col-span-2 clickable rounded-r border mr-2 my-2 bg-primary-300 hover:bg-primary-400 outline-none hover:shadow-outline">
+      <input v-model="input" placeholder="Enter each one seperately." class="col-span-10 focus:outline-none ring-primary-200 ring-0 focus:ring ring-opacity-50 rounded-l py-3 px-2 ml-2 my-2 border" type="text" @keyup.enter="add">
+      <div class="col-span-2 clickable rounded-r border mr-2 my-2 bg-primary-300 hover:bg-primary-400 outline-none ring-primary-200 ring-0 hover:ring ring-opacity-50">
         <div class="font-bold text-2xl text-white h-full w-full py-3" @click="add">
           <plus-icon class="block mx-auto" />
         </div>

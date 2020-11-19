@@ -1,8 +1,8 @@
 <template>
   <div ref="container" class="overflow-y-auto">
     <div v-if="state===states.default">
-      <div v-for="msg in messages" :key="msg._id" class="w-full clearfix">
-        <div class="border rounded shadow m-3 w-3/4 max-w-350 bg-white clearfix" :class="{ 'float-right': amSender(msg.sender), 'float-left': !amSender(msg.sender) }">
+      <div v-for="msg in messages" :key="msg._id" class="w-full flow-root">
+        <div class="border rounded shadow m-3 w-3/4 max-w-350 bg-white flow-root" :class="{ 'float-right': amSender(msg.sender), 'float-left': !amSender(msg.sender) }">
           <div v-if="amSender(msg.sender)">
             <p class="float-left text-black">
               <MarkdownView :markdown="msg.content" />

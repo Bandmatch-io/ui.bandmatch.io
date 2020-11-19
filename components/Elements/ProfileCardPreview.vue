@@ -4,7 +4,7 @@
       <h3 class="mb-0">
         <award-icon v-if="user.admin" class="inline-block" />{{ user.displayName }}
       </h3>
-      <p class="mt-0 text-black clearfix">
+      <p class="mt-0 text-black flow-root">
         <small>
           They want to
           <span v-if="user.searchType === 'Join'">join a band</span>
@@ -24,7 +24,7 @@
       </ButtonPrimarySmall>
     </div>
     <div class="p-2">
-      <div class="mb-0 clearfix">
+      <div class="mb-0 flow-root">
         <Badge v-for="genre in user.genres" :key="genre" :val="genre" />
         <ButtonPrimarySmall :action="() => { sendEdit('genre') }" class="float-right">
           <edit-icon size="1.5x" class="inline-block" />

@@ -11,7 +11,7 @@
         ref="inputField"
         :value="value"
         type="date"
-        class="col-span-10 appearance-none border rounded-r py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+        class="col-span-10 appearance-none border rounded-r py-2 px-3 text-black leading-tight ring-primary-200 ring-0 focus:ring ring-opacity-50"
         @change="onChange"
       >
     </div>

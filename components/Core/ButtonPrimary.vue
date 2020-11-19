@@ -28,7 +28,7 @@ export default {
       if (this.disabled) {
         return 'opacity-50'
       } else {
-        return 'clickable hover:bg-primary-400 hover:shadow-outline'
+        return 'clickable hover:bg-primary-400 ring-primary-200 ring-0 hover:ring ring-opacity-50'
       }
     },
     totalClass () {

@@ -6,7 +6,7 @@
       </div>
       <div class="my-3 w-full md:w-3/4 md:max-w-2xl mx-auto">
         <transition name="fadein">
-          <div v-if="state === states.type" class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block clearfix">
+          <div v-if="state === states.type" class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block flow-root">
             <div class="prose mx-auto block my-2 w-full text-center">
               <h3>What are you here to do?</h3>
             </div>
@@ -28,7 +28,7 @@
           </div>
         </transition>
         <transition name="fadein">
-          <div v-if="state === states.genres" class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block clearfix">
+          <div v-if="state === states.genres" class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block flow-root">
             <div class="prose mx-auto block my-2 w-full text-center">
               <h3>What genres do you play?</h3>
             </div>
@@ -43,7 +43,7 @@
           </div>
         </transition>
         <transition name="fadein">
-          <div v-if="state === states.instruments" class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block clearfix">
+          <div v-if="state === states.instruments" class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block flow-root">
             <div class="prose mx-auto block  my-2 w-full text-center">
               <h3>What instruments do you play?</h3>
             </div>
@@ -58,7 +58,7 @@
           </div>
         </transition>
         <transition name="fadein">
-          <div v-if="state === states.location" class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block clearfix">
+          <div v-if="state === states.location" class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block flow-root">
             <div class="prose mx-auto block  my-2 w-full text-center">
               <h3>Location</h3>
               <p class="mb-0">
@@ -85,7 +85,7 @@
           </div>
         </transition>
         <transition name="fadein">
-          <div v-if="state === states.description" class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block clearfix">
+          <div v-if="state === states.description" class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block flow-root">
             <div class="prose mx-auto block  my-2 w-full text-center">
               <h3>Description</h3>
               <p>
@@ -105,7 +105,7 @@
           </div>
         </transition>
         <transition name="fadein">
-          <div v-if="state === states.preview" class="container min-w-250 mx-auto p-4 mt-8 block clearfix">
+          <div v-if="state === states.preview" class="container min-w-250 mx-auto p-4 mt-8 block flow-root">
             <div class="prose mx-auto block my-2 w-full text-center bg-gray-100 rounded shadow">
               <h3>Preview</h3>
               <p>
@@ -126,7 +126,7 @@
               </div>
             </div>
 
-            <div class="block clearfix p-4 rounded bg-gray-100 shadow">
+            <div class="block flow-root p-4 rounded bg-gray-100 shadow">
               <ButtonPrimary :action="()=>{ state-- }" class="w-1/2 md:w-1/3 mx-0 mb-1 float-left">
                 <arrow-left-icon class="inline-block" height="21px" width="21px" /> Back
               </ButtonPrimary>

@@ -2,6 +2,11 @@ const { colors } = require('tailwindcss/defaultTheme')
 
 // tailwind.config.js
 module.exports = {
+  variants: {
+    extend: {
+      ringWidth: ['hover', 'focus']
+    }
+  },
   theme: {
     colors: {
       primary: {
