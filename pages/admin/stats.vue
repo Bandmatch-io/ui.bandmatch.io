@@ -49,7 +49,7 @@
       <DateInput v-model="periodStats.endDate" label="End date" class="w-1/3 mx-auto inline-block min-w-250" @change="getPeriodStats">
         <calendar-icon class="block mx-auto" />
       </DateInput>
-      <LineChart :data="periodStats.stats" />
+      <LineChart :data="periodStats.stats" class="mb-4" />
     </div>
   </div>
 </template>
