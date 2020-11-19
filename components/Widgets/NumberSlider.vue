@@ -1,5 +1,5 @@
 <template>
-  <div class="inline-block relative w-full grid grid-cols-8 border shadow p-4">
+  <div class="inline-block relative w-full rounded grid grid-cols-8 border shadow p-4">
     <small class="col-span-2 text-md">{{ input }} {{ units }}</small>
     <input
       v-model="input"

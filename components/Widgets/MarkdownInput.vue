@@ -3,10 +3,10 @@
     <small class="block">Use markdown for flavour!</small>
     <div class="shadow rounded">
       <div class="rounded-t shadow-b bg-gray-100 border w-full block flex">
-        <div v-if="!showHTML" class="w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 ring-secondary-200 ring-0 hover:ring ring-opacity-50" @click="() => {showHTML=true}">
+        <div v-if="!showHTML" class="rounded-tl w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 ring-secondary-200 ring-0 hover:ring ring-opacity-50" @click="() => {showHTML=true}">
           <eye-icon class="inline-block mx-1 md:mx-2" />Preview
         </div>
-        <div v-else class="w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 ring-secondary-200 ring-0 hover:ring ring-opacity-50" @click="() => {showHTML=false}">
+        <div v-else class="rounded-tl w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 ring-secondary-200 ring-0 hover:ring ring-opacity-50" @click="() => {showHTML=false}">
           <edit-icon class="inline-block mx-1 md:mx-2" />Edit
         </div>
         <div class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center" @click="addHeading">
@@ -18,7 +18,7 @@
         <div class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center" @click="setBold">
           <bold-icon class="inline-block mx-1 md:mx-2" />
         </div>
-        <div class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center" @click="setItalic">
+        <div class="rounded-tr clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center" @click="setItalic">
           <italic-icon class="inline-block mx-1 md:mx-2" />
         </div>
       </div>

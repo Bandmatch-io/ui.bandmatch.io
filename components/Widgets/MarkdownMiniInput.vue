@@ -4,7 +4,7 @@
     <small v-if="maxlength" class="block mr-3 float-right">{{ markdownInput.length }} / {{ maxlength }}</small>
     <div class="shadow rounded">
       <div class="rounded-t shadow-b bg-gray-100 border w-full block flex">
-        <div v-if="!showHTML" class="clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 ring-secondary-200 ring-0 hover:ring ring-opacity-50" @click="() => {showHTML=true}">
+        <div v-if="!showHTML" class="rounded-tl clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 ring-secondary-200 ring-0 hover:ring ring-opacity-50" @click="() => {showHTML=true}">
           <eye-icon class="inline-block mx-1 md:mx-2" /><span class="hidden md:inline">Preview</span>
         </div>
         <div v-else class="w-110p clickable flex-grow text-white px-0 py-2 md:px-2 h-full inline-block text-center bg-secondary-300 hover:bg-secondary-400 ring-secondary-200 ring-0 hover:ring ring-opacity-50" @click="() => {showHTML=false}">
@@ -22,7 +22,7 @@
         <div class="clickable flex-grow text-gray-500 hover:bg-gray-500 hover:text-white px-0 py-2 md:px-2 h-full inline-block text-center" @click="setItalic">
           <italic-icon class="inline-block mx-1 md:mx-2" />
         </div>
-        <div v-if="useSend" class="clickable flex-grow text-white hover:bg-tertiary-500 px-0 py-2 md:px-2 h-full inline-block text-center bg-tertiary-400" @click="onSend">
+        <div v-if="useSend" class="rounded-tr clickable flex-grow text-white hover:bg-tertiary-500 px-0 py-2 md:px-2 h-full inline-block text-center bg-tertiary-400" @click="onSend">
           <span class="hidden md:inline">Send</span><send-icon class="inline-block mx-1 md:mx-2" />
         </div>
       </div>
