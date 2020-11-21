@@ -20,7 +20,7 @@
         </TextError>
       </div>
 
-      <div class="max-w-350 block mx-auto">
+      <div class="max-w-350 block mx-auto mb-2">
         <TextInput v-model="loginDetails.password" type="password" placeholder="Your password" label="Password" autofill="current-password">
           <key-icon class="block mx-auto" />
         </TextInput>
@@ -37,7 +37,7 @@
         </p>
       </div>
 
-      <ButtonPrimary v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full">
+      <ButtonPrimary v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full my-3">
         Log in
       </ButtonPrimary>
       <div v-else class="block w-1/2 h-12 md:h-24 mx-auto">

@@ -49,7 +49,7 @@
         </p>
       </div>
 
-      <div class="max-w-350 block mx-auto">
+      <div class="max-w-350 block mx-auto mb-2">
         <TextInput v-model="userInformation.confirmPassword" type="password" placeholder="Confirm password" label="Confirm password" autofill="new-password">
           <key-icon class="block mx-auto" />
         </TextInput>
@@ -73,7 +73,7 @@
         </Checkbox>
       </div>
 
-      <ButtonPrimary v-if="state===states.default" :action="() => {}" class="max-w-350 mx-auto w-full">
+      <ButtonPrimary v-if="state===states.default" :action="() => {}" class="max-w-350 mx-auto w-full my-3">
         Sign up
       </ButtonPrimary>
       <div v-else class="block w-1/2 h-12 md:h-24 mx-auto">

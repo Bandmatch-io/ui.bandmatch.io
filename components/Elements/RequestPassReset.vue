@@ -1,14 +1,14 @@
 <template>
   <div class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block">
     <div class="w-full text-center">
-      <h1 class="w-full text-6xl text-center">
+      <h1 class="w-full text-4xl md:text-6xl text-center">
         Request new password
       </h1>
       <p>Or <a class="clickable text-primary-300 underline" @click="switchView"><link-icon size="1x" class="inline-block" /> Sign up / Log in</a> instead</p>
     </div>
 
     <form @submit="postRequest">
-      <div class="max-w-350 block mx-auto">
+      <div class="max-w-350 block mx-auto mb-2">
         <TextInput v-model="resetDetails.email" type="email" placeholder="you@youremail.com" label="Email" autofill="email">
           <mail-icon class="block mx-auto" />
         </TextInput>
@@ -20,10 +20,10 @@
         </TextError>
       </div>
 
-      <ButtonPrimary v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full">
+      <ButtonPrimary v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full my-3">
         Request new password
       </ButtonPrimary>
-      <div v-else-if="state===states.success" class="max-w-350 block mx-auto w-full">
+      <div v-else-if="state===states.success" class="max-w-350 block mx-auto w-full my-3">
         <p class="w-full text-center">
           Check your emails for a password reset form.
         </p>
