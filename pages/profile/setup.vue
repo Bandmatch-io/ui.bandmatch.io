@@ -22,7 +22,7 @@
             <div class="border border-t-0 rounded-b px-3 py-5 bg-white cursor-pointer hover:bg-gray-200" :class="{ 'bg-primary-grad text-white': user.searchType==='Recruit' }" @click="user.searchType='Recruit'">
               Recruit a new member
             </div>
-            <ButtonPrimary v-if="user.searchType !== ''" :action="()=>{ state++ }" class="w-1/2 md:w-1/3 mx-0 mb-1 float-right">
+            <ButtonPrimary v-if="user.searchType !== ''" :action="()=>{ state++ }" class=" my-1 w-1/2 md:w-1/3 mx-0 float-right">
               Next <arrow-right-icon class="inline-block" height="21px" width="21px" />
             </ButtonPrimary>
           </div>
@@ -34,10 +34,10 @@
             </div>
             <ArrayInput v-model="user.genres" class="my-3" />
 
-            <ButtonPrimary :action="()=>{ state-- }" class="w-1/2 md:w-1/3 mx-0 mb-1 float-left">
+            <ButtonPrimary :action="()=>{ state-- }" class="w-1/2 md:w-1/3 mx-0 my-1 float-left">
               <arrow-left-icon class="inline-block" height="21px" width="21px" /> Back
             </ButtonPrimary>
-            <ButtonPrimary v-if="user.genres.length > 0" :action="()=>{ state++ }" class="w-1/2 md:w-1/3 mx-0 mb-1 float-right">
+            <ButtonPrimary v-if="user.genres.length > 0" :action="()=>{ state++ }" class="w-1/2 md:w-1/3 mx-0 my-1 float-right">
               Next <arrow-right-icon class="inline-block" height="21px" width="21px" />
             </ButtonPrimary>
           </div>
@@ -49,10 +49,10 @@
             </div>
             <ArrayInput v-model="user.instruments" class="my-3" />
 
-            <ButtonPrimary :action="()=>{ state-- }" class="w-1/2 md:w-1/3 mx-0 mb-1 float-left">
+            <ButtonPrimary :action="()=>{ state-- }" class="w-1/2 md:w-1/3 mx-0 my-1  float-left">
               <arrow-left-icon class="inline-block" height="21px" width="21px" /> Back
             </ButtonPrimary>
-            <ButtonPrimary v-if="user.instruments.length > 0" :action="()=>{ state++ }" class="w-1/2 md:w-1/3 mx-0 mb-1 float-right">
+            <ButtonPrimary v-if="user.instruments.length > 0" :action="()=>{ state++ }" class="w-1/2 md:w-1/3 mx-0 my-1  float-right">
               Next <arrow-right-icon class="inline-block" height="21px" width="21px" />
             </ButtonPrimary>
           </div>
@@ -76,10 +76,10 @@
               </p>
             </div>
             <NumberSlider v-model="user.searchRadius" class="bg-white rounded" units="km" :min="1" :max="100" />
-            <ButtonPrimary :action="()=>{ state-- }" class="w-1/2 md:w-1/3 mx-0 mb-1 float-left">
+            <ButtonPrimary :action="()=>{ state-- }" class="w-1/2 md:w-1/3 mx-0 my-1 float-left">
               <arrow-left-icon class="inline-block" height="21px" width="21px" /> Back
             </ButtonPrimary>
-            <ButtonPrimary :action="()=>{ state++ }" class="w-1/2 md:w-1/3 mx-0 mb-1 float-right">
+            <ButtonPrimary :action="()=>{ state++ }" class="w-1/2 md:w-1/3 mx-0 my-1 float-right">
               Next <arrow-right-icon class="inline-block" height="21px" width="21px" />
             </ButtonPrimary>
           </div>
@@ -96,10 +96,10 @@
               </p>
             </div>
             <MarkdownInput v-model="user.description" class="w-full px-0 md:w-auto md:px-3" :maxlength="512" />
-            <ButtonPrimary :action="()=>{ state-- }" class="w-1/2 md:w-1/3 mx-0 mb-1 float-left">
+            <ButtonPrimary :action="()=>{ state-- }" class="w-1/2 md:w-1/3 mx-0 my-1 float-left">
               <arrow-left-icon class="inline-block" height="21px" width="21px" /> Back
             </ButtonPrimary>
-            <ButtonSecondary v-if="user.description !== ''" :action="() => { state++ }" class="w-1/2 md:w-1/3 mx-0 mb-1 float-right text-gray-500">
+            <ButtonSecondary v-if="user.description !== ''" :action="() => { state++ }" class="w-1/2 md:w-1/3 mx-0 my-1 float-right text-gray-500">
               <eye-icon class="inline-block mr-1" />Preview
             </ButtonSecondary>
           </div>
@@ -127,10 +127,10 @@
             </div>
 
             <div class="block flow-root p-4 rounded bg-gray-100 shadow">
-              <ButtonPrimary :action="()=>{ state-- }" class="w-1/2 md:w-1/3 mx-0 mb-1 float-left">
+              <ButtonPrimary :action="()=>{ state-- }" class="w-1/2 md:w-1/3 mx-0 my-1 float-left">
                 <arrow-left-icon class="inline-block" height="21px" width="21px" /> Back
               </ButtonPrimary>
-              <ButtonTertiary v-if="user.description !== ''" :action="saveAndFinish" class="w-1/2 md:w-1/3 mx-0 mb-1 float-right text-gray-500">
+              <ButtonTertiary v-if="user.description !== ''" :action="saveAndFinish" class="w-1/2 md:w-1/3 mx-0 my-1 float-right text-gray-500">
                 <check-icon class="inline-block mr-1" />Save
               </ButtonTertiary>
             </div>
@@ -195,7 +195,6 @@ export default {
       this.$axios.$patch('/users/profile', this.user)
         .then((data) => {
           if (data.success) {
-            // this.$store.commit('user/setUser', JSON.stringify(data.user))
             this.$auth.setUser(data.user)
             this.$router.push('/')
             this.$store.commit('toasts/create', { title: 'User', message: 'Your profile has been setup' })
