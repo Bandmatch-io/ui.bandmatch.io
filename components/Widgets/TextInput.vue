@@ -1,7 +1,7 @@
 <template>
   <div>
     <label class="py-2 pl-0 w-full block p-4">{{ label }}</label>
-    <div class="mb-4 shadow grid grid-cols-12 grid-flow-col gap-0">
+    <div class="shadow grid grid-cols-12 grid-flow-col gap-0">
       <div class="col-span-2 block border rounded-l bg-primary-grad py-2">
         <label for="username">
           <slot />

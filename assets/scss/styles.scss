@@ -30,6 +30,10 @@
   width: 300px;
 }
 
+.w-350 {
+  width: 350px;
+}
+
 .min-w-350 {
   min-width: 350px;
 }
@@ -127,31 +131,6 @@ footer {
 
 .clickable {
   cursor: pointer;
-}
-
-.hide-overflow-x {
-  overflow-x: hidden;
-}
-
-#cookies-consent {
-  position: fixed;
-  width: 100%;
-  z-index: 100;
-  
-  left: 0;
-  bottom: 1rem;
-}
-
-#cookies-consent .floaty-container {
-  display: block;
-  width: 25%;
-  margin: 0 auto;
-  
-  max-width: 750px;
-  min-width: 250px;
-
-  padding: 0.25rem 1rem 0.25rem 1rem;
-  border-radius: 1rem;
 }
 
 body {
@@ -272,7 +251,6 @@ input:checked + .slider:before {
 .small-description {
   overflow-y: hidden;
 }
-
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .25s;

@@ -1,5 +1,5 @@
 <template>
-  <button class="block bg-secondary-300 outline-none text-white text-center py-2 px-4 m-5" :class="totalClass" @click="onClick">
+  <button class="block bg-secondary-300 outline-none text-white text-center py-2 px-4" :class="totalClass" @click="onClick">
     <slot />
   </button>
 </template>

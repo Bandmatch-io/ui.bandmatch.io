@@ -1,5 +1,5 @@
 <template>
-  <button class="inline-block bg-primary-300 outline-none text-white text-center p-1 mx-1" :class="totalClass" @click="onClick">
+  <button class="inline-block bg-primary-300 outline-none text-white text-center p-1" :class="totalClass" @click="onClick">
     <slot />
   </button>
 </template>
