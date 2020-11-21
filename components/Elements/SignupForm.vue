@@ -1,10 +1,12 @@
 <template>
   <div class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block">
     <div class="w-full text-center">
-      <h1 class="w-full text-6xl text-center">
+      <h1 class="w-full text-6xl text-center mb-2">
         Sign up
       </h1>
-      <p>Or <a class="clickable text-primary-300 underline" @click="switchView"><link-icon size="1x" class="inline-block" /> Log in</a> instead</p>
+      <p>
+        Or <a class="clickable text-primary-300 underline" @click="switchView"><link-icon size="1x" class="inline-block" /> Log in</a> instead
+      </p>
     </div>
     <form @submit="postSignupForm">
       <div class="max-w-350 block mx-auto">

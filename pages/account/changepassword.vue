@@ -3,7 +3,7 @@
     <div class="my-5 w-3/4 max-w-2xl mx-auto">
       <div class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block mb-2">
         <div class="w-full text-center">
-          <h1 class="w-full text-3xl md:text-6xl text-center">
+          <h1 class="w-full text-3xl md:text-6xl text-center mb-2">
             Update password
           </h1>
           <p>
@@ -50,7 +50,7 @@
             </TextError>
           </div>
 
-          <div class="max-w-350 block mx-auto">
+          <div class="max-w-350 block mx-auto mb-2">
             <TextInput v-model="passwordDetails.confirmPassword" type="password" placeholder="Your password" label="Confirm Password" autofill="new-password">
               <key-icon class="block mx-auto" />
             </TextInput>
@@ -59,7 +59,7 @@
             </TextError>
           </div>
 
-          <ButtonPrimary v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full">
+          <ButtonPrimary v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full my-2">
             Update password
           </ButtonPrimary>
           <div v-else class="block w-1/2 h-12 md:h-24 mx-auto">

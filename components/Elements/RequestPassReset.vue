@@ -1,10 +1,12 @@
 <template>
   <div class="container rounded shadow min-w-250 bg-gray-100 mx-auto p-4 mt-8 block">
     <div class="w-full text-center">
-      <h1 class="w-full text-4xl md:text-6xl text-center">
+      <h1 class="w-full text-4xl md:text-6xl text-center mb-2">
         Request new password
       </h1>
-      <p>Or <a class="clickable text-primary-300 underline" @click="switchView"><link-icon size="1x" class="inline-block" /> Sign up / Log in</a> instead</p>
+      <p>
+        Or <a class="clickable text-primary-300 underline" @click="switchView"><link-icon size="1x" class="inline-block" /> Sign up / Log in</a> instead
+      </p>
     </div>
 
     <form @submit="postRequest">
