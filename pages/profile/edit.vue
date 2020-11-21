@@ -147,10 +147,10 @@
           <h2 class="prose">
             Account Actions
           </h2>
-          <ButtonPrimary :action="fetchAccountData" class="inline-block w-full mx-0">
+          <ButtonPrimary :action="fetchAccountData" class="my-1 inline-block w-full mx-0">
             <download-icon class="inline-block" /> Download my data
           </ButtonPrimary>
-          <ConfirmationInput :check-string="user.displayName" class="inline-block w-full mx-0" @confirm="deleteAccount">
+          <ConfirmationInput :check-string="user.displayName" class="my-1 inline-block w-full mx-0" @confirm="deleteAccount">
             <trash-2-icon class="inline-block" /> Delete my account
           </ConfirmationInput>
         </div>

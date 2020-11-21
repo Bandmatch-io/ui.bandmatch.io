@@ -9,18 +9,18 @@
       <div class="w-full lg:flex-1 min-w-300 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
         <div v-if="me.admin" class="p-5 border-b-2 shadow-sm">
           <div class="w-full grid grid-cols-2 my-0">
-            <ButtonComplement :action="()=>{}" group-pos="first" class="my-0 col-span-1 inline-block mx-0">
+            <ButtonComplement :action="()=>{}" group-pos="first" class="my-1 col-span-1 inline-block mx-0">
               <delete-icon class="inline-block" /> Clear Name
             </ButtonComplement>
-            <ButtonComplement :action="()=>{}" group-pos="last" class="my-0 col-span-1 inline-block mx-0">
+            <ButtonComplement :action="()=>{}" group-pos="last" class="my-1 col-span-1 inline-block mx-0">
               <delete-icon class="inline-block" /> Clear Description
             </ButtonComplement>
           </div>
           <div class="w-full grid grid-cols-1 my-0">
-            <ConfirmationInput :check-string="user.displayName" class="my-0 col-span-1 inline-block mx-0" @confirm="()=>{}">
+            <ConfirmationInput :check-string="user.displayName" class="my-1 col-span-1 inline-block mx-0" @confirm="()=>{}">
               <trash-2-icon class="inline-block" /> Delete user
             </ConfirmationInput>
-            <ConfirmationInput :check-string="user.displayName" class="my-0 col-span-1 inline-block mx-0" @confirm="()=>{}">
+            <ConfirmationInput :check-string="user.displayName" class="my-1 col-span-1 inline-block mx-0" @confirm="()=>{}">
               <x-square-icon class="inline-block" /> Demote from admin
             </confirmationinput>
           </div>
