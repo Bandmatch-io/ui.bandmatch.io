@@ -1,19 +1,19 @@
 <template>
   <div class="flex-container justify-center flex flex-wrap bg-polka">
     <DashboardCard title="Activity" link="/admin/stats">
-      <trending-up-icon size="8x" class="block mx-auto" />
+      <trending-up-icon size="4x" class="block mx-auto" />
     </DashboardCard>
     <DashboardCard title="Reports" link="/admin/reports">
-      <alert-octagon-icon size="8x" class="block mx-auto" />
+      <alert-octagon-icon size="4x" class="block mx-auto" />
     </DashboardCard>
     <DashboardCard title="Users" link="/admin/users">
-      <user-icon size="8x" class="block mx-auto" />
+      <user-icon size="4x" class="block mx-auto" />
     </DashboardCard>
     <DashboardCard title="Locations" link="/admin/locations">
-      <map-icon size="8x" class="block mx-auto" />
+      <map-icon size="4x" class="block mx-auto" />
     </DashboardCard>
     <DashboardCard title="Referrals" link="/admin/referrals">
-      <navigation-icon size="8x" class="block mx-auto" />
+      <navigation-icon size="4x" class="block mx-auto" />
     </DashboardCard>
   </div>
 </template>

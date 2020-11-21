@@ -6,7 +6,7 @@
           {{ title }}
         </div>
       </div>
-      <div class="text-center">
+      <div class="text-center px-2">
         <slot />
       </div>
     </div>

@@ -10,13 +10,13 @@
         </div>
         <div class="border-b shadow-sm p-4">
           <div class="border rounded-t px-3 py-3 bg-white cursor-pointer hover:bg-gray-200" :class="{ 'bg-primary-grad text-white': reason === reasons.offensive }" @click="reason = reasons.offensive">
-            This user is offensive
+            This user has posted offensive content
           </div>
           <div class="border border-t-0 px-3 py-3 bg-white cursor-pointer hover:bg-gray-200" :class="{ 'bg-primary-grad text-white': reason === reasons.harrassment }" @click="reason = reasons.harrassment">
             This user is harassing me
           </div>
           <div class="border border-t-0 px-3 py-3 bg-white cursor-pointer hover:bg-gray-200" :class="{ 'bg-primary-grad text-white': reason === reasons.spam }" @click="reason = reasons.spam">
-            This is user is spamming me
+            This is user has posted spam
           </div>
           <div class="border border-t-0 rounded-b px-3 py-3 bg-white cursor-pointer hover:bg-gray-200" :class="{ 'bg-primary-grad text-white': reason === reasons.fake }" @click="reason = reasons.fake">
             This is a fake profile

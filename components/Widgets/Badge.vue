@@ -7,7 +7,7 @@
 <script>
 export default {
   props: {
-    val: String,
+    val: { type: String, default () { return '' } },
     edit: Boolean
   }
 }
