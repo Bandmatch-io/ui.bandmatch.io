@@ -1,7 +1,10 @@
 <template>
   <div>
-    <Navbar />
-    <Nuxt />
+    <div class="flex flex-col min-h-screen">
+      <Navbar />
+      <Nuxt class="flex-grow" />
+      <Footer />
+    </div>
     <Toast />
     <ReportModal />
   </div>
