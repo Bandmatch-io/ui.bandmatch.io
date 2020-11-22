@@ -48,7 +48,6 @@ export default {
         })
       })
 
-      console.log(s)
       return s
     },
     daysBeforeEndDate (days) {
@@ -80,7 +79,6 @@ export default {
       this.$axios.get(`/admin/analytics/referrals?y=${ymd.year}&m=${ymd.month}&d=${ymd.day}&p=${p}`)
         .then((res) => {
           if (res.data.success) {
-            console.log(res.data)
             this.stats = this.compileData(res.data.stats)
           }
         })

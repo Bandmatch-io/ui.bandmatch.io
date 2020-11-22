@@ -24,9 +24,12 @@
             <at-sign-icon class="inline-block mr-1" />{{ user.displayName }}
           </p>
         </div>
-        <div class="float-right">
-          <ButtonPrimary :action="()=>{ $router.push(`/profile/${user._id}`) }">
+        <div class="float-right grid grid-cols-2">
+          <ButtonPrimary class="inline-block col-span-1" group-pos="first" :action="()=>{ $router.push(`/profile/${user._id}`) }">
             Go to profile
+          </ButtonPrimary>
+          <ButtonPrimary class="inline-block col-span-1" group-pos="last" :disabled="true" :action="()=>{}">
+            Search as user
           </ButtonPrimary>
         </div>
       </div>

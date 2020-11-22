@@ -87,7 +87,6 @@ export default {
   },
   computed: {
     mobScreen () {
-      console.log('62', this.$refs.container.clientWidth)
       return this.$refs.container.clientWidth < 639
     },
     possibleFilters () {
