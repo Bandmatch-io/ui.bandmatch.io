@@ -82,7 +82,7 @@ export default {
         Spam: 'This user has posted spam.',
         FakeProfile: 'This is a fake profile'
       },
-      filters: ['Offensive', 'Harrassment', 'FakeProfile', 'Spam']
+      filters: []
     }
   },
   computed: {
