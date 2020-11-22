@@ -22,6 +22,11 @@ export default {
       return ''
     }
   },
+  mounted () {
+    if (this.$route.query.ref) {
+      this.$axios.post(`/ref?r=${this.$route.query.ref}`)
+    }
+  },
   head () {
     return {
       bodyAttrs: {
