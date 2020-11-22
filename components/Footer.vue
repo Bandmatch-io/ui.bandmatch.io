@@ -3,7 +3,7 @@
     <ul class="col-span-1 w-full grid grid-cols-4">
       <li class="inline-block col-span-1 underline p-1">
         <nuxt-link to="/about">
-          About <span class="hidden md:shown">us</span>
+          About <span class="hidden md:inline">us</span>
         </nuxt-link>
       </li>
       <li class="inline-block col-span-1 underline p-1">
@@ -13,12 +13,12 @@
       </li>
       <li class="inline-block col-span-1 underline p-1">
         <nuxt-link to="/privacy">
-          Privacy <span class="hidden md:shown">Policy</span>
+          Privacy <span class="hidden md:inline">Policy</span>
         </nuxt-link>
       </li>
       <li class="inline-block col-span-1 underline p-1">
         <nuxt-link to="/terms">
-          Terms <span class="hidden md:shown">of use</span>
+          Terms <span class="hidden md:inline">of use</span>
         </nuxt-link>
       </li>
     </ul>
