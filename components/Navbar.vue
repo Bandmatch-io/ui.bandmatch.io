@@ -13,12 +13,14 @@
         </button>
       </div>
       <div class="w-full block flex-grow flex lg:items-center lg:w-auto leading-none">
-        <div class="mx-1 lg:flex-grow">
+        <div class="mx-1 lg:flex-grow inline-block align-middle">
           <nuxt-link to="/conversations" class="ml-1 mt-3 mr-1 md:ml-3 md:mr-3 inline-block text-xl lg:mt-0 text-gray-100 hover:text-white">
-            <div v-if="unreadCount > 0" class="rounded bg-complementary-300 text-secondary-300 w-5 h-5 p-0 inline-block text-center">
-              <small>{{ unreadCount }}</small>
+            <div v-if="unreadCount > 0" class="mt-2 rounded shadow-sm bg-complementary-300 text-secondary-300 w-6 h-6 p-0 inline-block text-center">
+              <small class="inline-block align-middle w-full h-full text-sm font-bold">{{ unreadCount }}</small>
             </div>
-            <message-square-icon size="1.5x" class="inline-block" /> <span class="hidden md:inline-block">Messages</span>
+            <div class="inline-block">
+              <message-square-icon size="1.5x" class="inline-block" /> <span class="hidden md:inline-block">Messages</span>
+            </div>
           </nuxt-link>
         </div>
         <AccountDropdown :admin-options="isAdmin" class="inline-block px-4 py-2 leading-none" />
@@ -64,13 +66,19 @@ export default {
     }
   },
   mounted () {
-    this.$axios.get('/conversations/unread')
-      .then((res) => {
-        if (res.data.success) {
-          this.$store.commit('unread/setUnread', res.data.count)
-        }
-      })
-      .catch(e => console.log(e))
+    this.getUnread()
+    setInterval(this.getUnread, 60 * 1000)
+  },
+  methods: {
+    getUnread () {
+      this.$axios.get('/conversations/unread')
+        .then((res) => {
+          if (res.data.success) {
+            this.$store.commit('unread/setUnread', res.data.count)
+          }
+        })
+        .catch(e => console.log(e))
+    }
   }
 }
 </script>

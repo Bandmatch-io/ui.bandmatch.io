@@ -2,7 +2,7 @@
   <div class="block md:inline-block w-300 rounded shadow mx-auto md:mx-5 my-5 bg-gray-100">
     <div class="p-3 border-b-2 shadow-sm rounded-t">
       <h3 class="mb-0">
-        <award-icon v-if="user.admin" class="inline-block" />{{ user.displayName }}
+        <award-icon v-if="user.admin" class="inline-block text-secondary-300" />{{ user.displayName }}
       </h3>
       <p class="mt-0 text-black">
         <small>
@@ -72,7 +72,8 @@ export default {
           genres: [],
           _id: undefined,
           description: '',
-          searchType: 'Join'
+          searchType: 'Join',
+          admin: false
         }
       }
     }
