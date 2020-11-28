@@ -5,8 +5,8 @@
         <LoaderAnim />
       </div>
     </div>
-    <div v-else class="fixed grid grid-cols-4" style="top: 5rem; left: 0; right: 0; bottom: 0;">
-      <div v-if="showConvoList" class="col-span-4 md:col-span-1 border-0 md:border-r overflow-y-auto">
+    <div v-else class="fixed inset-0 t-nav grid grid-cols-4">
+      <div v-if="showConvoList" class="col-span-4 md:col-span-1 border-0 md:border-r overflow-y-auto md:bg-white">
         <div v-if="newChat" :class="{ 'bg-secondary-300 text-white hover:text-black': activeChat._id === undefined, 'bg-white': activeChat._id !== undefined }" class="clickable hover:bg-gray-100 border-b w-full block mx-auto shadow p-4 flow-root" @click="openChat(newChat)">
           <p class="float-left">
             <span v-if="newChat.otherUser">{{ newChat.otherUser.displayName }}</span>
