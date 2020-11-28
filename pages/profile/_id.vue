@@ -6,7 +6,7 @@
       </div>
     </div>
     <div v-else class="flex flex-wrap">
-      <div class="w-full lg:flex-1 min-w-300 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
+      <div class="area">
         <div v-if="me.admin" class="p-5 border-b-2 shadow-sm">
           <UserControlPanel :user="user" @refresh="refreshUser" />
         </div>
@@ -27,7 +27,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Display Name
@@ -38,7 +38,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               They want to:
@@ -61,7 +61,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Genres
@@ -78,7 +78,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Instruments
@@ -95,7 +95,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 shadow-sm border-b-2">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p>Their location</p>
             <p />
@@ -106,7 +106,7 @@
         </div>
       </div>
 
-      <div class="w-full lg:flex-1 flex-shrink min-w-300 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
+      <div class="area">
         <h1 class="px-8 pt-4 text-5xl">
           Description
         </h1>
@@ -203,4 +203,12 @@ export default {
 
 <style lang="scss" scoped>
 @import '~/assets/scss/styles.scss';
+
+.area {
+  @apply w-full lg:flex-1 flex-shrink min-w-300 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow;
+}
+
+.section {
+  @apply grid grid-cols-4 px-5 py-3 shadow-sm border-b-2;
+}
 </style>

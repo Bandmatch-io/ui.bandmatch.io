@@ -1,8 +1,8 @@
 <template>
   <div class="bg-polka">
     <div v-if="userStatus === 'success'" class="flex flex-wrap">
-      <div class="w-full lg:flex-1 min-w-300 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
-        <div class="p-5 border-b-2 shadow-sm grid grid-cols-4">
+      <div class="area">
+        <div class="section">
           <ButtonPrimary :action="() => { $router.push(`${user._id}`) }" group-pos="first" class="col-span-3 inline-block w-full mx-0">
             View public profile
           </ButtonPrimary>
@@ -11,7 +11,7 @@
           </ButtonTertiary>
         </div>
 
-        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p>Email</p>
           </div>
@@ -20,7 +20,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             Password
           </div>
@@ -31,7 +31,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Display Name
@@ -45,7 +45,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Do you want to be shown in searches?
@@ -64,7 +64,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               What do you want to do?
@@ -89,7 +89,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Genres
@@ -106,7 +106,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Instruments
@@ -123,17 +123,17 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 border-b-2 shadow-sm">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p>Search radius</p>
             <p />
           </div>
-          <div class="col-span-4 md:col-span-3 bg-white">
+          <div class="col-span-4 md:col-span-3">
             <NumberSlider v-model="user.searchRadius" units="km" :min="1" :max="100" />
           </div>
         </div>
 
-        <div class="grid grid-cols-4 p-5 shadow-sm border-b-2">
+        <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p>Your location</p>
             <p />
@@ -156,7 +156,7 @@
         </div>
       </div>
 
-      <div class="w-full lg:flex-1 flex-shrink min-w-300 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow">
+      <div class="area">
         <h1 class="px-8 pt-4 text-5xl">
           Description
         </h1>
@@ -281,6 +281,14 @@ export default {
 
 <style lang="scss" scoped>
 @import '~/assets/scss/styles.scss';
+
+.area {
+  @apply w-full lg:flex-1 flex-shrink min-w-300 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow;
+}
+
+.section {
+  @apply grid grid-cols-4 px-5 py-3 shadow-sm border-b-2;
+}
 
 .spin {
   -webkit-animation: rotating 2s linear infinite;
