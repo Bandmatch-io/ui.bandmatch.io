@@ -101,7 +101,7 @@
             <p />
           </div>
           <div class="col-span-4 md:col-span-3 bg-white">
-            <img class="img-fluid" :alt="'location of ' + user.displayName" :src="'https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/' + user.searchLocation.coordinates[0] + ',' + user.searchLocation.coordinates[1] + ',9.67,0.00,0.00/640x480@2x?access_token=' + mapboxToken">
+            <img class="img-fluid border shadow" :alt="'location of ' + user.displayName" :src="'https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/' + user.searchLocation.coordinates[0] + ',' + user.searchLocation.coordinates[1] + ',9.67,0.00,0.00/640x480@2x?access_token=' + mapboxToken">
           </div>
         </div>
       </div>
