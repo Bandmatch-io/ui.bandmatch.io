@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex items-center h-nav justify-between flex-wrap bg-primary-grad p-4">
+  <nav class="flex items-center h-nav justify-between flex-wrap bg-primary-grad px-4 py-2">
     <nuxt-link to="/">
       <span class="text-white text-2xl tracking-tight">Bandmatch</span>
     </nuxt-link>
