@@ -33,15 +33,16 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    '@nuxtjs/style-resources',
     // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/tailwindcss'
   ],
 
   // Globally available resources
   styleResources: {
     scss: [
-      '~/assets/scss/colours.scss'
+      '~/assets/scss/colours.scss',
+      '~/assets/scss/styles.scss'
     ]
   },
 

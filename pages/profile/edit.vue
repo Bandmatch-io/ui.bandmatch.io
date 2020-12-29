@@ -283,7 +283,8 @@ export default {
 @import '~/assets/scss/styles.scss';
 
 .area {
-  @apply w-full lg:flex-1 flex-shrink min-w-300 block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow;
+  @apply w-full lg:flex-1 flex-shrink block mx-auto my-4 xl:mx-4 xl:w-1/2 bg-gray-100 rounded shadow;
+  min-width: 300px;
 }
 
 .section {

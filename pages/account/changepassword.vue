@@ -13,7 +13,7 @@
           </p>
         </div>
 
-        <div class="max-w-350 mx-auto border rounded shadow bg-white">
+        <div v-if="user" class="max-w-350 mx-auto border rounded shadow bg-white">
           <div class="grid grid-cols-4 w-full border-b">
             <div class="col-span-1 border-r py-2 bg-primary-grad text-white">
               <mail-icon class="block mx-auto" />
