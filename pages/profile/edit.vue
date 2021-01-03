@@ -11,6 +11,19 @@
           </ButtonTertiary>
         </div>
 
+        <div v-if="user.timestamps" class="section">
+          <div class="col-span-4 md:col-span-2">
+            <p class="text-center">
+              Last seen <timeago :datetime="user.timestamps.last_login" class="mr-1" />
+            </p>
+          </div>
+          <div class="col-span-4 md:col-span-2">
+            <p class="text-center">
+              Member since {{ signupDate }}
+            </p>
+          </div>
+        </div>
+
         <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p>Email</p>

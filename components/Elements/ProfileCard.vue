@@ -1,9 +1,14 @@
 <template>
   <div class="block md:inline-block w-300 rounded shadow mx-auto md:mx-5 my-5 bg-gray-100">
     <div class="p-3 border-b-2 shadow-sm rounded-t">
-      <h3 class="mb-0">
-        <award-icon v-if="user.admin" class="inline-block text-secondary-300" />{{ user.displayName }}
-      </h3>
+      <div class="mb-0 grid grid-cols-2">
+        <h3 class="col-span-1">
+          <award-icon v-if="user.admin" class="inline-block text-secondary-300" />{{ user.displayName }}
+        </h3>
+        <small class="col-span-1">
+          <eye-icon size="1x" class="inline-block mr-1 text-secondary-300" /><timeago :datetime="user.timestamps.last_login" class="mr-1" />
+        </small>
+      </div>
       <p class="mt-0 text-black">
         <small>
           They want to
@@ -45,7 +50,7 @@
 </template>
 
 <script>
-import { MessageSquareIcon, UserIcon, AlertOctagonIcon, AwardIcon } from 'vue-feather-icons'
+import { MessageSquareIcon, UserIcon, AlertOctagonIcon, AwardIcon, EyeIcon } from 'vue-feather-icons'
 import ButtonPrimary from '~/components/Core/ButtonPrimary'
 import ButtonComplement from '~/components/Core/ButtonComplement'
 import Badge from '~/components/Widgets/Badge'
@@ -60,7 +65,8 @@ export default {
     MessageSquareIcon,
     UserIcon,
     AlertOctagonIcon,
-    MarkdownView
+    MarkdownView,
+    EyeIcon
   },
   props: {
     user: {
