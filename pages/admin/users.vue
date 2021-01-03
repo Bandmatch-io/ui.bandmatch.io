@@ -15,20 +15,32 @@
     </div>
 
     <div class="w-3/4 mx-auto block">
-      <div v-for="user in users" :key="user._id" class="border rounded shadow p-3 m-3 bg-white flow-root">
-        <div class="float-left">
+      <div v-for="user in users" :key="user._id" class="border rounded shadow p-3 m-3 bg-white flow-root grid grid-cols-2">
+        <div class="col-span-2 md:col-span-1">
           <p class="my-1">
             <mail-icon class="inline-block mr-1" />{{ user.email }}
           </p>
           <p class="my-1">
             <at-sign-icon class="inline-block mr-1" />{{ user.displayName }}
           </p>
+          <div class="grid grid-cols-4">
+            <div class="col-span-4 md:col-span-2">
+              <small>
+                Last seen <timeago :datetime="user.timestamps.last_login" class="mr-1" />
+              </small>
+            </div>
+            <div class="col-span-4 md:col-span-2">
+              <small>
+                Joined {{ new Date(user.timestamps.signup_at).toDateString() }}
+              </small>
+            </div>
+          </div>
         </div>
-        <div class="float-right grid grid-cols-2">
-          <ButtonPrimary class="inline-block col-span-1" group-pos="first" :action="()=>{ $router.push(`/profile/${user._id}`) }">
+        <div class="col-span-2 md:col-span-1 grid grid-cols-2">
+          <ButtonPrimary class="inline-block col-span-1 h-12" group-pos="first" :action="()=>{ $router.push(`/profile/${user._id}`) }">
             Go to profile
           </ButtonPrimary>
-          <ButtonPrimary class="inline-block col-span-1" group-pos="last" :disabled="true" :action="()=>{}">
+          <ButtonPrimary class="inline-block col-span-1 h-12" group-pos="last" :disabled="true" :action="()=>{}">
             Search as user
           </ButtonPrimary>
         </div>
