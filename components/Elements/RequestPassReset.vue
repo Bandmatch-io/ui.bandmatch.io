@@ -10,7 +10,7 @@
     </div>
 
     <form @submit="postRequest">
-      <div class="max-w-350 block mx-auto mb-2">
+      <div v-if="state===states.default" class="max-w-350 block mx-auto mb-2">
         <TextInput v-model="resetDetails.email" type="email" placeholder="you@youremail.com" label="Email" autofill="email">
           <mail-icon class="block mx-auto" />
         </TextInput>

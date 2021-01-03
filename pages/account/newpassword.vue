@@ -27,6 +27,15 @@
             </TextError>
           </div>
 
+          <div class="max-w-350 block mx-auto mb-2">
+            <TextError v-if="errors.token && errors.token.expired">
+              Token has expired.
+            </TextError>
+            <TextError v-if="errors.token && errors.token.invalid">
+              Token is invalid.
+            </TextError>
+          </div>
+
           <ButtonPrimary v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full my-2">
             Update password
           </ButtonPrimary>
@@ -76,6 +85,7 @@ export default {
       this.state = this.states.loading
       this.$axios.patch(`/auth/password/${this.passStr}`, this.passwordDetails)
         .then((res) => {
+          this.state = this.states.default
           if (res.data.success) {
             this.$router.push('/account')
             this.$store.commit('toasts/create', { title: 'User', message: 'Password reset' })
@@ -84,6 +94,7 @@ export default {
           }
         })
         .catch((e) => {
+          this.state = this.states.default
           const data = e.response.data
           if (data.error) {
             this.errors = data.error
@@ -92,6 +103,7 @@ export default {
     },
     resetErrors () {
       this.errors = {
+        token: { expired: false, invalid: true },
         password: { invalid: false, mismatch: false }
       }
     }
