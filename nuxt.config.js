@@ -56,7 +56,7 @@ export default {
   ],
 
   axios: {
-    baseURL: (process.env.NODE_ENV === 'production') ? 'api.bandmatch.io' : 'http://localhost:8080'
+    baseURL: (process.env.NODE_ENV === 'production') ? 'https://api.bandmatch.io' : 'http://localhost:8080'
   },
 
   router: {
