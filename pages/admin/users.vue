@@ -6,7 +6,7 @@
           <users-icon class="block mx-auto" />
         </TextInput>
         <div v-if="state===states.loading" class="block max-w-350 mx-auto w-full md:w-1/4 h-24 my-3">
-          <LoaderAnim />this.colours =
+          <LoaderAnim />
         </div>
         <Button v-else :action="performSearch" class="block w-full max-w-350 mx-auto my-3">
           <search-icon class="block mx-auto" />
