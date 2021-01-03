@@ -2,25 +2,31 @@
   <div ref="container" class="overflow-y-auto">
     <div v-if="state===states.default">
       <div v-for="msg in messages" :key="msg._id" class="w-full flow-root">
-        <div class="border rounded shadow m-3 w-3/4 max-w-350 bg-white flow-root" :class="{ 'float-right': amSender(msg.sender), 'float-left': !amSender(msg.sender) }">
-          <div v-if="amSender(msg.sender)">
-            <p class="float-left text-black">
-              <MarkdownView :markdown="msg.content" />
-            </p>
-            <p class="float-right pr-3">
-              <small>{{ msg.sender.displayName }}</small>
-            </p>
+        <div class="m-3 w-3/4 max-w-350" :class="{ 'float-right': amSender(msg.sender), 'float-left': !amSender(msg.sender) }">
+          <div class="border rounded shadow bg-white flow-root mb-1">
+            <div v-if="amSender(msg.sender)">
+              <p class="float-left text-black">
+                <MarkdownView :markdown="msg.content" />
+              </p>
+              <p class="float-right pr-3">
+                <small>{{ msg.sender.displayName }}</small>
+              </p>
+            </div>
+            <div v-else>
+              <p class="float-right pr-3 text-black">
+                <MarkdownView :markdown="msg.content" />
+              </p>
+              <p class="float-left pl-3">
+                <small>{{ msg.sender.displayName }}</small>
+              </p>
+            </div>
           </div>
-          <div v-else>
-            <p class="float-right pr-3 text-black">
-              <MarkdownView :markdown="msg.content" />
-            </p>
-            <p class="float-left pl-3">
-              <small>{{ msg.sender.displayName }}</small>
-            </p>
-          </div>
-          <p class="clear-both mx-3">
-            <small><timeago :class="{ 'float-right': amSender(msg.sender) }" :datetime="msg.timestamp" :auto-update="60" /></small>
+          <p class="mx-3">
+            <small class="w-full grid grid-cols-5 grid-flow-col-dense">
+              <check-circle-icon v-if="msg.read" size="1x" class="col-span-1 text-primary-300" :class="{'col-start-1': amSender(msg.sender), 'col-start-5 text-right': !amSender(msg.sender) }" />
+              <circle-icon v-else size="1x" class="col-span-1 text-primary-300" :class="{'col-start-1': amSender(msg.sender), 'col-start-5 text-right': !amSender(msg.sender) }" />
+              <timeago class="col-span-4" :datetime="msg.timestamp" :auto-update="60" :class="{'col-start-2 text-right': amSender(msg.sender), 'col-start-1': !amSender(msg.sender) }" />
+            </small>
           </p>
         </div>
       </div>
@@ -32,13 +38,16 @@
 </template>
 
 <script>
+import { CircleIcon, CheckCircleIcon } from 'vue-feather-icons'
 import MarkdownView from '~/components/Widgets/MarkdownView'
 import LoaderAnim from '~/components/Core/LoaderAnim'
 
 export default {
   components: {
     MarkdownView,
-    LoaderAnim
+    LoaderAnim,
+    CircleIcon,
+    CheckCircleIcon
   },
   props: {
     convoId: { type: String, default () { return '' } }

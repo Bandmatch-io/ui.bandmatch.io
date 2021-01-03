@@ -20,7 +20,7 @@
             {{ convo.otherUser.displayName }}
           </p>
           <div class="float-right">
-            <small><timeago :datetime="convo.lastMessage.timestamp" :auto-update="60" class="mr-1" /><eye-icon v-if="convo.lastMessage.read" alt="Conversation has been read" class="inline-block" /><eye-off-icon v-else alt="Conversation has not been read" class="inline-block" /></small>
+            <small><timeago :datetime="convo.lastMessage.timestamp" :auto-update="60" class="mr-1" /><eye-icon v-if="convo.lastMessage.read" size="1x" alt="Conversation has been read" class="inline-block" /><eye-off-icon v-else size="1x" alt="Conversation has not been read" class="inline-block" /></small>
           </div>
         </div>
       </div>
