@@ -29,7 +29,12 @@
             <p>Email</p>
           </div>
           <div class="col-span-4 md:col-span-3">
-            <p>{{ user.email }}</p>
+            <p><check-circle-icon v-if="user.emailVerified" class="inline-block mr-1 text-primary-300" />{{ user.email }}</p>
+          </div>
+          <div v-if="!user.emailVerified" class="col-span-4 text-center">
+            <a class="inline-block clickable underline text-primary-300 hover:text-primary-100" @click="resendEmailVerification">
+              Resend email verification
+            </a>
           </div>
         </div>
 
@@ -180,7 +185,7 @@
 </template>
 
 <script>
-import { AtSignIcon, KeyIcon, LoaderIcon, CheckIcon, DownloadIcon, Trash2Icon } from 'vue-feather-icons'
+import { AtSignIcon, KeyIcon, LoaderIcon, CheckIcon, DownloadIcon, Trash2Icon, CheckCircleIcon } from 'vue-feather-icons'
 // import { mapMutations } from 'vuex'
 import ButtonPrimary from '~/components/Core/ButtonPrimary'
 import ButtonTertiary from '~/components/Core/ButtonTertiary'
@@ -193,6 +198,7 @@ export default {
     KeyIcon,
     CheckIcon,
     LoaderIcon,
+    CheckCircleIcon,
     DownloadIcon,
     Trash2Icon,
     ButtonPrimary,
@@ -222,6 +228,12 @@ export default {
     },
     userStatus () {
       return 'success' // this.$auth.user.status
+    },
+    signupDate () {
+      if (this.user.timestamps.signup_at) {
+        return new Date(this.user.timestamps.signup_at).toDateString()
+      }
+      return ''
     }
   },
   watch: {
@@ -259,6 +271,17 @@ export default {
           link.setAttribute('download', `${this.$auth.user.displayName}-account-data.json`) // or any other extension
           document.body.appendChild(link)
           link.click()
+        })
+    },
+    resendEmailVerification () {
+      this.$axios.get('/users/confirm/resend')
+        .then((res) => {
+          if (res.data.success) {
+            this.$store.commit('toasts/create', { title: 'Account', message: 'Resent email verification' })
+          }
+        })
+        .catch((e) => {
+          this.$store.commit('toasts/create', { title: 'Account', message: "Couldn't resend verification", type: 'error' })
         })
     },
     deleteAccount () {

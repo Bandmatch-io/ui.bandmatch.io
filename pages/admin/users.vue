@@ -18,7 +18,7 @@
       <div v-for="user in users" :key="user._id" class="border rounded shadow p-3 m-3 bg-white flow-root grid grid-cols-2">
         <div class="col-span-2 md:col-span-1">
           <p class="my-1">
-            <mail-icon class="inline-block mr-1" />{{ user.email }}
+            <mail-icon class="inline-block mr-1" /><check-circle-icon v-if="user.emailConfirmed" class="inline-block mr-1 text-primary-300" />{{ user.email }}
           </p>
           <p class="my-1">
             <at-sign-icon class="inline-block mr-1" />{{ user.displayName }}
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { UsersIcon, SearchIcon, MailIcon, AtSignIcon } from 'vue-feather-icons'
+import { UsersIcon, SearchIcon, MailIcon, AtSignIcon, CheckCircleIcon } from 'vue-feather-icons'
 import TextInput from '~/components/Widgets/TextInput'
 import ButtonPrimary from '~/components/Core/ButtonPrimary'
 import LoaderAnim from '~/components/Core/LoaderAnim'
@@ -59,6 +59,7 @@ export default {
   middleware: 'isadmin',
   components: {
     TextInput,
+    CheckCircleIcon,
     LoaderAnim,
     UsersIcon,
     MailIcon,

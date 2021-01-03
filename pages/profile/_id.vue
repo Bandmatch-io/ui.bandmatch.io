@@ -42,6 +42,16 @@
 
         <div class="section">
           <div class="col-span-4 md:col-span-1">
+            Verified
+          </div>
+          <div class="col-span-4 md:col-span-3">
+            <check-circle-icon v-if="user.emailVerified" class="inline-block mr-1 text-primary-300" />
+            <circle-icon v-else class="inline-block mr-1 text-complementary-300" />
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Display Name
             </p>
@@ -132,7 +142,7 @@
 </template>
 
 <script>
-import { MessageSquareIcon, AlertOctagonIcon } from 'vue-feather-icons'
+import { MessageSquareIcon, AlertOctagonIcon, CheckCircleIcon, CircleIcon } from 'vue-feather-icons'
 import MarkdownView from '~/components/Widgets/MarkdownView'
 import ButtonPrimary from '~/components/Core/ButtonPrimary'
 import ButtonComplement from '~/components/Core/ButtonComplement'
@@ -141,8 +151,10 @@ import UserControlPanel from '~/components/Widgets/Admin/UserControlPanel'
 export default {
   components: {
     MarkdownView,
+    CheckCircleIcon,
     MessageSquareIcon,
     AlertOctagonIcon,
+    CircleIcon,
     ButtonComplement,
     ButtonPrimary,
     UserControlPanel
