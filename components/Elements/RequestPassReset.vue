@@ -22,9 +22,9 @@
         </TextError>
       </div>
 
-      <ButtonPrimary v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full my-3">
+      <Button v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full my-3">
         Request new password
-      </ButtonPrimary>
+      </Button>
       <div v-else-if="state===states.success" class="max-w-350 block mx-auto w-full my-3">
         <p class="w-full text-center">
           Check your emails for a password reset form.
@@ -39,7 +39,6 @@
 
 <script>
 import { MailIcon, LinkIcon } from 'vue-feather-icons'
-import ButtonPrimary from '~/components/Core/ButtonPrimary'
 import TextError from '~/components/Core/TextError'
 import LoaderAnim from '~/components/Core/LoaderAnim'
 
@@ -47,12 +46,11 @@ export default {
   components: {
     MailIcon,
     LinkIcon,
-    ButtonPrimary,
     TextError,
     LoaderAnim
   },
   props: {
-    switchView: Function
+    switchView: { type: Function, default () { return () => {} } }
   },
   data () {
     return {

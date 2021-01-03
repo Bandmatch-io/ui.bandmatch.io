@@ -41,7 +41,7 @@ export default {
     LoaderAnim
   },
   props: {
-    convoId: String
+    convoId: { type: String, default () { return '' } }
   },
   data () {
     return {
@@ -73,7 +73,7 @@ export default {
       this.$axios.get(`/conversations/${id}`)
         .then((res) => {
           this.state = this.states.default
-          console.log(res.data)
+
           if (res.data.success) {
             this.messages = res.data.messages
             this.scrollToBottom()
@@ -82,7 +82,6 @@ export default {
           }
         })
         .catch((e) => {
-          console.log(e)
           this.state = this.states.error
           this.messages = []
         })

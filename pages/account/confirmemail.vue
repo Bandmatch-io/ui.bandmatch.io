@@ -32,9 +32,9 @@
               </div>
             </div>
           </div>
-          <ButtonPrimary class="w-full block" :action="sendConfirmUser">
+          <Button class="w-full block" :action="sendConfirmUser">
             <check-circle-icon class="mr-1 inline-block" />Confirm Account
-          </ButtonPrimary>
+          </Button>
         </div>
         <div v-else class="block w-1/2 h-12 md:h-24 mx-auto">
           <LoaderAnim />
@@ -46,7 +46,6 @@
 
 <script>
 import { MailIcon, UserIcon, LinkIcon, CheckCircleIcon } from 'vue-feather-icons'
-import ButtonPrimary from '~/components/Core/ButtonPrimary'
 
 export default {
   auth: false,
@@ -54,8 +53,7 @@ export default {
     MailIcon,
     UserIcon,
     LinkIcon,
-    CheckCircleIcon,
-    ButtonPrimary
+    CheckCircleIcon
   },
   data () {
     return {

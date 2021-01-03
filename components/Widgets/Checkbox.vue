@@ -14,8 +14,8 @@
 <script>
 export default {
   props: {
-    label: String,
-    value: Boolean
+    label: { type: String, default () { return '' } },
+    value: { type: Boolean, default () { return false } }
   },
   data () {
     return {

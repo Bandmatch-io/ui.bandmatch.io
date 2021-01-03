@@ -28,9 +28,9 @@
           <p class="float-left">
             Reported {{ report.target }}
           </p>
-          <ButtonComplement :action="()=>{ closeReport(report._id) }" class="float-right">
+          <Button colour="complementary" :action="()=>{ closeReport(report._id) }" class="float-right">
             <x-icon class="fill-current inline-block" /><span v-if="!mobScreen" class="ml-1">Close Report</span>
-          </ButtonComplement>
+          </Button>
         </div>
         <div class="border-b shadow-sm p-3">
           <p v-if="report.reportedUser">
@@ -55,8 +55,6 @@
 
 <script>
 import { XIcon, EyeIcon } from 'vue-feather-icons'
-import ButtonComplement from '~/components/Core/ButtonComplement'
-import ButtonPrimary from '~/components/Core/ButtonPrimary'
 import Badge from '~/components/Widgets/Badge'
 
 export default {
@@ -64,8 +62,6 @@ export default {
   components: {
     EyeIcon,
     XIcon,
-    ButtonComplement,
-    ButtonPrimary,
     Badge
   },
   data () {

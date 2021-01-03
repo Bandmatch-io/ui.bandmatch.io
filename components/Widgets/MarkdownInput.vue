@@ -52,12 +52,9 @@ export default {
     MarkdownView
   },
   props: {
-    value: String,
-    maxlength: Number,
-    rows: {
-      type: Number,
-      default: 12
-    }
+    value: { type: String, default () { return '' } },
+    maxlength: { type: Number, default () { return 1024 } },
+    rows: { type: Number, default: 12 }
   },
   data () {
     return {

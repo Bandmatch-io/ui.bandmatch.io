@@ -3,7 +3,7 @@
     <div class="prose block mx-auto my-5 p-3">
       <h2>Bandmatch Terms of Service</h2>
       <h3>1. Terms</h3>
-      <p>By accessing the website at <a href="https://bandmatch.io">https://bandmatch.io</a>, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this website are protected by applicable copyright and trademark law.</p>
+      <p>By accessing the website at <a href="https://bandmatch.io"><link-icon size="1x" class="inline-block mr-1" />https://bandmatch.io</a>, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this website are protected by applicable copyright and trademark law.</p>
       <h3>2. Use Licence</h3>
       <ol type="a">
         <li>
@@ -33,13 +33,18 @@
       <p>Bandmatch may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service.</p>
       <h3>8. Governing Law</h3>
       <p>These terms and conditions are governed by and construed in accordance with the laws of Manchester and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.</p>
-      <p><a href="https://getterms.io" title="Generate a free terms of use document">Terms of Use created with GetTerms.</a></p>
+      <p><a href="https://getterms.io" title="Generate a free terms of use document"><link-icon size="1x" class="inline-block mr-1" />Terms of Use created with GetTerms.</a></p>
     </div>
   </div>
 </template>
 
 <script>
+import { LinkIcon } from 'vue-feather-icons'
+
 export default {
+  components: {
+    LinkIcon
+  },
   head () {
     return {
       title: 'Terms of Use | Bandmatch',

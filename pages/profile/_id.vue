@@ -13,17 +13,17 @@
 
         <div class="p-5 border-b-2 shadow-sm">
           <div v-if="user._id !== me._id" class="w-full grid grid-cols-4">
-            <ButtonPrimary :action="startChat" group-pos="first" class="col-span-3 inline-block mx-0">
+            <Button :action="startChat" group-pos="first" class="col-span-3 inline-block mx-0">
               <message-square-icon class="inline-block" /> Chat
-            </ButtonPrimary>
-            <ButtonComplement :action="reportUser" group-pos="last" class="col-span-1 inline-block mx-0">
+            </Button>
+            <Button colour="complementary" :action="reportUser" group-pos="last" class="col-span-1 inline-block mx-0">
               <alert-octagon-icon class="inline-block" /> <span class="hidden md:inline">Report</span>
-            </ButtonComplement>
+            </Button>
           </div>
           <div v-else class="w-full grid grid-cols-1">
-            <ButtonPrimary :action="() => { this.$router.push('/profile/edit') }" class="col-span-1 inline-block mx-0">
+            <Button :action="() => { this.$router.push('/profile/edit') }" class="col-span-1 inline-block mx-0">
               Edit profile
-            </ButtonPrimary>
+            </Button>
           </div>
         </div>
 
@@ -144,8 +144,6 @@
 <script>
 import { MessageSquareIcon, AlertOctagonIcon, CheckCircleIcon, CircleIcon } from 'vue-feather-icons'
 import MarkdownView from '~/components/Widgets/MarkdownView'
-import ButtonPrimary from '~/components/Core/ButtonPrimary'
-import ButtonComplement from '~/components/Core/ButtonComplement'
 import UserControlPanel from '~/components/Widgets/Admin/UserControlPanel'
 
 export default {
@@ -155,8 +153,6 @@ export default {
     MessageSquareIcon,
     AlertOctagonIcon,
     CircleIcon,
-    ButtonComplement,
-    ButtonPrimary,
     UserControlPanel
   },
   data () {

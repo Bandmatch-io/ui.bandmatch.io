@@ -154,7 +154,6 @@ export default {
           this.state = this.states.default
         })
         .catch((e) => {
-          console.log(e)
           this.state = this.states.default
         })
     },
@@ -183,7 +182,9 @@ export default {
             this.$refs.convoInstance.addMessage(res.data.message)
           }
         })
-        .catch(e => console.log(e))
+        .catch((e) => {
+          this.$store.commit('toasts/create', { title: 'Message', message: 'Could not send message.', type: 'error' })
+        })
     },
     otherUser (participants) {
       let user = {}

@@ -12,23 +12,23 @@
           <span v-if="user.searchType === 'Either'">either join or form a band</span>
           <span v-if="user.searchType === 'Recruit'">recruit a member</span>
         </small>
-        <ButtonPrimarySmall :action="() => { sendEdit('type') }" class="float-right">
+        <ButtonSmall :action="() => { sendEdit('type') }" class="float-right">
           <edit-icon size="1.5x" class="inline-block" />
-        </ButtonPrimarySmall>
+        </ButtonSmall>
       </p>
     </div>
     <div class="p-2 border-b-2 shadow-sm relative">
       <MarkdownView :markdown="shortDescription" style="height: 5rem;" class="overflow-y-auto rounded bg-white border-0 shadow-inner" />
-      <ButtonPrimarySmall :action="() => { sendEdit('description') }" class="absolute mr-4 mt-4 top-0 right-0">
+      <ButtonSmall :action="() => { sendEdit('description') }" class="absolute mr-4 mt-4 top-0 right-0">
         <edit-icon size="1.5x" class="inline-block" />
-      </ButtonPrimarySmall>
+      </ButtonSmall>
     </div>
     <div class="p-2">
       <div class="mb-0 flow-root">
         <Badge v-for="genre in user.genres" :key="genre" :val="genre" />
-        <ButtonPrimarySmall :action="() => { sendEdit('genre') }" class="float-right">
+        <ButtonSmall :action="() => { sendEdit('genre') }" class="float-right">
           <edit-icon size="1.5x" class="inline-block" />
-        </ButtonPrimarySmall>
+        </ButtonSmall>
       </div>
       <p v-if="user.searchType === 'Recruit'">
         <small>They are looking for people who play</small>
@@ -37,39 +37,33 @@
       </p>
       <div class="mb-0">
         <Badge v-for="instrument in user.instruments" :key="instrument" :val="instrument" />
-        <ButtonPrimarySmall :action="() => { sendEdit('instrument') }" class="float-right">
+        <ButtonSmall :action="() => { sendEdit('instrument') }" class="float-right">
           <edit-icon size="1.5x" class="inline-block" />
-        </ButtonPrimarySmall>
+        </ButtonSmall>
       </div>
     </div>
     <div class="w-full mb-0 grid grid-cols-5">
-      <ButtonPrimary :action="() => {}" group-pos="first" class="col-span-2 inline-block mx-0 mb-0 mt-0">
+      <Button :action="() => {}" group-pos="first" class="col-span-2 inline-block mx-0 mb-0 mt-0">
         <user-icon class="inline-block" /> Profile
-      </ButtonPrimary>
-      <ButtonPrimary :action="() => {}" group-pos="mid" class="col-span-2 inline-block mx-0 mb-0 mt-0">
+      </Button>
+      <Button :action="() => {}" group-pos="mid" class="col-span-2 inline-block mx-0 mb-0 mt-0">
         <message-square-icon class="inline-block" /> Chat
-      </ButtonPrimary>
-      <ButtonComplement :action="() => {}" group-pos="last" class="col-span-1 inline-block mx-0 mb-0 mt-0">
+      </Button>
+      <Button colour="complementary" :action="() => {}" group-pos="last" class="col-span-1 inline-block mx-0 mb-0 mt-0">
         <alert-octagon-icon class="inline-block" />
-      </ButtonComplement>
+      </Button>
     </div>
   </div>
 </template>
 
 <script>
 import { MessageSquareIcon, UserIcon, AlertOctagonIcon, AwardIcon, EditIcon } from 'vue-feather-icons'
-import ButtonPrimary from '~/components/Core/ButtonPrimary'
-import ButtonPrimarySmall from '~/components/Core/ButtonPrimarySmall'
-import ButtonComplement from '~/components/Core/ButtonComplement'
 import Badge from '~/components/Widgets/Badge'
 import MarkdownView from '~/components/Widgets/MarkdownView'
 
 export default {
   components: {
     AwardIcon,
-    ButtonPrimary,
-    ButtonPrimarySmall,
-    ButtonComplement,
     Badge,
     MessageSquareIcon,
     UserIcon,

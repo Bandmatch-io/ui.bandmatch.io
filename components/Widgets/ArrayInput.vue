@@ -27,7 +27,7 @@ export default {
     Badge
   },
   props: {
-    value: Array
+    value: { type: Array, default () { return [] } }
   },
   data () {
     return {
@@ -45,7 +45,6 @@ export default {
       }
     },
     remove (valueToRemove) {
-      console.log(valueToRemove)
       const clone = this.value.slice()
       const ind = clone.indexOf(valueToRemove)
       if (ind > -1) {

@@ -36,9 +36,9 @@
             </TextError>
           </div>
 
-          <ButtonPrimary v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full my-2">
+          <Button v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full my-2">
             Update password
-          </ButtonPrimary>
+          </Button>
           <div v-else class="block w-1/2 h-12 md:h-24 mx-auto">
             <LoaderAnim />
           </div>
@@ -50,13 +50,11 @@
 
 <script>
 import { KeyIcon } from 'vue-feather-icons'
-import ButtonPrimary from '~/components/Core/ButtonPrimary'
 
 export default {
   auth: false,
   components: {
-    KeyIcon,
-    ButtonPrimary
+    KeyIcon
   },
   data () {
     return {

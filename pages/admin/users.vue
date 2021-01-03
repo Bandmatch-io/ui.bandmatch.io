@@ -8,9 +8,9 @@
         <div v-if="state===states.loading" class="block max-w-350 mx-auto w-full md:w-1/4 h-24 my-3">
           <LoaderAnim />this.colours =
         </div>
-        <ButtonPrimary v-else :action="performSearch" class="block w-full max-w-350 mx-auto my-3">
+        <Button v-else :action="performSearch" class="block w-full max-w-350 mx-auto my-3">
           <search-icon class="block mx-auto" />
-        </ButtonPrimary>
+        </Button>
       </form>
     </div>
 
@@ -37,12 +37,12 @@
           </div>
         </div>
         <div class="col-span-2 md:col-span-1 grid grid-cols-2">
-          <ButtonPrimary class="inline-block col-span-1 h-12" group-pos="first" :action="()=>{ $router.push(`/profile/${user._id}`) }">
+          <Button class="inline-block col-span-1 h-12" group-pos="first" :action="()=>{ $router.push(`/profile/${user._id}`) }">
             Go to profile
-          </ButtonPrimary>
-          <ButtonPrimary class="inline-block col-span-1 h-12" group-pos="last" :disabled="true" :action="()=>{}">
+          </Button>
+          <Button class="inline-block col-span-1 h-12" group-pos="last" :disabled="true" :action="()=>{}">
             Search as user
-          </ButtonPrimary>
+          </Button>
         </div>
       </div>
     </div>
@@ -52,7 +52,6 @@
 <script>
 import { UsersIcon, SearchIcon, MailIcon, AtSignIcon, CheckCircleIcon } from 'vue-feather-icons'
 import TextInput from '~/components/Widgets/TextInput'
-import ButtonPrimary from '~/components/Core/ButtonPrimary'
 import LoaderAnim from '~/components/Core/LoaderAnim'
 
 export default {
@@ -64,8 +63,7 @@ export default {
     UsersIcon,
     MailIcon,
     AtSignIcon,
-    SearchIcon,
-    ButtonPrimary
+    SearchIcon
   },
   data () {
     return {

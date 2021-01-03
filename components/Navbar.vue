@@ -77,7 +77,9 @@ export default {
             this.$store.commit('unread/setUnread', res.data.count)
           }
         })
-        .catch(e => console.log(e))
+        .catch(() => {
+          this.$store.commit('toasts/create', { title: 'Messages', message: 'Could not mark message as read.', type: 'error' })
+        })
     }
   }
 }

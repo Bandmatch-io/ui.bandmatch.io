@@ -58,14 +58,11 @@ export default {
     MarkdownView
   },
   props: {
-    value: String,
-    maxlength: Number,
-    useSend: Boolean,
-    sendAction: Function,
-    rows: {
-      type: Number,
-      default: 12
-    }
+    value: { type: String, default () { return '' } },
+    maxlength: { type: Number, default () { return 1024 } },
+    useSend: { type: Boolean, default () { return false } },
+    sendAction: { type: Function, default () { return () => {} } },
+    rows: { type: Number, default: 12 }
   },
   data () {
     return {
@@ -89,7 +86,6 @@ export default {
       this.$emit('input', '')
     },
     onChange () {
-      console.log(this.markdownInput)
       this.$emit('input', this.markdownInput)
     },
     addHeading () {

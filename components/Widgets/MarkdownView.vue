@@ -8,7 +8,10 @@ import marked from 'marked'
 
 export default {
   props: {
-    markdown: String
+    markdown: {
+      type: String,
+      default () { return '' }
+    }
   },
   data () {
     return {

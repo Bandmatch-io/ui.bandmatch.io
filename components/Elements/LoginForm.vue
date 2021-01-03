@@ -39,9 +39,9 @@
         </p>
       </div>
 
-      <ButtonPrimary v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full my-3">
+      <Button v-if="state===states.default" :action="()=>{}" class="max-w-350 mx-auto w-full my-3">
         Log in
-      </ButtonPrimary>
+      </Button>
       <div v-else class="block w-1/2 h-12 md:h-24 mx-auto">
         <LoaderAnim />
       </div>
@@ -51,7 +51,6 @@
 
 <script>
 import { MailIcon, KeyIcon, LinkIcon } from 'vue-feather-icons'
-import ButtonPrimary from '~/components/Core/ButtonPrimary'
 import TextError from '~/components/Core/TextError'
 import LoaderAnim from '~/components/Core/LoaderAnim'
 
@@ -60,13 +59,12 @@ export default {
     MailIcon,
     KeyIcon,
     LinkIcon,
-    ButtonPrimary,
     TextError,
     LoaderAnim
   },
   props: {
-    switchView: Function,
-    switchToReset: Function
+    switchView: { type: Function, default () { return () => {} } },
+    switchToReset: { type: Function, default () { return () => {} } }
   },
   data () {
     return {
@@ -101,7 +99,6 @@ export default {
           const data = e.response.data
           if (data.error) {
             this.errors = data.error
-            console.log(JSON.stringify(this.errors))
           }
         })
     },

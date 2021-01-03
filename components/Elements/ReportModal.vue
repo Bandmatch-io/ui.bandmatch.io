@@ -23,9 +23,9 @@
           </div>
         </div>
         <div class="border-b p-4">
-          <ButtonComplement v-if="state===states.default" class="w-3/4 mx-auto block" :action="submitReport">
+          <Button v-if="state===states.default" colour="complementary" class="w-3/4 mx-auto block" :action="submitReport">
             <alert-octagon-icon class="inline-block mr-2" />Submit Report
-          </ButtonComplement>
+          </Button>
           <div v-else class="block w-1/2 h-12 md:h-24 mx-auto">
             <LoaderAnim />
           </div>
@@ -37,11 +37,9 @@
 
 <script>
 import { XIcon, AlertOctagonIcon } from 'vue-feather-icons'
-import ButtonComplement from '~/components/Core/ButtonComplement'
 
 export default {
   components: {
-    ButtonComplement,
     AlertOctagonIcon,
     XIcon
   },

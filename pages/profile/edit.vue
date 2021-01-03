@@ -3,12 +3,12 @@
     <div v-if="userStatus === 'success'" class="flex flex-wrap">
       <div class="area">
         <div class="section">
-          <ButtonPrimary :action="() => { $router.push(`${user._id}`) }" group-pos="first" class="col-span-3 inline-block w-full mx-0">
+          <Button :action="() => { $router.push(`${user._id}`) }" group-pos="first" class="col-span-3 inline-block w-full mx-0">
             View public profile
-          </ButtonPrimary>
-          <ButtonTertiary :action="() => { postUserProfile(user) }" group-pos="last" class="col-span-1 inline-block w-full mx-0">
+          </Button>
+          <Button colour="tertiary" :action="() => { postUserProfile(user) }" group-pos="last" class="col-span-1 inline-block w-full mx-0">
             <check-icon v-if="isSaved" class="inline-block" /><loader-icon v-else class="inline-block spin" /> <span class="hidden md:inline">Saved</span>
-          </ButtonTertiary>
+          </Button>
         </div>
 
         <div v-if="user.timestamps" class="section">
@@ -43,9 +43,9 @@
             Password
           </div>
           <div class="col-span-4 md:col-span-3">
-            <ButtonPrimary :action="() => { this.$router.push('/account/changepassword') }" class="w-full mx-auto">
+            <Button :action="() => { this.$router.push('/account/changepassword') }" class="w-full mx-auto">
               <key-icon class="inline-block" /> Update Password
-            </ButtonPrimary>
+            </Button>
           </div>
         </div>
 
@@ -165,9 +165,9 @@
           <h2 class="prose">
             Account Actions
           </h2>
-          <ButtonPrimary :action="fetchAccountData" class="my-1 inline-block w-full mx-0">
+          <Button :action="fetchAccountData" class="my-1 inline-block w-full mx-0">
             <download-icon class="inline-block" /> Download my data
-          </ButtonPrimary>
+          </Button>
           <ConfirmationInput :check-string="user.displayName" class="my-1 inline-block w-full mx-0" @confirm="deleteAccount">
             <trash-2-icon class="inline-block" /> Delete my account
           </ConfirmationInput>
@@ -186,9 +186,6 @@
 
 <script>
 import { AtSignIcon, KeyIcon, LoaderIcon, CheckIcon, DownloadIcon, Trash2Icon, CheckCircleIcon } from 'vue-feather-icons'
-// import { mapMutations } from 'vuex'
-import ButtonPrimary from '~/components/Core/ButtonPrimary'
-import ButtonTertiary from '~/components/Core/ButtonTertiary'
 import MarkdownInput from '~/components/Widgets/MarkdownInput'
 import ConfirmationInput from '~/components/Widgets/ConfirmationInput'
 
@@ -201,8 +198,6 @@ export default {
     CheckCircleIcon,
     DownloadIcon,
     Trash2Icon,
-    ButtonPrimary,
-    ButtonTertiary,
     MarkdownInput,
     ConfirmationInput
   },

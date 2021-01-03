@@ -8,8 +8,8 @@
 
 export default {
   props: {
-    value: Array,
-    height: String
+    value: { type: Array, default () { return [] } },
+    height: { type: String, default () { return '0' } }
   },
   data () {
     return {
@@ -23,7 +23,6 @@ export default {
     value () { // set ignore update to true, to ensure input event is only emitted once
       this.ignoreUpdate = true
       this.map.setCenter(this.value)
-      console.log('setting center', this.value)
     }
   },
   mounted () {

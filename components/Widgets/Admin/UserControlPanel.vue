@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="w-full grid grid-cols-2 my-0">
-      <ButtonComplement :action="clearName" group-pos="first" class="my-1 col-span-1 inline-block mx-0">
+      <Button colour="complementary" :action="clearName" group-pos="first" class="my-1 col-span-1 inline-block mx-0">
         <delete-icon class="inline-block" /> Clear Name
-      </ButtonComplement>
-      <ButtonComplement :action="clearDesc" group-pos="last" class="my-1 col-span-1 inline-block mx-0">
+      </Button>
+      <Button colour="complementary" :action="clearDesc" group-pos="last" class="my-1 col-span-1 inline-block mx-0">
         <delete-icon class="inline-block" /> Clear Description
-      </ButtonComplement>
+      </Button>
     </div>
     <div class="w-full grid grid-cols-1 my-0">
       <ConfirmationInput :check-string="user.displayName" class="my-1 col-span-1 inline-block mx-0" @confirm="deleteUser">
@@ -24,7 +24,6 @@
 
 <script>
 import { AwardIcon, DeleteIcon, Trash2Icon, XSquareIcon } from 'vue-feather-icons'
-import ButtonComplement from '~/components/Core/ButtonComplement'
 import ConfirmationInput from '~/components/Widgets/ConfirmationInput'
 
 export default {
@@ -33,7 +32,6 @@ export default {
     DeleteIcon,
     XSquareIcon,
     Trash2Icon,
-    ButtonComplement,
     ConfirmationInput
   },
   props: {

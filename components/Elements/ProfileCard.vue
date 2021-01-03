@@ -36,31 +36,27 @@
       </div>
     </div>
     <div class="w-full mb-0 grid grid-cols-5">
-      <ButtonPrimary :action="navigateToProfile" group-pos="first" class="col-span-2 inline-block mx-0 mb-0 mt-0">
+      <Button :action="navigateToProfile" group-pos="first" class="col-span-2 inline-block mx-0 mb-0 mt-0">
         <user-icon class="inline-block" /> Profile
-      </ButtonPrimary>
-      <ButtonPrimary :action="startChat" group-pos="mid" class="col-span-2 inline-block mx-0 mb-0 mt-0">
+      </Button>
+      <Button :action="startChat" group-pos="mid" class="col-span-2 inline-block mx-0 mb-0 mt-0">
         <message-square-icon class="inline-block" /> Chat
-      </ButtonPrimary>
-      <ButtonComplement :action="reportUser" group-pos="last" class="col-span-1 inline-block mx-0 mb-0 mt-0">
+      </Button>
+      <Button colour="complementary" :action="reportUser" group-pos="last" class="col-span-1 inline-block mx-0 mb-0 mt-0">
         <alert-octagon-icon class="inline-block" />
-      </ButtonComplement>
+      </Button>
     </div>
   </div>
 </template>
 
 <script>
 import { MessageSquareIcon, UserIcon, AlertOctagonIcon, AwardIcon, EyeIcon } from 'vue-feather-icons'
-import ButtonPrimary from '~/components/Core/ButtonPrimary'
-import ButtonComplement from '~/components/Core/ButtonComplement'
 import Badge from '~/components/Widgets/Badge'
 import MarkdownView from '~/components/Widgets/MarkdownView'
 
 export default {
   components: {
     AwardIcon,
-    ButtonPrimary,
-    ButtonComplement,
     Badge,
     MessageSquareIcon,
     UserIcon,
