@@ -51,5 +51,11 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography')
-  ]
+  ],
+  purge: {
+    // These options are passed through directly to PurgeCSS
+    options: {
+      safelist: ['bg-tertiary-300']
+    }
+  }
 }

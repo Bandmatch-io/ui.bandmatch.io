@@ -78,7 +78,9 @@ export default {
           }
         })
         .catch(() => {
-          this.$store.commit('toasts/create', { title: 'Messages', message: 'Could not mark message as read.', type: 'error' })
+          if (this.$auth.user !== null) {
+            this.$store.commit('toasts/create', { title: 'Messages', message: 'Could not fetch unread message count.', type: 'error' })
+          }
         })
     }
   }

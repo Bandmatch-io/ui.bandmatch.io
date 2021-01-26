@@ -1,7 +1,7 @@
 <template>
   <div style="cursor: pointer;" class="grid grid-cols-12 grid-flow-col" @click="setChecked(!checked)">
     <div class="col-span-2">
-      <div class="rounded shadow checkbox" :data-checked="checked" />
+      <div class="rounded shadow checkbox" :class="{ 'checked': checked }" />
     </div>
     <div class="col-span-10">
       <p class="text-sm">
@@ -57,7 +57,7 @@ export default {
   }
 }
 
-.checkbox[data-checked="true"] {
+.checkbox.checked {
   top: 0;
   left: 0;
   width: 32px;
