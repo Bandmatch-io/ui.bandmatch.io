@@ -64,25 +64,6 @@ export default {
     unreadCount () {
       return this.$store.state.unread.count
     }
-  },
-  mounted () {
-    this.getUnread()
-    setInterval(this.getUnread, 60 * 1000)
-  },
-  methods: {
-    getUnread () {
-      this.$axios.get('/conversations/unread')
-        .then((res) => {
-          if (res.data.success) {
-            this.$store.commit('unread/setUnread', res.data.count)
-          }
-        })
-        .catch(() => {
-          if (this.$auth.user !== null) {
-            this.$store.commit('toasts/create', { title: 'Messages', message: 'Could not fetch unread message count.', type: 'error' })
-          }
-        })
-    }
   }
 }
 </script>

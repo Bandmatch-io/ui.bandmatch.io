@@ -103,6 +103,7 @@ export default {
 
       if (this.activeChat.lastMessage) {
         const msgID = this.activeChat.lastMessage._id
+        this.activeChat.lastMessage.read = true
         this.$axios.patch(`/conversations/read/${msgID}`)
         this.$store.commit('unread/removeUnread')
       }
