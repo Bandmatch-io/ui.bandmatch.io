@@ -1,23 +1,17 @@
-<<<<<<< HEAD
 # Logs
 logs
-=======
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs
 /logs
->>>>>>> 2c1af37a26f49f26ecabada8314ec03e2eff14f1
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-<<<<<<< HEAD
 lerna-debug.log*
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-=======
->>>>>>> 2c1af37a26f49f26ecabada8314ec03e2eff14f1
 
 # Runtime data
 pids
@@ -30,19 +24,12 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
-<<<<<<< HEAD
 *.lcov
-=======
->>>>>>> 2c1af37a26f49f26ecabada8314ec03e2eff14f1
 
 # nyc test coverage
 .nyc_output
 
-<<<<<<< HEAD
-# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
-=======
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
->>>>>>> 2c1af37a26f49f26ecabada8314ec03e2eff14f1
 .grunt
 
 # Bower dependency directory (https://bower.io/)
@@ -61,27 +48,21 @@ jspm_packages/
 # TypeScript v1 declaration files
 typings/
 
-<<<<<<< HEAD
 # TypeScript cache
 *.tsbuildinfo
 
-=======
->>>>>>> 2c1af37a26f49f26ecabada8314ec03e2eff14f1
 # Optional npm cache directory
 .npm
 
 # Optional eslint cache
 .eslintcache
 
-<<<<<<< HEAD
 # Microbundle cache
 .rpt2_cache/
 .rts2_cache_cjs/
 .rts2_cache_es/
 .rts2_cache_umd/
 
-=======
->>>>>>> 2c1af37a26f49f26ecabada8314ec03e2eff14f1
 # Optional REPL history
 .node_repl_history
 
@@ -140,3 +121,5 @@ sw.*
 
 # Vim swap files
 *.swp
+
+static/sw.js
