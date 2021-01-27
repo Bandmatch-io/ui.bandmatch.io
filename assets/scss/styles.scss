@@ -1,0 +1,280 @@
+* {
+  font-family: 'Roboto', 'Open Sans', 'Noto Sans JP', 'Lato', sans-serif;
+}
+.bg-polka {
+  &:after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0.25;
+    background-image: radial-gradient(#196795 20%, transparent 20%),
+        radial-gradient(#3F23A1 20%, transparent 20%);
+    // background-color: #eee;
+    background-position: 0 0, 5px 5px;
+    background-size: 10px 10px;
+  
+    /* transform: skewY(-11deg); */
+    clip-path: ellipse(500px 500px at 90% 90%);
+  }
+}
+
+.min-w-300 {
+  min-width: 300px;
+}
+
+.w-300 {
+  width: 300px;
+}
+
+.w-350 {
+  width: 350px;
+}
+
+.min-w-350 {
+  min-width: 350px;
+}
+
+.min-w-250 {
+  min-width: 250px;
+}
+
+.min-w-125 {
+  min-width: 125px;
+}
+
+.max-w-350 {
+  max-width: 350px;
+}
+
+.max-w-300 {
+  max-width: 300px;
+}
+
+.max-w-250 {
+  max-width: 250px;
+}
+
+.max-w-125 {
+  max-width: 125px;
+}
+
+.text-danger {
+  color: #FF8C00 !important;
+}
+
+.bg-dark-translucent {
+  background: rgba($color: $color-gray-500, $alpha: 0.75)
+}
+
+.bg-primary-grad {
+  background: $color-primary-300;
+  background: $primary-gradient;
+  color: white !important;
+}
+
+.bg-secondary-grad {
+  background: $color-secondary-300;
+  background: $secondary-gradient;
+  color: white !important;
+}
+
+.bg-complementary-grad {
+  background: $color-complement-300;
+  background: $complementary-gradient;
+  color: white !important;
+}
+
+
+.input-group-text {
+  background: $color-primary-300;
+  background: $primary-gradient
+}
+
+.input-group-text.bg-danger {
+  background: $color-complement-300;
+  background: $secondary-gradient
+}
+
+a {
+  min-height: 32px;
+}
+
+.list-group-item-action.active {
+  background: $primary-gradient;
+  color: white;
+}
+
+.dropdown-item:active {
+  background: $primary-gradient !important;
+  background-color: none;
+  color: white;
+}
+
+.stat-card {
+  min-width: 200px;
+  max-width: 300px;
+  margin-bottom: 1rem !important;
+  display: inline-block;
+  margin: auto;
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  /* height: 4rem; */
+  bottom: 0;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+body {
+  position: relative;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 5rem;
+  font-family: 'Roboto', 'Open Sans', 'Noto Sans JP', 'Lato', sans-serif;
+  /* height: 100%; */
+  /* padding-bottom: 2rem; */
+}
+
+.mapboxgl-canvas {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  max-width: 60px;
+  height: 16px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1A1D1F;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: -1px;
+  bottom: -5px;
+  background-color:white;
+  border: 1px solid #1A1D1F;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #28546E;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(37px);
+  -ms-transform: translateX(37px);
+  transform: translateX(37px);
+}
+
+/* Rounded sliders */
+.slider {
+  border-radius: 34px;
+}
+
+.slider:before {
+  border-radius: 50%;
+}
+
+#toast-container {
+  position: fixed;
+  min-height: 200px;
+  bottom: 2rem;
+  z-index: 100000
+}
+
+#toast-pos {
+  position: absolute;
+  bottom: 0;
+  right: 1rem;
+  left: 1rem;
+}
+
+#toast {
+  min-width: 250px;
+  width: 75%;
+  display: block;
+  z-index: 10000;
+}
+
+.btn-bottom, .btn-bottom > a {
+  border: 0;
+  border-radius: 0 !important;
+}
+
+.btn-bottom:first-child {
+  border-bottom-left-radius: 0.25rem !important;
+}
+
+.btn-bottom:last-child, .btn-bottom:last-child > a {
+  border-bottom-right-radius: 0.25rem !important;
+}
+
+.small-description {
+  overflow-y: hidden;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .25s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.fadein-enter-active {
+  transition: opacity .25s;
+}
+
+.fadein-leave-active {
+  transition: opacity 0s;
+}
+
+.fadein-enter, .fadein-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.h-nav {
+  height: 4rem;
+}
+
+.t-nav {
+  top: 4rem;
+}
