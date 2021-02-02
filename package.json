@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@nuxtjs/auth": "^4.9.1",
-    "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/axios": "^5.13.0",
     "@nuxtjs/pwa": "^3.0.2",
     "@tailwindcss/typography": "^0.3.1",
     "autoprefixer": "^10.0.2",
