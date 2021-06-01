@@ -18,6 +18,7 @@
 import { LinkIcon } from 'vue-feather-icons'
 
 export default {
+  auth: false,
   components: {
     LinkIcon
   },

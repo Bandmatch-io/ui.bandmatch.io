@@ -26,6 +26,7 @@
 <script>
 import { AtSignIcon, EyeIcon, MessageSquareIcon } from 'vue-feather-icons'
 export default {
+  auth: false,
   components: {
     AtSignIcon,
     EyeIcon,
