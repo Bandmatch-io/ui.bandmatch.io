@@ -81,7 +81,7 @@ export default {
       e.preventDefault()
       this.resetErrors()
       this.state = this.states.loading
-      this.$axios.patch(`/auth/password/${this.passStr}`, this.passwordDetails)
+      this.$axios.patch(`/auth/password/setnew?token=${this.passStr}`, this.passwordDetails)
         .then((res) => {
           this.state = this.states.default
           if (res.data.success) {
