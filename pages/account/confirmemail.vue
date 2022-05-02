@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     fetchUserDetails () {
-      this.$axios.get(`/users/profile/confirm_token/${this.token}`)
+      this.$axios.get(`/verify/profile?token=${this.token}`)
         .then((res) => {
           this.state = this.states.default
           if (res.data.success) {
@@ -102,7 +102,7 @@ export default {
         })
     },
     sendConfirmUser () {
-      this.$axios.get(`/users/confirm/${this.token}`)
+      this.$axios.post(`/verify/confirm?token=${this.token}`)
         .then((res) => {
           this.state = this.states.default
           if (res.data.success) {

@@ -104,7 +104,7 @@ export default {
       if (this.activeChat.lastMessage) {
         const msgID = this.activeChat.lastMessage._id
         this.activeChat.lastMessage.read = true
-        this.$axios.patch(`/conversations/read/${msgID}`)
+        this.$axios.patch(`/msgs/read?mid=${msgID}`)
         this.$store.commit('unread/removeUnread')
       }
 
@@ -121,7 +121,7 @@ export default {
           }
         })
 
-        this.$axios.get(`/users/profile/${this.newChat.recipientID}`)
+        this.$axios.get(`/users/profile?uid=${this.newChat.recipientID}`)
           .then((res) => {
             if (res.data.success) {
               this.newChat.otherUser = res.data.user
@@ -139,7 +139,7 @@ export default {
       this.$store.commit('convo/clearNewMessage')
     },
     getAllChats (done) {
-      this.$axios.get('/conversations/')
+      this.$axios.get('/convos/list')
         .then((res) => {
           if (res.data.success) {
             this.conversations = res.data.conversations
@@ -163,7 +163,7 @@ export default {
         recipientID: convo.otherUser._id,
         messageContent: content
       }
-      this.$axios.post('/conversations/message', body)
+      this.$axios.post('/msgs/send', body)
         .then((res) => {
           if (res.data.success) {
             res.data.conversation.otherUser = this.otherUser(res.data.conversation.participants)

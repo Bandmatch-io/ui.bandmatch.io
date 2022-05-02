@@ -29,9 +29,9 @@
             <p>Email</p>
           </div>
           <div class="col-span-4 md:col-span-3">
-            <p><check-circle-icon v-if="user.emailVerified" class="inline-block mr-1 text-primary-300" />{{ user.email }}</p>
+            <p><check-circle-icon v-if="user.emailConfirmed" class="inline-block mr-1 text-primary-300" />{{ user.email }}</p>
           </div>
-          <div v-if="!user.emailVerified" class="col-span-4 text-center">
+          <div v-if="!user.emailConfirmed" class="col-span-4 text-center">
             <a class="inline-block clickable underline text-primary-300 hover:text-primary-100" @click="resendEmailVerification">
               Resend email verification
             </a>
@@ -71,7 +71,7 @@
             <p><small>You will still be able to send and receive messages.</small></p>
           </div>
           <div class="col-span-4 md:col-span-3">
-            <CustomSelect @change="user.active=$event.target.value">
+            <CustomSelect @change="user.active=JSON.parse($event.target.value)">
               <option :selected="user.active" value="true">
                 Show me in searches
               </option>
@@ -249,7 +249,7 @@ export default {
     postUserProfile (newUser) {
       this.isSaved = false
 
-      this.$axios.$patch('/users/profile', newUser)
+      this.$axios.$patch('/users/update', newUser)
         .then((data) => {
           if (data.success) {
             this.$auth.setUser(data.user)
@@ -269,7 +269,7 @@ export default {
         })
     },
     resendEmailVerification () {
-      this.$axios.get('/users/confirm/resend')
+      this.$axios.post('/verify/resend')
         .then((res) => {
           if (res.data.success) {
             this.$store.commit('toasts/create', { title: 'Account', message: 'Resent email verification' })
@@ -280,7 +280,7 @@ export default {
         })
     },
     deleteAccount () {
-      this.$axios.delete('/users')
+      this.$axios.delete('/users/')
         .then((res) => {
           if (res.data.success) {
             this.$auth.logout({ makeRequest: false })

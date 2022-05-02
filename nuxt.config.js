@@ -69,7 +69,7 @@ export default {
         endpoints: {
           login: { url: '/auth/', method: 'post', propertyName: 'token.token' },
           logout: { url: '/auth/logout', method: 'post' },
-          user: { url: '/users/profile', method: 'get', propertyName: 'user' }
+          user: { url: '/users/profile/self', method: 'get', propertyName: 'user' }
         }
         // tokenRequired: true,
         // tokenType: 'bearer',

@@ -73,13 +73,13 @@ export default {
   },
   methods: {
     fetchConversation (id) {
-      if (id === undefined) {
+      if (id === undefined || id === '') {
         this.messages = []
         this.state = this.states.default
         return
       }
       this.state = this.states.loading
-      this.$axios.get(`/conversations/${id}`)
+      this.$axios.get(`/convos/?cid=${id}`)
         .then((res) => {
           this.state = this.states.default
 

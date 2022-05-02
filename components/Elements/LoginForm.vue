@@ -96,6 +96,7 @@ export default {
         })
         .catch((e) => {
           this.state = this.states.default
+          console.log(e)
           const data = e.response.data
           if (data.error) {
             this.errors = data.error
