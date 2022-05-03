@@ -36,16 +36,13 @@
           <p v-if="report.reportedUser">
             {{ report.reportedUser.displayName }}
           </p>
-          <p v-if="report.reportedConversation">
-            {{ report.reportedConversation.participants[0] }}
-          </p>
           <p>{{ reasons[report.reason] }}</p>
         </div>
         <div class="border-b shadow-sm p-3">
           <p v-if="report.reportedUser">
-            <ButtonPrimary :action="()=>{ $router.push(`/profile/${report.reportedUser._id}`)}">
+            <Button :action="()=>{ $router.push(`/profile/${report.reportedUser}`)}">
               <eye-icon class="inline-block mr-1" />View Profile
-            </ButtonPrimary>
+            </Button>
           </p>
         </div>
       </div>
@@ -121,7 +118,7 @@ export default {
       return this.filters.includes(f)
     },
     closeReport (id) {
-      this.$axios.delete(`/admin/reports/${id}`)
+      this.$axios.delete(`/admin/reports/delete?id=${id}`)
         .then((res) => {
           if (res.data.success) {
             this.reports = this.reports.filter(r => r._id !== id)

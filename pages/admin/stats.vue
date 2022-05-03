@@ -8,37 +8,37 @@
     <div class="flex-container justify-center flex flex-wrap">
       <DashboardCard title="Searches" link="">
         <h1 class="my-1 text-2xl">
-          {{ dailyStats.stats.searches }}
+          {{  dailyStats.stats.searches ? dailyStats.stats.searches : 0 }}
         </h1>
       </DashboardCard>
       <DashboardCard title="Messages Sent" link="">
         <h1 class="my-1 text-2xl">
-          {{ dailyStats.stats.messagesSent }}
+          {{  dailyStats.stats.messagesSent ? dailyStats.stats.messagesSent : 0 }}
         </h1>
       </DashboardCard>
       <DashboardCard title="Returning Users" link="">
         <h1 class="my-1 text-2xl">
-          {{ dailyStats.stats.logins }}
+          {{  dailyStats.stats.logins ? dailyStats.stats.logins : 0 }}
         </h1>
       </DashboardCard>
-      <DashboardCard title="New Users" link="">
+      <DashboardCard title="New Users" link="/admin/users">
         <h1 class="my-1 text-2xl">
-          {{ dailyStats.stats.signups }}
+          {{  dailyStats.stats.signups ? dailyStats.stats.signups : 0 }}
         </h1>
       </DashboardCard>
-      <DashboardCard title="Root Views" link="">
+      <DashboardCard title="Reports" link="/admin/reports">
         <h1 class="my-1 text-2xl">
-          {{ dailyStats.stats.rootViews }}
+          {{  dailyStats.stats.reports ? dailyStats.stats.reports : 0 }}
         </h1>
       </DashboardCard>
-      <DashboardCard title="Rejections" link="">
+      <DashboardCard title="Internal errors" link="/admin/health">
         <h1 class="my-1 text-2xl">
-          {{ dailyStats.stats.rejections }}
+          {{  dailyStats.stats.serverErrors ? dailyStats.stats.serverErrors : 0 }}
         </h1>
       </DashboardCard>
-      <DashboardCard title="Conversion Rate" link="">
+      <DashboardCard title="User errors" link="">
         <h1 class="my-1 text-2xl">
-          {{ dailyStats.stats.conversionRate === null ? '0' : dailyStats.stats.conversionRate }}%
+          {{ dailyStats.stats.userErrors ? dailyStats.stats.userErrors : 0 }}
         </h1>
       </DashboardCard>
     </div>
@@ -150,7 +150,7 @@ export default {
 
         let foundData = false
         data.forEach((stat) => {
-          if (this.matchingDates(date, stat.date)) {
+          if (this.matchingDates(date, stat.Date)) {
             compiled.searches.push(stat.searches)
             compiled.messages.push(stat.messagesSent)
             compiled.signups.push(stat.signups)
@@ -167,7 +167,7 @@ export default {
 
         date.setDate(date.getDate() + 1)
       }
-      // console.log(this.chartData)
+      console.log(compiled)
       return compiled
     },
     matchingDates (date, statDate) {
@@ -176,7 +176,7 @@ export default {
       const nDate = new Date(statDate)
       const [y1, m1, d1] = [nDate.getYear(), nDate.getMonth(), nDate.getDate()]
 
-      // console.log({ y: y, m: m, d: d }, { y: y1, m: m1, d: d1 })
+      // console.log({ y, m, d }, { y: y1, m: m1, d: d1 })
 
       return (y === y1 && m === m1 && d === d1)
     }

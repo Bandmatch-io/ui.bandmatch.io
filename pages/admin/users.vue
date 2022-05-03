@@ -79,7 +79,7 @@ export default {
   methods: {
     performSearch () {
       this.state = this.states.loading
-      this.$axios.get(`/admin/users?q=${this.query}`)
+      this.$axios.get(`/admin/users/search?q=${this.query}`)
         .then((res) => {
           this.state = this.states.default
           if (res.data.success) {
