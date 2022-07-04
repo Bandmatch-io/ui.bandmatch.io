@@ -31,14 +31,18 @@
         </div>
       </div>
     </div>
-    <div v-else class="w-1/2 md:w-1/4 mx-auto h-24 my-8">
+    <div v-else-if="state===states.loading" class="w-1/2 md:w-1/4 mx-auto h-24 my-8">
       <LoaderAnim />
+    </div>
+    <div v-else class="w-full text-center h-24 my-8">
+      <alert-octagon-icon size="5x" class="block mx-auto"/>
+      <p>Could not find conversation</p>
     </div>
   </div>
 </template>
 
 <script>
-import { CircleIcon, CheckCircleIcon } from 'vue-feather-icons'
+import { CircleIcon, CheckCircleIcon, AlertOctagonIcon } from 'vue-feather-icons'
 import MarkdownView from '~/components/Widgets/MarkdownView'
 import LoaderAnim from '~/components/Core/LoaderAnim'
 
@@ -47,7 +51,8 @@ export default {
     MarkdownView,
     LoaderAnim,
     CircleIcon,
-    CheckCircleIcon
+    CheckCircleIcon,
+    AlertOctagonIcon
   },
   props: {
     convoId: { type: String, default () { return '' } }
