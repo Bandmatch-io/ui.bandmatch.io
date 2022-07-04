@@ -1,5 +1,5 @@
 <template>
-  <div ref="container" class="overflow-y-auto">
+  <div ref="container" class="overflow-y-scroll">
     <div v-if="state===states.default">
       <div v-for="msg in messages" :key="msg._id" class="w-full flow-root">
         <div class="m-3 w-3/4 max-w-350" :class="{ 'float-right': amSender(msg.sender), 'float-left': !amSender(msg.sender) }">
@@ -59,7 +59,7 @@ export default {
         default: 1,
         error: 2
       },
-      state: 0,
+      state: 1,
       messages: []
     }
   },
@@ -75,7 +75,7 @@ export default {
     fetchConversation (id) {
       if (id === undefined || id === '') {
         this.messages = []
-        this.state = this.states.default
+        this.state = this.states.error
         return
       }
       this.state = this.states.loading
@@ -86,6 +86,7 @@ export default {
           if (res.data.success) {
             this.messages = res.data.messages
             this.scrollToBottom()
+            this.checkRead()
           } else {
             this.messages = []
           }
@@ -94,6 +95,15 @@ export default {
           this.state = this.states.error
           this.messages = []
         })
+    },
+    checkRead () {
+      const lastMSG = this.messages[this.messages.length - 1]
+      if (lastMSG && !this.amSender(lastMSG.sender)) {
+        const msgID = lastMSG._id
+        lastMSG.read = true
+        this.$axios.patch(`/msgs/read?mid=${msgID}`)
+        this.$store.commit('unread/removeUnread')
+      }
     },
     amSender (sender) {
       return sender._id === this.$auth.user._id

@@ -19,7 +19,7 @@
               <div class="col-span-1 rounded-tl border-r py-2 bg-primary-grad text-white">
                 <mail-icon class="block mx-auto" />
               </div>
-              <div class="col-span-3 px-3 py-2">
+              <div class="col-span-3 text-sm md:text-md px-1 md:px-3 py-2">
                 {{ fetchedUser.email }}
               </div>
             </div>

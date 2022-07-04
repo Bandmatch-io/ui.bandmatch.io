@@ -36,7 +36,7 @@ export default {
     }
 
     this.getUnread()
-    setInterval(this.getUnread, 60 * 1000)
+    // setInterval(this.getUnread, 60 * 1000)
   },
   methods: {
     getUnread () {
