@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     clearName () {
-      this.$axios.delete(`/admin/users/${this.user._id}/displayname`)
+      this.$axios.delete(`/admin/users/name?uid=${this.user._id}`)
         .then((res) => {
           if (res.data.success) {
             this.$store.commit('toasts/create', { title: 'Admin | User', message: `Cleared ${this.user.displayName}'s name` })
@@ -48,7 +48,7 @@ export default {
         })
     },
     clearDesc () {
-      this.$axios.delete(`/admin/users/${this.user._id}/description`)
+      this.$axios.delete(`/admin/users/description?uid=${this.user._id}`)
         .then((res) => {
           if (res.data.success) {
             this.$store.commit('toasts/create', { title: 'Admin | User', message: `Cleared ${this.user.displayName}'s description` })
@@ -57,7 +57,7 @@ export default {
         })
     },
     deleteUser () {
-      this.$axios.delete(`/admin/users/${this.user._id}`)
+      this.$axios.delete(`/admin/users?uid=${this.user._id}`)
         .then((res) => {
           if (res.data.success) {
             this.$store.commit('toasts/create', { title: 'Admin | User', message: `Deleted ${this.user.displayName}` })
@@ -66,7 +66,7 @@ export default {
         })
     },
     demoteUser () {
-      this.$axios.patch(`/admin/users/${this.user._id}/demote`)
+      this.$axios.patch(`/admin/users/demote?uid=${this.user._id}`)
         .then((res) => {
           if (res.data.success) {
             this.$store.commit('toasts/create', { title: 'Admin | User', message: `Demoted ${this.user.displayName}` })
@@ -75,7 +75,7 @@ export default {
         })
     },
     promoteUser () {
-      this.$axios.patch(`/admin/users/${this.user._id}/promote`)
+      this.$axios.patch(`/admin/users/promote?uid=${this.user._id}`)
         .then((res) => {
           if (res.data.success) {
             this.$store.commit('toasts/create', { title: 'Admin | User', message: `Promoted ${this.user.displayName}` })

@@ -44,7 +44,7 @@ export default {
   methods: {
     loadMatches () {
       this.state = this.states.loading
-      this.$axios.get('/search')
+      this.$axios.get('/search/')
         .then((res) => {
           this.state = this.states.default
           if (res.data.success) {

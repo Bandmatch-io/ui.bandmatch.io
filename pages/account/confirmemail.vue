@@ -19,7 +19,7 @@
               <div class="col-span-1 rounded-tl border-r py-2 bg-primary-grad text-white">
                 <mail-icon class="block mx-auto" />
               </div>
-              <div class="col-span-3 px-3 py-2">
+              <div class="col-span-3 text-sm md:text-md px-1 md:px-3 py-2">
                 {{ fetchedUser.email }}
               </div>
             </div>
@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     fetchUserDetails () {
-      this.$axios.get(`/users/profile/confirm_token/${this.token}`)
+      this.$axios.get(`/verify/profile?token=${this.token}`)
         .then((res) => {
           this.state = this.states.default
           if (res.data.success) {
@@ -102,7 +102,7 @@ export default {
         })
     },
     sendConfirmUser () {
-      this.$axios.get(`/users/confirm/${this.token}`)
+      this.$axios.post(`/verify/confirm?token=${this.token}`)
         .then((res) => {
           this.state = this.states.default
           if (res.data.success) {

@@ -2,11 +2,11 @@
   <div class="block md:inline-block w-300 rounded shadow mx-auto md:mx-5 my-5 bg-gray-100">
     <div class="p-3 border-b-2 shadow-sm rounded-t">
       <div class="mb-0 grid grid-cols-2">
-        <h3 class="col-span-1">
+        <h3 class="col-span-1 overflow-x-hidden">
           <award-icon v-if="user.admin" class="inline-block text-secondary-300" />{{ user.displayName }}
         </h3>
-        <small class="col-span-1">
-          <eye-icon size="1x" class="inline-block mr-1 text-secondary-300" /><timeago :datetime="user.timestamps.last_login" class="mr-1" />
+        <small class="col-span-1 text-right">
+          <eye-icon size="1x" class="inline-block mr-1 text-secondary-300" /><timeago :datetime="user.timestamps.last_login" class="ml-auto mr-1" />
         </small>
       </div>
       <p class="mt-0 text-black">
@@ -35,7 +35,7 @@
         <Badge v-for="instrument in user.instruments" :key="instrument" :val="instrument" />
       </div>
     </div>
-    <div class="w-full mb-0 grid grid-cols-5">
+    <div class="w-full mb-0 grid grid-cols-5" v-if="showControls">
       <Button :action="navigateToProfile" group-pos="first" class="col-span-2 inline-block mx-0 mb-0 mt-0">
         <user-icon class="inline-block" /> Profile
       </Button>
@@ -77,6 +77,12 @@ export default {
           searchType: 'Join',
           admin: false
         }
+      }
+    },
+    showControls: {
+      type: Boolean,
+      default () {
+        return true
       }
     }
   },

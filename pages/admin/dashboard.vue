@@ -12,14 +12,14 @@
     <DashboardCard title="Locations" link="/admin/locations">
       <map-icon size="4x" class="block mx-auto" />
     </DashboardCard>
-    <DashboardCard title="Referrals" link="/admin/referrals">
-      <navigation-icon size="4x" class="block mx-auto" />
+    <DashboardCard title="Micro Service Health" link="/admin/health">
+      <heart-icon size="4x" class="block mx-auto" />
     </DashboardCard>
   </div>
 </template>
 
 <script>
-import { TrendingUpIcon, AlertOctagonIcon, UserIcon, MapIcon, NavigationIcon } from 'vue-feather-icons'
+import { TrendingUpIcon, AlertOctagonIcon, UserIcon, MapIcon, HeartIcon } from 'vue-feather-icons'
 import DashboardCard from '~/components/Widgets/Admin/DashboardCard'
 export default {
   middleware: 'isadmin',
@@ -29,7 +29,7 @@ export default {
     AlertOctagonIcon,
     UserIcon,
     MapIcon,
-    NavigationIcon
+    HeartIcon
   }
 }
 </script>

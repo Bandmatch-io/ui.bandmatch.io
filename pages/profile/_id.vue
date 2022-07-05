@@ -188,7 +188,7 @@ export default {
     }
   },
   mounted () {
-    this.$axios.get('/users/profile/' + this.$route.params.id)
+    this.$axios.get('/users/profile?uid=' + this.$route.params.id)
       .then((res) => {
         if (res.data.success) {
           this.user = res.data.user
@@ -202,7 +202,7 @@ export default {
   },
   methods: {
     refreshUser () {
-      this.$axios.get(`/users/profile/${this.user._id}`)
+      this.$axios.get(`/users/profile?uid=${this.user._id}`)
         .then((res) => {
           if (res.data.success) {
             this.user = res.data.user

@@ -13,10 +13,13 @@
         <TextInput v-model="userInformation.email" type="email" placeholder="you@youremail.com" label="Email" autofill="email">
           <mail-icon class="block mx-auto" />
         </TextInput>
-        <TextError v-if="errors.email && errors.email.inUse">
+        <TextError v-if="errors.user && errors.user.exists">
           Email is already in use
         </TextError>
         <TextError v-if="errors.email && errors.email.invalid">
+          Email is invalid
+        </TextError>
+        <TextError v-if="errors.email && errors.email.missing">
           Email is invalid
         </TextError>
         <p class="mb-5">
@@ -128,6 +131,9 @@ export default {
         password: {
           mismatch: false,
           invalid: false
+        },
+        user: {
+          exists: false
         }
       }
     }

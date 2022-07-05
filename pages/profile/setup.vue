@@ -175,7 +175,7 @@ export default {
         searchType: '',
         genres: [],
         instruments: [],
-        searchLocation: { coordinates: [0, 0] },
+        searchLocation: { coordinates: [0.1278, 51.5074] },
         searchRadius: 0,
         description: ''
       }
@@ -186,7 +186,7 @@ export default {
   },
   methods: {
     saveAndFinish () {
-      this.$axios.$patch('/users/profile', this.user)
+      this.$axios.$patch('/users/update', this.user)
         .then((data) => {
           if (data.success) {
             this.$auth.setUser(data.user)

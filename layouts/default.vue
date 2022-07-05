@@ -36,11 +36,11 @@ export default {
     }
 
     this.getUnread()
-    setInterval(this.getUnread, 60 * 1000)
+    // setInterval(this.getUnread, 60 * 1000)
   },
   methods: {
     getUnread () {
-      this.$axios.get('/conversations/unread')
+      this.$axios.get('/msgs/unread')
         .then((res) => {
           if (res.data.success) {
             this.$store.commit('unread/setUnread', res.data.count)

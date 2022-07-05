@@ -73,7 +73,7 @@ export default {
       e.preventDefault()
       this.resetErrors()
       this.state = this.states.loading
-      this.$axios.patch('/users/password/request', this.resetDetails)
+      this.$axios.patch(`/auth/password/request?email=${this.resetDetails.email}`)
         .then((res) => {
           if (res.data.success) {
             this.state = this.states.success
