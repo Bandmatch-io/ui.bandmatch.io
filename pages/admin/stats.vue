@@ -167,7 +167,6 @@ export default {
 
         date.setDate(date.getDate() + 1)
       }
-      console.log(compiled)
       return compiled
     },
     matchingDates (date, statDate) {
@@ -175,8 +174,6 @@ export default {
 
       const nDate = new Date(statDate)
       const [y1, m1, d1] = [nDate.getYear(), nDate.getMonth(), nDate.getDate()]
-
-      // console.log({ y, m, d }, { y: y1, m: m1, d: d1 })
 
       return (y === y1 && m === m1 && d === d1)
     }

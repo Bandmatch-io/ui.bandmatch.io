@@ -82,7 +82,6 @@ export default {
           }
         })
         .catch((e) => {
-          console.log(e)
           this.$store.commit('toasts/create', { title: 'Message', message: 'Could not send message.', type: 'error' })
         })
     },
