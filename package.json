@@ -18,7 +18,7 @@
     "autoprefixer": "^10.0.2",
     "axios": "^0.21.1",
     "chart.js": "^2.9.4",
-    "core-js": "^3.6.5",
+    "core-js": "^3.23.4",
     "dompurify": "^2.1.1",
     "feather-icons": "^4.28.0",
     "mapbox-gl": "^1.12.0",
