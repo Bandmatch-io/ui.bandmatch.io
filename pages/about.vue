@@ -21,6 +21,7 @@ export default {
   components: {
     LinkIcon
   },
+  auth: false,
   head () {
     return {
       title: 'About Us | Bandmatch',
