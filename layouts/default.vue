@@ -36,6 +36,12 @@ export default {
       this.$axios.post(`/ref?r=${this.$route.query.ref}`)
     }
 
+    if (this.$route.query.mk) {
+      if (this.$auth.user !== null) {
+        this.$store.commit('notifications/open')
+      }
+    }
+
     this.getUnread()
     // setInterval(this.getUnread, 60 * 1000)
   },
