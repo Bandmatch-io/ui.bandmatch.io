@@ -27,7 +27,7 @@
       </div>
     </div>
     <div v-else-if="!isLoginPage">
-      <nuxt-link to="/account" class="inline-block text-l px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+      <nuxt-link to="/account" class="inline-block text-l px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white lg:mt-0">
         <user-icon class="inline-block" /> <span class="hidden md:inline-block">Log in</span>
       </nuxt-link>
     </div>

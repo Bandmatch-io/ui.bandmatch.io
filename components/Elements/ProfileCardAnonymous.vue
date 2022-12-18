@@ -1,12 +1,14 @@
 <template>
   <div class="w-300 rounded shadow bg-gray-100">
     <div class="p-3 border-b-2 shadow-sm rounded-t">
-      <div class="mb-0 grid grid-cols-2">
-        <h3 class="col-span-1 overflow-x-hidden">
+      <div class="mb-0 grid grid-cols-4">
+        <h3 class="col-span-3 overflow-x-hidden">
           <award-icon v-if="user.admin" class="inline-block text-secondary-300" />{{ user.displayName }}
         </h3>
-        <small class="col-span-1 text-right">
-          <eye-icon size="1x" class="inline-block mr-1 text-secondary-300" /><timeago :datetime="user.timestamps.last_login" class="ml-auto mr-1" />
+        <small class="col-span-1 text-right" @click="close">
+          <div class="p-1 border bg-secondary-300 text-white hover:bg-secondary-400 rounded cursor-pointer">
+            Close<x-icon size="1x" class="inline-block mr-1 text-white"/>
+          </div>
         </small>
       </div>
       <p class="mt-0 text-black">
@@ -36,10 +38,10 @@
       </div>
     </div>
     <div class="w-full mb-0 grid grid-cols-5" v-if="showControls">
-      <Button :action="navigateToProfile" group-pos="first" class="col-span-2 inline-block mx-0 mb-0 mt-0">
+      <Button :action="endAnonymousSession" group-pos="first" class="col-span-2 inline-block mx-0 mb-0 mt-0">
         <user-icon class="inline-block" /> Profile
       </Button>
-      <Button :action="startChat" group-pos="mid" class="col-span-2 inline-block mx-0 mb-0 mt-0">
+      <Button :action="endAnonymousSession" group-pos="mid" class="col-span-2 inline-block mx-0 mb-0 mt-0">
         <message-square-icon class="inline-block" /> Chat
       </Button>
       <Button colour="complementary" :action="reportUser" group-pos="last" class="col-span-1 inline-block mx-0 mb-0 mt-0">
@@ -50,7 +52,7 @@
 </template>
 
 <script>
-import { MessageSquareIcon, UserIcon, AlertOctagonIcon, AwardIcon, EyeIcon } from 'vue-feather-icons'
+import { MessageSquareIcon, UserIcon, AlertOctagonIcon, AwardIcon, XIcon } from 'vue-feather-icons'
 import Badge from '~/components/Widgets/Badge'
 import MarkdownView from '~/components/Widgets/MarkdownView'
 
@@ -62,7 +64,7 @@ export default {
     UserIcon,
     AlertOctagonIcon,
     MarkdownView,
-    EyeIcon
+    XIcon
   },
   props: {
     user: {
@@ -95,12 +97,11 @@ export default {
     }
   },
   methods: {
-    navigateToProfile () {
-      this.$router.push(`/profile/${this.user._id}`)
+    close () {
+      this.$emit('closed')
     },
-    startChat () {
-      this.$store.commit('convo/setNewMessage', this.user._id, '')
-      this.$router.push('/conversations')
+    endAnonymousSession () {
+      this.$router.push('/account')
     },
     reportUser () {
       this.$store.commit('reports/startReport', { id: this.user._id, type: 'User' })

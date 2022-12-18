@@ -34,6 +34,13 @@ export default {
       state: 0
     }
   },
+  mounted () {
+    if (this.$route.query.st) {
+      if (this.states[this.$route.query.st] !== undefined) {
+        this.state = this.states[this.$route.query.st]
+      }
+    }
+  },
   head () {
     return {
       title: 'Sign up | Bandmatch',
