@@ -73,7 +73,7 @@
       </div>
 
       <div class="max-w-350 block mx-auto">
-        <Checkbox v-model="userInformation.agreement">
+        <Checkbox v-model="userInformation.allowMarketing">
           Opt-in for email communications about BandMatch.io and it's products?
         </Checkbox>
       </div>
@@ -115,10 +115,14 @@ export default {
         name: '',
         password: '',
         confirmPassword: '',
-        agreement: false
+        agreement: false,
+        allowMarketing: false
       },
       errors: {
         consent: {
+          missing: false
+        },
+        marketing: {
           missing: false
         },
         email: {

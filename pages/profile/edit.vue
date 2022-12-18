@@ -51,6 +51,17 @@
 
         <div class="section">
           <div class="col-span-4 md:col-span-1">
+            Notification Settings
+          </div>
+          <div class="col-span-4 md:col-span-3">
+            <Button :action="openNotificationSettings" class="w-full mx-auto">
+              <bell-icon class="inline-block" /> Open Settings
+            </Button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Display Name
             </p>
@@ -185,7 +196,7 @@
 </template>
 
 <script>
-import { AtSignIcon, KeyIcon, LoaderIcon, CheckIcon, DownloadIcon, Trash2Icon, CheckCircleIcon } from 'vue-feather-icons'
+import { AtSignIcon, KeyIcon, LoaderIcon, CheckIcon, DownloadIcon, Trash2Icon, CheckCircleIcon, BellIcon } from 'vue-feather-icons'
 import MarkdownInput from '~/components/Widgets/MarkdownInput'
 import ConfirmationInput from '~/components/Widgets/ConfirmationInput'
 
@@ -199,7 +210,8 @@ export default {
     DownloadIcon,
     Trash2Icon,
     MarkdownInput,
-    ConfirmationInput
+    ConfirmationInput,
+    BellIcon
   },
   data () {
     return {
@@ -214,7 +226,8 @@ export default {
         active: false,
         description: ''
       },
-      isSaved: true
+      isSaved: true,
+      notifSettingsOpen: false
     }
   },
   computed: {
@@ -293,6 +306,9 @@ export default {
         .catch((e) => {
           this.$store.commit('toasts/create', { title: 'User', message: 'Failed to delete account', type: 'error' })
         })
+    },
+    openNotificationSettings () {
+      this.$store.commit('notifications/open')
     }
   },
   head () {

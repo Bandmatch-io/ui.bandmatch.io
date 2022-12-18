@@ -17,6 +17,9 @@
         <nuxt-link v-if="adminOptions === true" to="/admin/dashboard" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white" @click.native="isOpen = false">
           <grid-icon class="inline-block mr-1" />Admin dashboard
         </nuxt-link>
+        <div @click="openNotificationSettings" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white" @click.native="isOpen = false">
+          <bell-icon class="inline-block mr-1" />Notifications
+        </div>
         <a href="#" class="text-gray-500 block px-4 py-2 bg-primary-grad-hov hover:text-white" @click="removeLogin">
           <log-out-icon class="inline-block mr-1" />Sign out
         </a>
@@ -26,7 +29,7 @@
 </template>
 
 <script>
-import { UserIcon, ChevronDownIcon, AwardIcon, GridIcon, LogOutIcon } from 'vue-feather-icons'
+import { UserIcon, ChevronDownIcon, AwardIcon, GridIcon, LogOutIcon, BellIcon } from 'vue-feather-icons'
 
 export default {
   components: {
@@ -34,7 +37,8 @@ export default {
     GridIcon,
     ChevronDownIcon,
     AwardIcon,
-    LogOutIcon
+    LogOutIcon,
+    BellIcon
   },
   props: {
     adminOptions: Boolean
@@ -67,6 +71,10 @@ export default {
           this.$router.push('/account')
           this.$store.commit('toasts/create', { title: 'User', message: 'Logged out' })
         })
+    },
+    openNotificationSettings () {
+      this.isOpen = false
+      this.$store.commit('notifications/open')
     }
   }
 }

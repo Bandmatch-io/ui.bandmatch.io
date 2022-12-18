@@ -7,6 +7,7 @@
     </div>
     <Toast />
     <ReportModal />
+    <NotificationSettingsModal />
   </div>
 </template>
 
@@ -19,7 +20,7 @@ export default {
   },
   computed: {
     bodyClass () {
-      if (this.$store.state.reports.active) {
+      if (this.$store.state.reports.active || this.$store.state.notifications.active) {
         return 'overflow-y-hidden h-screen'
       }
       return ''
