@@ -15,7 +15,8 @@
     </div>
 
     <div class="w-3/4 mx-auto block">
-      <div v-for="user in users" :key="user._id" class="border rounded shadow p-3 m-3 bg-white flow-root grid grid-cols-2">
+      <small>{{ allUsers.length }} users</small>
+      <div v-for="user in pages[currentPage]" :key="user._id" class="border rounded shadow p-3 m-3 bg-white flow-root grid grid-cols-2">
         <div class="col-span-2 md:col-span-1">
           <p class="my-1">
             <mail-icon class="inline-block mr-1" /><check-circle-icon v-if="user.emailConfirmed" class="inline-block mr-1 text-primary-300" />{{ user.email }}
@@ -45,6 +46,23 @@
           </Button>
         </div>
       </div>
+      <div v-if="pages.length > 1" class="mb-4 grid grid-flow-col grid-rows-1 grid-cols-max centent-center">
+        <Button class="inline-block h-12 mr-0 col-span-2" group-pos="first" colour="secondary" :action="()=>{ setPage(0) }">
+          First
+        </Button>
+        <Button
+          v-for="(item, index) in pages"
+          :key="index"
+          :disabled="currentPage===index"
+          class="inline-block h-12 mx-0 col-span-1"
+          group-pos="mid"
+          :action="()=>{ setPage(index) }">
+          {{ index }}
+        </Button>
+        <Button class="inline-block h-12 ml-0 col-span-2" group-pos="last" colour="secondary" :action="()=>{ setPage(pages.length-1) }">
+          Last
+        </Button>
+      </div>
     </div>
   </div>
 </template>
@@ -73,17 +91,28 @@ export default {
       },
       state: 0,
       query: '',
-      users: []
+      allUsers: [],
+      pages: [],
+      currentPage: 0,
+      pageSize: 25
     }
   },
   methods: {
+    setPage (p) {
+      this.currentPage = p
+    },
     performSearch () {
       this.state = this.states.loading
+      this.pages = []
       this.$axios.get(`/admin/users/search?q=${this.query}`)
         .then((res) => {
           this.state = this.states.default
           if (res.data.success) {
-            this.users = res.data.users
+            this.allUsers = res.data.users
+            for (let i = 0; i < this.allUsers.length; i += this.pageSize) {
+              const page = this.allUsers.slice(i, i + this.pageSize)
+              this.pages.push(page)
+            }
           }
         })
         .catch((e) => {

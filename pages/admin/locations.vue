@@ -52,7 +52,7 @@ export default {
       const sw = bounds.getSouthWest()
       const ne = bounds.getNorthEast()
 
-      this.$axios.get('/admin/users/locations?swlng=${sw.lng}&swlat=${sw.lat}&nelng=${ne.lng}&nelat=${ne.lat}')
+      this.$axios.get(`/admin/users/locations?swlng=${sw.lng}&swlat=${sw.lat}&nelng=${ne.lng}&nelat=${ne.lat}`)
         .then((res) => {
           this.locationData.features = res.data.locations.map(this.pointToGeoJSON)
 
