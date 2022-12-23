@@ -96,6 +96,25 @@
         <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
+              Do you want to be shown in anonymous searches?
+            </p>
+            <p><small>You will still be seen for registered users.</small></p>
+          </div>
+          <div class="col-span-4 md:col-span-3">
+            <CustomSelect @change="user.hideForAnonymous=JSON.parse($event.target.value)">
+              <option :selected="!user.hideForAnonymous" value="false">
+                Show me in anonymous searches
+              </option>
+              <option :selected="user.hideForAnonymous" value="true">
+                Don't show me in anonymous searches
+              </option>
+            </CustomSelect>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="col-span-4 md:col-span-1">
+            <p class="mb-4">
               What do you want to do?
             </p>
             <p />
@@ -224,7 +243,8 @@ export default {
         searchRadius: 1,
         searchType: '',
         active: false,
-        description: ''
+        description: '',
+        hideForAnonymous: false
       },
       isSaved: true,
       notifSettingsOpen: false
