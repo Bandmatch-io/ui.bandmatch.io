@@ -39,10 +39,10 @@
         </div>
         <div class="col-span-2 md:col-span-1 grid grid-cols-2">
           <Button class="inline-block col-span-1 h-12" group-pos="first" :action="()=>{ $router.push(`/profile/${user._id}`) }">
-            Go to profile
+            <user-icon class="inline-block mx-auto" /><span class="hidden lg:inline"> Profile</span>
           </Button>
-          <Button class="inline-block col-span-1 h-12" group-pos="last" :disabled="true" :action="()=>{}">
-            Search as user
+          <Button class="inline-block col-span-1 h-12" group-pos="last" :action="()=>{ $router.push(`/admin/searchas?uid=${user._id}`) }">
+            <search-icon class="inline-block mx-auto" /><span class="hidden lg:inline"> Search</span>
           </Button>
         </div>
       </div>
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { UsersIcon, SearchIcon, MailIcon, AtSignIcon, CheckCircleIcon } from 'vue-feather-icons'
+import { UsersIcon, SearchIcon, MailIcon, AtSignIcon, CheckCircleIcon, UserIcon } from 'vue-feather-icons'
 import TextInput from '~/components/Widgets/TextInput'
 import LoaderAnim from '~/components/Core/LoaderAnim'
 
@@ -81,7 +81,8 @@ export default {
     UsersIcon,
     MailIcon,
     AtSignIcon,
-    SearchIcon
+    SearchIcon,
+    UserIcon
   },
   data () {
     return {
