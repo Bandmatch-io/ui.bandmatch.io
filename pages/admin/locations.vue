@@ -44,10 +44,15 @@ export default {
         trackUserLocation: false
       }))
 
-      this.map.on('load', this.loadData)
+      this.map.on('moveend', this.loadData)
+      this.loadData()
     },
     loadData () {
-      this.$axios.get('/admin/users/locations')
+      const bounds = this.map.getBounds()
+      const sw = bounds.getSouthWest()
+      const ne = bounds.getNorthEast()
+
+      this.$axios.get('/admin/users/locations?swlng=${sw.lng}&swlat=${sw.lat}&nelng=${ne.lng}&nelat=${ne.lat}')
         .then((res) => {
           this.locationData.features = res.data.locations.map(this.pointToGeoJSON)
 
