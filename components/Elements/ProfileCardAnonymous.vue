@@ -24,6 +24,9 @@
     <div class="p-2 border-b-2  shadow-sm">
       <MarkdownView :markdown="shortDescription" style="height: 5rem;" class="overflow-y-auto rounded bg-white border-0 shadow-inner" />
     </div>
+    <div class="p-2 border-b-2 shadow-sm" v-if="user.audioURL">
+      <AudioWidget :url="user.audioURL" />
+    </div>
     <div class="p-2">
       <div class="mb-0">
         <Badge v-for="genre in user.genres" :key="genre" :val="genre" />

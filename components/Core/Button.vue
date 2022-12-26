@@ -45,9 +45,9 @@ export default {
     }
   },
   methods: {
-    onClick () {
+    onClick (e) {
       if (!this.disabled) {
-        this.action()
+        this.action(e)
       }
     }
   }

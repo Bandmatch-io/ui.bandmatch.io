@@ -24,7 +24,7 @@
             Don't show again
           </small>
         </div>
-        <div class="w-full h-screen" v-if="selectedMatch !== undefined">
+        <div class="w-full h-screen overflow-y-scroll" v-if="selectedMatch !== undefined">
           <ProfileCardAnonymous class="mx-auto z-30 block my-5" :user="selectedMatch"/>
         </div>
       </div>
