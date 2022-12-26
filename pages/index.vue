@@ -6,8 +6,8 @@
       </div>
     </div>
     <div v-else>
-      <div class="flex items-start">
-        <ProfileCard v-for="match in matches" :key="match._id" :user="match" class="mx-auto md:mx-5 my-5 block md:inline-block"/>
+      <div class="flex flex-wrap items-start">
+        <ProfileCard v-for="match in matches" :key="match._id" :user="match" class="flex-none mx-auto md:mx-5 my-5 block md:inline-block"/>
       </div>
       <div v-cloak v-if="matches.length === 0" class="w-full block mx-auto my-8 prose text-center">
         <h1>There is no-one around you</h1>
