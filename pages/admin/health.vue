@@ -164,19 +164,20 @@ export default {
         compiled.labels.push(date.toDateString())
 
         let foundData = false
-        data.forEach((stat) => {
+        for (let i = 0; i < data.length; i++) {
+          const stat = data[i]
           if (stat.endpointTiming[endpoint] === undefined) {
             return
           }
 
-          if (this.matchingDates(date, stat.Date)) {
+          if (this.matchingDates(date, stat.date)) {
             compiled.max.push(stat.endpointTiming[endpoint].max)
             compiled.min.push(stat.endpointTiming[endpoint].min)
             compiled.avg.push(stat.endpointTiming[endpoint].avg)
             compiled.count.push(stat.endpointTiming[endpoint].count)
             foundData = true
           }
-        })
+        }
         if (!foundData) {
           compiled.max.push(0)
           compiled.min.push(0)

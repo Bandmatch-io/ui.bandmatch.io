@@ -41,6 +41,27 @@
           {{ dailyStats.stats.userErrors ? dailyStats.stats.userErrors : 0 }}
         </h1>
       </DashboardCard>
+      <DashboardCard title="Unauthorized Requests" link="">
+        <h1 class="my-1 text-2xl">
+          {{ dailyStats.stats.unauthorizedErrors ? dailyStats.stats.unauthorizedErrors : 0 }}
+        </h1>
+      </DashboardCard>
+    </div>
+    <div v-if="dailyStats.stats.errors" class="flex-container justify-center flex flex-wrap w-3/4 block mx-auto">
+      <h1 class="text-xl w-full text-center rounded border-2 bg-complementary-300 hover:bg-complementary-400 text-white" @click="()=>{errorsOpen= !errorsOpen}">
+        <alert-circle-icon size="1x" class="inline mr-1"/>Error Summary
+        <chevron-up-icon v-if="errorsOpen" size="1x" class="inline ml-1"/>
+        <chevron-down-icon v-else size="1x" class="inline ml-1"/>
+      </h1>
+      <div v-if="errorsOpen" class="w-full flex-container justify-center flex flex-wrap">
+        <div v-for="(err, index) in dailyStats.stats.errors" :key="index" class="w-full block border bg-white shadow-sm rounded-sm my-2 mx-auto px-4 py-2">
+          <p> {{err.message}} </p>
+          <div class="grid grid-cols-2 w-full">
+            <p class="my-1 col-span-1 text-sm"> {{err.origin}} </p>
+            <p class="my-1 col-span-1 text-sm text-right"> {{err.timestamp}} </p>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="flex-container justify-center flex flex-wrap">
       <DateInput v-model="periodStats.startDate" label="Start date" class="w-1/3 mx-auto inline-block min-w-250" @change="getPeriodStats">
@@ -55,7 +76,7 @@
 </template>
 
 <script>
-import { CalendarIcon } from 'vue-feather-icons'
+import { CalendarIcon, AlertCircleIcon, ChevronDownIcon, ChevronUpIcon } from 'vue-feather-icons'
 import DashboardCard from '~/components/Widgets/Admin/DashboardCard'
 import DateInput from '~/components/Widgets/DateInput'
 import LineChart from '~/components/Widgets/Admin/LineChart'
@@ -66,7 +87,10 @@ export default {
     DashboardCard,
     DateInput,
     LineChart,
-    CalendarIcon
+    CalendarIcon,
+    AlertCircleIcon,
+    ChevronDownIcon,
+    ChevronUpIcon
   },
   data () {
     return {
@@ -78,7 +102,8 @@ export default {
         startDate: '',
         endDate: '',
         stats: {}
-      }
+      },
+      errorsOpen: false
     }
   },
   mounted () {
@@ -111,7 +136,7 @@ export default {
       return Math.round((second - first) / (1000 * 60 * 60 * 24))
     },
     resetDailyStats () {
-      this.dailyStats.stats = { searches: 0, messagesSent: 0, logins: 0, signups: 0, rootViews: 0, rejections: 0, conversionRate: 0 }
+      this.dailyStats.stats = { searches: 0, messagesSent: 0, logins: 0, signups: 0, rootViews: 0, rejections: 0, conversionRate: 0, errors: undefined }
     },
     getDailyStats () {
       const ymd = this.toYMD(this.dailyStats.date)
