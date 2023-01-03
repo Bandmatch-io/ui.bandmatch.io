@@ -1,14 +1,21 @@
 <template>
   <div class="flex-container bg-polka">
     <h1 class="text-5xl text-center w-3/4 mx-auto block my-3">News</h1>
-    <div class="w-3/4 mx-auto block">
+    <div class="w-3/4 mx-auto block mb-5">
       <small>{{ news.length }} articles</small>
+      <Button class="inline-block col-span-1 h-12" :action="()=>{ $router.push(`/admin/news/schedule`) }">
+        <plus-circle-icon size="1x" class="inline-block mr-1" />Schedule new article
+      </Button>
       <div v-for="article in pages[currentPage]" :key="article._id" class="cursor-pointer border rounded shadow p-3 m-3 bg-white hover:text-white hover:bg-secondary-300 flow-root grid grid-cols-2 md:grid-cols-4" @click="()=>{navigateTo(article._id)}">
         <div class="col-span-3">
           <h1 class="text-xl capitalize">{{ article.title }}</h1>
         </div>
         <div class="col-span-1">
           <small class="text-right w-full inline-block"><timeago :datetime="article.timestamps.deliveryTime" :auto-update="600"/></small>
+        </div>
+        <div class="col-span-1">
+          <check-circle-icon v-if="article.delivered" size="1x" class="inline-block"/>
+          <x-circle-icon v-else size="1x" class="inline-block"/>
         </div>
       </div>
       <div v-if="pages.length > 1" class="mb-4 grid grid-flow-col grid-rows-1 grid-cols-max centent-center">
@@ -36,9 +43,15 @@
 </template>
 
 <script>
+import { XCircleIcon, CheckCircleIcon, PlusCircleIcon } from 'vue-feather-icons'
 
 export default {
-  auth: false,
+  middleware: 'isadmin',
+  components: {
+    XCircleIcon,
+    CheckCircleIcon,
+    PlusCircleIcon
+  },
   data () {
     return {
       states: {
@@ -55,7 +68,7 @@ export default {
   },
   methods: {
     navigateTo (id) {
-      this.$router.push(`/news/${id}`)
+      this.$router.push(`/admin/news/${id}`)
     },
     setPage (p) {
       this.currentPage = p
@@ -63,7 +76,7 @@ export default {
     performSearch () {
       this.state = this.states.loading
       this.pages = []
-      this.$axios.get('/news/getall?dl=true')
+      this.$axios.get('/news/getall')
         .then((res) => {
           this.state = this.states.default
           console.log(res.data)
