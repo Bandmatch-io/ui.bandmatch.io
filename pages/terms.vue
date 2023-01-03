@@ -45,6 +45,7 @@ export default {
   components: {
     LinkIcon
   },
+  auth: false,
   head () {
     return {
       title: 'Terms of Use | Bandmatch',

@@ -45,7 +45,7 @@
             Verified
           </div>
           <div class="col-span-4 md:col-span-3">
-            <check-circle-icon v-if="user.emailVerified" class="inline-block mr-1 text-primary-300" />
+            <check-circle-icon v-if="user.emailConfirmed" class="inline-block mr-1 text-primary-300" />
             <circle-icon v-else class="inline-block mr-1 text-complementary-300" />
           </div>
         </div>

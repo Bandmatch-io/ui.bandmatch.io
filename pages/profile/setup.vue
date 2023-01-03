@@ -126,11 +126,14 @@
               </div>
             </div>
 
-            <div class="block flow-root p-4 rounded bg-gray-100 shadow">
-              <Button :action="()=>{ state-- }" class="w-1/2 md:w-1/3 mx-0 my-1 float-left">
+            <div class="block flow-root p-4 rounded bg-gray-100 shadow grid grid-cols-5">
+              <Button :action="()=>{ state-- }" class="w-fullmx-0 my-1 col-span-2" groupPos="first">
                 <arrow-left-icon class="inline-block" height="21px" width="21px" /> Back
               </Button>
-              <Button v-if="user.description !== ''" colour="tertiary" :action="saveAndFinish" class="w-1/2 md:w-1/3 mx-0 my-1 float-right text-gray-500">
+              <Button :action="openNotificationSettings" class="w-full mx-0 my-1 col-span-1 text-gray-500" groupPos="mid">
+                <bell-icon class="inline-block mr-1" />
+              </Button>
+              <Button v-if="user.description !== ''" colour="tertiary" :action="saveAndFinish" class="w-full mx-0 my-1 col-span-2 text-gray-500" groupPos="last">
                 <check-icon class="inline-block mr-1" />Save
               </Button>
             </div>
@@ -142,7 +145,7 @@
 </template>
 
 <script>
-import { ArrowRightIcon, ArrowLeftIcon, EyeIcon, CheckIcon } from 'vue-feather-icons'
+import { ArrowRightIcon, ArrowLeftIcon, EyeIcon, CheckIcon, BellIcon } from 'vue-feather-icons'
 import ProgressBar from '~/components/Widgets/ProgressBar'
 import ArrayInput from '~/components/Widgets/ArrayInput'
 import LocationInput from '~/components/Widgets/LocationInput'
@@ -157,7 +160,8 @@ export default {
     CheckIcon,
     ArrayInput,
     LocationInput,
-    NumberSlider
+    NumberSlider,
+    BellIcon
   },
   data () {
     return {
@@ -194,6 +198,9 @@ export default {
             this.$store.commit('toasts/create', { title: 'User', message: 'Your profile has been setup' })
           }
         })
+    },
+    openNotificationSettings () {
+      this.$store.commit('notifications/open')
     }
   },
   head () {

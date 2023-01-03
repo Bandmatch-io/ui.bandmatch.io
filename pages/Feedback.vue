@@ -31,6 +31,7 @@ export default {
     EyeIcon,
     MessageSquareIcon
   },
+  auth: false,
   data () {
     return {
       admins: []

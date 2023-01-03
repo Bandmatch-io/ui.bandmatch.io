@@ -6,15 +6,11 @@
       </div>
     </div>
     <div v-else>
-      <div class="flex flex-wrap items-start">
-        <ProfileCard v-for="match in matches" :key="match._id" :user="match" class="flex-none mx-auto md:mx-5 my-5 block md:inline-block"/>
+      <div class="flex-container">
+        <ProfileCard v-for="match in matches" :key="match._id" :user="match" class="mx-auto md:mx-5 my-5 block md:inline-block"/>
       </div>
       <div v-cloak v-if="matches.length === 0" class="w-full block mx-auto my-8 prose text-center">
-        <h1>There is no-one around you</h1>
-        <p>Maybe try editing your profile?</p>
-        <nuxt-link to="/profile/edit">
-          Edit your profile
-        </nuxt-link>
+        <h1>No results</h1>
       </div>
     </div>
   </div>
@@ -28,7 +24,6 @@ export default {
     ProfileCard,
     LoaderAnim
   },
-  auth: false,
   data () {
     return {
       states: {
@@ -40,16 +35,12 @@ export default {
     }
   },
   mounted () {
-    if (this.$auth.user === null) {
-      this.$router.push('/map')
-    }
-
     this.loadMatches()
   },
   methods: {
     loadMatches () {
       this.state = this.states.loading
-      this.$axios.get('/search/foruser')
+      this.$axios.get(`/admin/users/searchas?uid=${this.$route.query.uid === undefined ? '' : this.$route.query.uid}`)
         .then((res) => {
           this.state = this.states.default
           if (res.data.success) {

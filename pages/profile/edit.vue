@@ -51,6 +51,34 @@
 
         <div class="section">
           <div class="col-span-4 md:col-span-1">
+            Notification Settings
+          </div>
+          <div class="col-span-4 md:col-span-3">
+            <Button :action="openNotificationSettings" class="w-full mx-auto">
+              <bell-icon class="inline-block" /> Open Settings
+            </Button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="col-span-4 md:col-span-1">
+            Audio Preview
+          </div>
+          <div class="col-span-4 md:col-span-3">
+            <Button :action="() => { this.$router.push('/profile/audioedit') }" class="w-full mx-auto">
+              <music-icon class="inline-block" /> {{ hasAudioURL ? 'Add' : 'Edit' }} Audio Preview
+            </Button>
+            <Button v-if="hasAudioURL" colour="complementary" :action="removeAudioPreview" class="w-full mx-auto mt-4">
+              <trash-2-icon class="inline-block" /> Remove Audio Preview
+            </Button>
+            <div v-if="hasAudioURL" class="max-w-350 block mx-auto mt-4">
+              <AudioWidget :url="user.audioURL" />
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
               Display Name
             </p>
@@ -77,6 +105,25 @@
               </option>
               <option :selected="!user.active" value="false">
                 Don't show me in searches
+              </option>
+            </CustomSelect>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="col-span-4 md:col-span-1">
+            <p class="mb-4">
+              Do you want to be shown in anonymous searches?
+            </p>
+            <p><small>You will still be seen for registered users.</small></p>
+          </div>
+          <div class="col-span-4 md:col-span-3">
+            <CustomSelect @change="user.hideForAnonymous=JSON.parse($event.target.value)">
+              <option :selected="!user.hideForAnonymous" value="false">
+                Show me in anonymous searches
+              </option>
+              <option :selected="user.hideForAnonymous" value="true">
+                Don't show me in anonymous searches
               </option>
             </CustomSelect>
           </div>
@@ -185,7 +232,7 @@
 </template>
 
 <script>
-import { AtSignIcon, KeyIcon, LoaderIcon, CheckIcon, DownloadIcon, Trash2Icon, CheckCircleIcon } from 'vue-feather-icons'
+import { AtSignIcon, KeyIcon, MusicIcon, LoaderIcon, CheckIcon, DownloadIcon, Trash2Icon, CheckCircleIcon, BellIcon } from 'vue-feather-icons'
 import MarkdownInput from '~/components/Widgets/MarkdownInput'
 import ConfirmationInput from '~/components/Widgets/ConfirmationInput'
 
@@ -194,12 +241,14 @@ export default {
     AtSignIcon,
     KeyIcon,
     CheckIcon,
+    MusicIcon,
     LoaderIcon,
     CheckCircleIcon,
     DownloadIcon,
     Trash2Icon,
     MarkdownInput,
-    ConfirmationInput
+    ConfirmationInput,
+    BellIcon
   },
   data () {
     return {
@@ -212,9 +261,11 @@ export default {
         searchRadius: 1,
         searchType: '',
         active: false,
-        description: ''
+        description: '',
+        hideForAnonymous: false
       },
-      isSaved: true
+      isSaved: true,
+      notifSettingsOpen: false
     }
   },
   computed: {
@@ -229,6 +280,9 @@ export default {
         return new Date(this.user.timestamps.signup_at).toDateString()
       }
       return ''
+    },
+    hasAudioURL () {
+      return this.user.audioURL !== '' && this.user.audioURL !== undefined
     }
   },
   watch: {
@@ -243,6 +297,16 @@ export default {
     this.user = this.$auth.user
   },
   methods: {
+    removeAudioPreview () {
+      this.$axios.patch('/users/audio?rm=true')
+        .then((res) => {
+          if (res.data.success) {
+            this.user.audioURL = undefined
+            this.postUserProfile(this.user)
+            this.$store.commit('toasts/create', { title: 'User', message: 'Audio preview removed' })
+          }
+        })
+    },
     typeSelected (val) {
       return this.user.searchType === val
     },
@@ -293,6 +357,9 @@ export default {
         .catch((e) => {
           this.$store.commit('toasts/create', { title: 'User', message: 'Failed to delete account', type: 'error' })
         })
+    },
+    openNotificationSettings () {
+      this.$store.commit('notifications/open')
     }
   },
   head () {

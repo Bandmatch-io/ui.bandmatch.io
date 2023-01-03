@@ -7,6 +7,7 @@
     </div>
     <Toast />
     <ReportModal />
+    <NotificationSettingsModal />
   </div>
 </template>
 
@@ -19,7 +20,7 @@ export default {
   },
   computed: {
     bodyClass () {
-      if (this.$store.state.reports.active) {
+      if (this.$store.state.reports.active || this.$store.state.notifications.active) {
         return 'overflow-y-hidden h-screen'
       }
       return ''
@@ -33,6 +34,12 @@ export default {
   mounted () {
     if (this.$route.query.ref) {
       this.$axios.post(`/ref?r=${this.$route.query.ref}`)
+    }
+
+    if (this.$route.query.mk) {
+      if (this.$auth.user !== null) {
+        this.$store.commit('notifications/open')
+      }
     }
 
     this.getUnread()

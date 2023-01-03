@@ -91,8 +91,10 @@ export default {
 
       this.$auth.loginWith('local', { data: this.loginDetails })
         .then((res) => {
-          this.$store.commit('toasts/create', { title: 'User', message: 'You have successfully logged in' })
-          this.$router.push('/')
+          if (res.data.success) {
+            this.$store.commit('toasts/create', { title: 'User', message: 'You have successfully logged in' })
+            this.$router.push('/')
+          }
         })
         .catch((e) => {
           this.state = this.states.default

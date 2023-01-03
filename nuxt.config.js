@@ -78,7 +78,7 @@ export default {
       }
     },
     redirect: {
-      login: '/account',
+      login: '/map',
       logout: '/',
       home: '/'
     },
