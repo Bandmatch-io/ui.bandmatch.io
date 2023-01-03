@@ -28,7 +28,7 @@
       </li>
     </ul>
     <p class="col-span-1">
-      &copy; Bandmatch.io 2022
+      &copy; Bandmatch.io 2023
     </p>
   </div>
 </template>
