@@ -25,6 +25,9 @@
           <Button class="inline-block mx-0" groupPos="first" colour="complementary" :action="cancel">
             Cancel
           </Button>
+          <Button class="inline-block mx-0" groupPos="mid" colour="tertiary" :action="publishPost">
+            Publish Now
+          </Button>
           <Button class="inline-block mx-0" groupPos="last" colour="tertiary" :action="schedulePost">
             Save
           </Button>
@@ -105,6 +108,20 @@ export default {
         .then((res) => {
           if (res.success) {
             this.$store.commit('toasts/create', { title: 'Admin', message: 'Your article has been updated' })
+            this.$router.push('/admin/news')
+          }
+        })
+        .catch((e) => {
+          this.state = this.states.default
+          this.errors = e.response.data.errors
+        })
+    },
+    publishPost (id) {
+      this.state = this.states.loading
+      this.$axios.$post(`/news/publish?id=${this.article.id}`)
+        .then((res) => {
+          if (res.success) {
+            this.$store.commit('toasts/create', { title: 'Admin', message: 'Your article is being published' })
             this.$router.push('/admin/news')
           }
         })
