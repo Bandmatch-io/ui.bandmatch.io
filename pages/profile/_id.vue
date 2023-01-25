@@ -61,6 +61,19 @@
           </div>
         </div>
 
+        <div class="section" v-if="hasAudioURL">
+          <div class="col-span-4 md:col-span-1">
+            <p class="mb-4">
+              Audio Preview
+            </p>
+          </div>
+          <div class="col-span-4 md:col-span-3">
+            <div class="max-w-350 block mx-auto mt-4">
+              <AudioWidget :url="user.audioURL" />
+            </div>
+          </div>
+        </div>
+
         <div class="section">
           <div class="col-span-4 md:col-span-1">
             <p class="mb-4">
@@ -185,6 +198,9 @@ export default {
         return new Date(this.user.timestamps.signup_at).toDateString()
       }
       return ''
+    },
+    hasAudioURL () {
+      return this.user.audioURL !== '' && this.user.audioURL !== undefined
     }
   },
   mounted () {

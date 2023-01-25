@@ -21,7 +21,7 @@
         <TextError v-if="errors.content && errors.content.missing">
           You must provide some content
         </TextError>
-        <div class="w-full md:w-1/2 block mx-auto my-3 grid grid-cols-2">
+        <div class="w-full md:w-1/2 block mx-auto my-3 grid grid-cols-3">
           <Button class="inline-block mx-0" groupPos="first" colour="complementary" :action="cancel">
             Cancel
           </Button>
