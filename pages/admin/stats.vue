@@ -46,6 +46,11 @@
           {{ dailyStats.stats.unauthorizedErrors ? dailyStats.stats.unauthorizedErrors : 0 }}
         </h1>
       </DashboardCard>
+      <DashboardCard title="Alerts Sent" link="">
+        <h1 class="my-1 text-2xl">
+          {{ dailyStats.stats.alertsSent ? dailyStats.stats.alertsSent : 0 }}
+        </h1>
+      </DashboardCard>
     </div>
     <div v-if="dailyStats.stats.errors" class="flex-container justify-center flex flex-wrap w-3/4 block mx-auto">
       <h1 class="text-xl w-full text-center rounded border-2 bg-complementary-300 hover:bg-complementary-400 text-white" @click="()=>{errorsOpen= !errorsOpen}">
